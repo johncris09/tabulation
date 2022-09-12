@@ -33,6 +33,13 @@ class User_model extends CI_Model
             ->result_array();
     }
  
+    public function get_user($data)
+    {  
+        $this->db->where($data);
+        return $this->db->get($this->table)->result_array()[0];
+    } 
+ 
+  
 
  
 }
