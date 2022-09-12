@@ -60,6 +60,7 @@ class Production_number_model extends CI_Model
     {  
         $this->db->select('production_number.candidate, sum(rank) as tot_score');
         $this->db->where($data); 
+        $this->db->where('production_number.judge != 0');
         return $this->db->get('production_number');//->result_array()[0]['score']; 
     }
 
