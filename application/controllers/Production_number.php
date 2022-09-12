@@ -130,7 +130,7 @@ class Production_number extends CI_Controller {
 		if($get_tot_score->num_rows() > 0){
 			$data['tot_score']=  ($get_tot_score->result_array()[0]['tot_score'] * 100 ) /100;
 		}
- 
+  
 		
         echo json_encode($data );
 	}
