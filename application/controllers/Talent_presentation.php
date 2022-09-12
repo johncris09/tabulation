@@ -14,7 +14,7 @@ class Talent_presentation extends CI_Controller {
 
     public function index()
 	{ 
-        $data['page_title'] = "Production Number"; 
+        $data['page_title'] = "Talent Presentation"; 
 		$data['candidate'] = $this->candidate_model->get_all_candidate();
 		if( strtolower ($_SESSION['role_type'] ) == "admin"){ 
 			$data['judge'] = $this->user_model->get_all_judge(); 
