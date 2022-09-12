@@ -8,4 +8,4 @@ $autoload['drivers']   = array();
 $autoload['config']    = array();
 $autoload['helper'] = array('url', 'file', 'directory');
 $autoload['language']  = array();
-$autoload['model']     = array();
+$autoload['model']     = array('user_model', 'candidate_model', 'production_number_model');
