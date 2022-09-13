@@ -52,7 +52,10 @@
                 <div class="conversion-title">
                   <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5> 
                 </div> 
-                <button class="btn btn-primary" id="save-final-round">Save to Final Round</button>
+                <div>
+                <button class="btn btn-primary" id="print-result"> <i class="bx bx-printer "></i> Print Result</button>
+                  <button class="btn btn-primary" id="save-final-round">Save to Final Round</button>
+                </div>
               </div>
               <div class="table-responsive text-nowrap">
                 <table class="table">
@@ -241,6 +244,14 @@
         }) 
          
       });
+
+      
+        
+        $('#print-result').on('click', function(){
+          window.open( BASE_URL + "top_five/result" , "Print Result", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=300,width=600,height=505");
+        })
+
+      
       
 
       });

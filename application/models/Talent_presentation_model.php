@@ -129,4 +129,13 @@ class Talent_presentation_model extends CI_Model
             ->update($this->table, $data);
     }
  
+    public function get_top_one_candidate()
+    { 
+        return $this->db 
+            ->where('talent_presentation.judge = 0')
+            ->where('candidate.id = talent_presentation.candidate')
+            ->order_by('rank asc')
+			->get('talent_presentation, candidate');
+    }
+ 
 }

@@ -135,5 +135,17 @@ class Production_number_model extends CI_Model
             ->where('judge', $data['judge']) 
             ->update($this->table, $data);
     }
+
+    
+    public function get_top_one_candidate()
+    { 
+        return $this->db 
+            ->where('production_number.judge = 0')
+            ->where('candidate.id = production_number.candidate')
+            ->order_by('rank asc')
+			->get('production_number, candidate');
+    }
+
+
  
 }

@@ -30,7 +30,7 @@ class Production_attire_model extends CI_Model
             ->where('id', $data['id'])
             ->update($this->table, $data);
     }
-
+    
 
 
 
@@ -134,6 +134,14 @@ class Production_attire_model extends CI_Model
             ->where('candidate', $data['candidate'])
             ->where('judge', $data['judge']) 
             ->update($this->table, $data);
+    }
+    public function get_top_one_candidate()
+    { 
+        return $this->db 
+            ->where('production_attire.judge = 0')
+            ->where('candidate.id = production_attire.candidate')
+            ->order_by('rank asc')
+			->get('production_attire, candidate');
     }
  
 }

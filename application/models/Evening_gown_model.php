@@ -135,5 +135,16 @@ class Evening_gown_model extends CI_Model
             ->where('judge', $data['judge']) 
             ->update($this->table, $data);
     }
+
+    
+    public function get_top_one_candidate()
+    { 
+        return $this->db 
+            ->where('evening_gown.judge = 0')
+            ->where('candidate.id = evening_gown.candidate')
+            ->order_by('rank asc')
+			->get('evening_gown, candidate');
+    }
+
  
 }
