@@ -24,7 +24,7 @@
 										<div class="card-body">
 											<h3 class="card-title text-center">TALENT PRESENTATION</h3>
 											<div class="d-grid gap-2 col-lg-6 mx-auto">
-												<a class="btn btn-primary  " href="<?php echo base_url() ?>production_number">Score</a> 
+												<a class="btn btn-primary  " href="<?php echo base_url() ?>talent_presentation">View Score</a> 
 											</div>
 										</div>
 									</div>
@@ -35,7 +35,7 @@
 										<div class="card-body">
 											<h3 class="card-title text-center">PRODUCTION NUMBER</h3>
 											<div class="d-grid gap-2 col-lg-6 mx-auto">
-												<a class="btn btn-primary  " href="<?php echo base_url() ?>production_number">Score</a> 
+												<a class="btn btn-primary  " href="<?php echo base_url() ?>production_number">View Score</a> 
 											</div>
 										</div>
 									</div>
@@ -46,7 +46,7 @@
 										<div class="card-body">
 											<h3 class="card-title text-center">PRODUCTION ATTIRE</h3>
 											<div class="d-grid gap-2 col-lg-6 mx-auto">
-												<a class="btn btn-primary  " href="<?php echo base_url() ?>production_number">Score</a> 
+												<a class="btn btn-primary  " href="<?php echo base_url() ?>production_attire">View Score</a> 
 											</div>
 										</div>
 									</div>
@@ -57,7 +57,7 @@
 										<div class="card-body">
 											<h3 class="card-title text-center">BEST IN SWIM WEAR  </h3>
 											<div class="d-grid gap-2 col-lg-6 mx-auto">
-												<button class="btn btn-primary  " type="button">Vote</button> 
+												<a class="btn btn-primary  " href="<?php echo base_url() ?>swim_wear">View Score</a> 
 											</div>
 										</div>
 									</div>
@@ -68,7 +68,7 @@
 										<div class="card-body">
 											<h3 class="card-title text-center">BEST IN EVENING GOWN</h3>
 											<div class="d-grid gap-2 col-lg-6 mx-auto">
-												<button class="btn btn-primary  " type="button">Vote</button> 
+												<a class="btn btn-primary  " href="<?php echo base_url() ?>evening_gown">View Score</a> 
 											</div>
 										</div>
 									</div>
@@ -79,7 +79,7 @@
 										<div class="card-body">
 											<h3 class="card-title text-center">TOP 5</h3>
 											<div class="d-grid gap-2 col-lg-6 mx-auto">
-												<button class="btn btn-primary  " type="button">Vote</button> 
+												<a class="btn btn-primary  " href="<?php echo base_url() ?>top_five">View Score</a> 
 											</div>
 										</div>
 									</div>
@@ -88,9 +88,9 @@
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/5.jpg" alt="Card image cap">
 										<div class="card-body">
-											<h3 class="card-title text-center">BINIBINING OROQUIETA</h3>
+											<h3 class="card-title text-center">FINAL ROUND</h3>
 											<div class="d-grid gap-2 col-lg-6 mx-auto">
-												<button class="btn btn-primary  " type="button">Vote</button> 
+												<a class="btn btn-primary  " href="<?php echo base_url() ?>final_round">View Score</a> 
 											</div>
 										</div>
 									</div>
