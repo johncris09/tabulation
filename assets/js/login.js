@@ -9,15 +9,15 @@ $(document).ready(function(){
         data: $('#formAuthentication').serialize(),
         dataType: 'JSON',
         success: function(data){ 
-            if(data.response){
-                location.reload();
-            }else{ 
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Invalid Username/Password', 
-                })
-            }
+          if(data.response){
+              location.reload();
+          }else{ 
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Invalid Username/Password', 
+            })
+          }
         },
         // Error Handler
         error: function(xhr, textStatus, error){
