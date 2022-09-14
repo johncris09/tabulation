@@ -362,5 +362,20 @@ class Final_round extends CI_Controller {
         echo json_encode($data);
     } 
 	
+
+	
+	function result()
+	{
+		// get top 1 candidate
+		$candidate = $this->final_round_model->get_top_five_candidate();
+		if($candidate->num_rows() > 0 ){ 
+			$data['page_title'] = "Top 5";
+			$data['candidate'] = $candidate->result_array() ;
+			$data['judge'] = $this->user_model->get_chairman(); 
+			$this->load->view('admin/final_round_result', $data); 
+		}
+	}
+
+
         
 } 
