@@ -14,7 +14,7 @@
     <link rel="canonical" href="https://1.envato.market/frest_admin">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/favicon.ico" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,6 +54,15 @@
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
       
 
+    <style>
+      .center {
+        display: block;
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+
     
       
 </head>
@@ -78,9 +87,21 @@
     </div>
     <!-- /Left Text -->
 
+    
+
     <!-- Login -->
     <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg p-sm-5 p-4">
       <div class="w-px-400 mx-auto"> 
+        <div class="app-brand mb-4 ">
+          <a href="<?php echo base_url(); ?>" class="app-brand-link gap-2 mb-2">   
+            <img class="center" class="text-center" src="<?php echo base_url() ?>assets/img/logo.png" alt="">
+          </a>
+        </div>
+        <div class="text-center">
+          <h6>Automated Scoring Tabulation System</h6>
+        </div>
+
+                      
         <!-- /Logo -->
         <h4 class="mb-2">Login</h4>
         <p class="mb-4">Please sign-in to your account </p>
