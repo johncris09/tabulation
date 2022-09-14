@@ -31,6 +31,14 @@ class User_model extends CI_Model
             ->where('role_type', 'judge')
 			->get($this->table)
             ->result_array();
+    } 
+
+    public function get_chairman()
+    { 
+        return $this->db 
+            ->where('judge_no', 'judge1')
+			->get($this->table)
+            ->result_array()[0];
     }
  
     public function get_user($data)
