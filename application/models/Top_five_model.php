@@ -32,6 +32,7 @@ class Top_five_model extends CI_Model
         return $this->db 
             ->where('judge',0)
             ->where('candidate.id = top_five.candidate')
+            ->where('score != 0')
             ->order_by('rank','asc')
             ->limit('5')
 			->get('candidate, top_five');

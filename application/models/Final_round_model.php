@@ -162,6 +162,7 @@ class Final_round_model extends CI_Model
         return $this->db 
             ->where('judge',0)
             ->where('candidate.id = final_round.candidate')
+            ->where('score != 0')
             ->order_by('rank','asc')
             ->limit('5')
 			->get('candidate, final_round');
