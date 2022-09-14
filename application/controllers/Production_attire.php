@@ -369,6 +369,8 @@ class Production_attire extends CI_Controller {
 			$data['candidate'] = $candidate->result_array()[0];
 			$data['judge'] = $this->user_model->get_chairman();
 			$this->load->view('admin/production_attire_result', $data); 
+		}else{
+			show_404();
 		}
 	}
 

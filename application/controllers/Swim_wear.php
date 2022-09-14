@@ -368,6 +368,8 @@ class Swim_wear extends CI_Controller {
 			$data['candidate'] = $candidate->result_array()[0];
 			$data['judge'] = $this->user_model->get_chairman();
 			$this->load->view('admin/swim_wear_result', $data); 
+		}else{
+			show_404();
 		}
 	}
 

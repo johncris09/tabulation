@@ -367,6 +367,8 @@ class Evening_gown extends CI_Controller {
 			$data['candidate'] = $candidate->result_array()[0];
 			$data['judge'] = $this->user_model->get_chairman();
 			$this->load->view('admin/evening_gown_result', $data); 
+		}else{
+			show_404();
 		}
 	}
 

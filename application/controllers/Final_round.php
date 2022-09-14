@@ -373,6 +373,8 @@ class Final_round extends CI_Controller {
 			$data['candidate'] = $candidate->result_array() ;
 			$data['judge'] = $this->user_model->get_chairman(); 
 			$this->load->view('admin/final_round_result', $data); 
+		}else{
+			show_404();
 		}
 	}
 
