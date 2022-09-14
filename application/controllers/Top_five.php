@@ -387,7 +387,7 @@ class Top_five extends CI_Controller {
 		// get top 1 candidate
 		$candidate = $this->top_five_model->get_top_five_candidate();
 		if($candidate->num_rows() > 0 ){ 
-			$data['page_title'] = "Best in Talent Presentation";
+			$data['page_title'] = "Top 5";
 			$data['candidate'] = $candidate->result_array() ;
 			$data['judge'] = $this->user_model->get_chairman();
 			$this->load->view('admin/top_five_result', $data); 
