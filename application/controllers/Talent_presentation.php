@@ -361,12 +361,12 @@ class Talent_presentation extends CI_Controller {
 
 	function result()
 	{
-		// get top 1 candidate
-		$candidate = $this->talent_presentation_model->get_top_one_candidate();
+		// get top 3 candidate
+		$candidate = $this->talent_presentation_model->get_top_three_candidate();
 		if($candidate->num_rows() > 0 ){
 			$data['page_title'] = "Best in Talent Presentation";
-			$data['candidate'] = $candidate->result_array()[0];
-			$data['judge'] = $this->user_model->get_chairman();
+			$data['candidate'] = $candidate->result_array();
+			$data['judge'] = $this->user_model->get_chairman(); 
 			$this->load->view('admin/talent_presentation_result', $data); 
 		}else{
 			show_404();

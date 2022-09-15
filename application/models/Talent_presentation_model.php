@@ -129,7 +129,7 @@ class Talent_presentation_model extends CI_Model
             ->update($this->table, $data);
     }
  
-    public function get_top_one_candidate()
+    public function get_top_three_candidate()
     { 
         return $this->db 
             ->where('talent_presentation.judge = 0')
