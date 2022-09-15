@@ -169,6 +169,11 @@
 		overflow: hidden;
 		display: block
 	}
+
+	.font-size { 
+		font-size: 60px !important; 
+		font-family: Arial, Helvetica, sans-serif !important;
+	}
 	
 	.t {
 		position: absolute;
@@ -842,6 +847,10 @@
 		.x7 {
 			left: 577.693333pt;
 		}
+		.font-size{
+			font-size: 90px !important;
+			font-family: Arial, Helvetica, sans-serif !important;
+		}
 	}
 	</style>
 	<script>
@@ -1383,49 +1392,49 @@
 					<div class="t m0 x8 h5 ya ff3 fs2 fc1 sc0 ls1 ws1">Final Ranking </div>
 				</div>
 				<div class="c x1 yb w3 h6">
-					<div class="t m0 x9 h7 yc ff3 fs1 fc0 sc0 ls1 ws1"><?php echo $candidate[0]['number']; ?></div>
+					<div class="t m0 x9 h7 yc ff3 fs1 fc0 sc0 ls1 ws1 font-size"><?php echo $candidate[0]['number']; ?></div>
 				</div>
 				<div class="c x5 yb w4 h6">
-					<div class="t m0 x8 h3 yc ff1 fs1 fc0 sc0 ls1 ws1"><?php echo $candidate[0]['name']; ?>  </div>
+					<div class="t m0 x8 h3 yc ff1 fs1 fc0 sc0 ls1 ws1 font-size"><?php echo $candidate[0]['name']; ?>  </div>
 				</div>
 				<div class="c x7 yb w5 h6">
-					<div class="t m0 xa h3 yc ff1 fs1 fc0 sc0 ls1 ws1"><strong><?php echo ($candidate[0]['rank']) *100 /100; ?></strong></div>
+					<div class="t m0 xa h3 yc ff1 fs1 fc0 sc0 ls1 ws1 font-size"><strong><?php echo ($candidate[0]['rank']) *100 /100; ?></strong></div>
 				</div>
 				<div class="c x1 yd w3 h8">
-					<div class="t m0 x9 h7 yc ff3 fs1 fc0 sc0 ls2 ws0"><?php echo $candidate[1]['number']; ?></div>
+					<div class="t m0 x9 h7 yc ff3 fs1 fc0 sc0 ls2 ws0 font-size"><?php echo $candidate[1]['number']; ?></div>
 				</div>
 				<div class="c x5 yd w4 h8">
-					<div class="t m0 x8 h3 yc ff1 fs1 fc0 sc0 ls1 ws1"><?php echo $candidate[1]['name']; ?> </div>
+					<div class="t m0 x8 h3 yc ff1 fs1 fc0 sc0 ls1 ws1 font-size"><?php echo $candidate[1]['name']; ?> </div>
 				</div>
 				<div class="c x7 yd w5 h8">
-					<div class="t m0 xa h3 yc ff1 fs1 fc0 sc0 ls1 ws1"><strong><?php echo ($candidate[1]['rank']) *100 /100; ?></strong></div>
+					<div class="t m0 xa h3 yc ff1 fs1 fc0 sc0 ls1 ws1 font-size"><strong><?php echo ($candidate[1]['rank']) *100 /100; ?></strong></div>
 				</div>
 				<div class="c x1 ye w3 h6">
-					<div class="t m0 x9 h7 yc ff3 fs1 fc0 sc0 ls1 ws1"><?php echo $candidate[2]['number']; ?></div>
+					<div class="t m0 x9 h7 yc ff3 fs1 fc0 sc0 ls1 ws1 font-size"><?php echo $candidate[2]['number']; ?></div>
 				</div>
 				<div class="c x5 ye w4 h6">
-					<div class="t m0 x8 h3 yc ff1 fs1 fc0 sc0 ls1 ws1"><?php echo $candidate[2]['name']; ?>  </div>
+					<div class="t m0 x8 h3 yc ff1 fs1 fc0 sc0 ls1 ws1 font-size"><?php echo $candidate[2]['name']; ?>  </div>
 				</div>
 				<div class="c x7 ye w5 h6">
-					<div class="t m0 xa h3 yc ff1 fs1 fc0 sc0 ls1 ws1"><strong><?php echo ($candidate[2]['rank']) *100 /100; ?></strong></div>
+					<div class="t m0 xa h3 yc ff1 fs1 fc0 sc0 ls1 ws1 font-size"><strong><?php echo ($candidate[2]['rank']) *100 /100; ?></strong></div>
 				</div>
 				<div class="c x1 yf w3 h6">
-					<div class="t m0 x9 h7 yc ff3 fs1 fc0 sc0 ls1 ws1"><?php echo $candidate[3]['number']; ?></div>
+					<div class="t m0 x9 h7 yc ff3 fs1 fc0 sc0 ls1 ws1 font-size"><?php echo $candidate[3]['number']; ?></div>
 				</div>
 				<div class="c x5 yf w4 h6">
-					<div class="t m0 x8 h3 yc ff1 fs1 fc0 sc0 ls1 ws1"><?php echo $candidate[3]['name']; ?> </div>
+					<div class="t m0 x8 h3 yc ff1 fs1 fc0 sc0 ls1 ws1 font-size"><?php echo $candidate[3]['name']; ?> </div>
 				</div>
 				<div class="c x7 yf w5 h6">
-					<div class="t m0 xa h3 yc ff1 fs1 fc0 sc0 ls1 ws1"><strong><?php echo ($candidate[3]['rank']) *100 /100; ?></strong></div>
+					<div class="t m0 xa h3 yc ff1 fs1 fc0 sc0 ls1 ws1 font-size"><strong><?php echo ($candidate[3]['rank']) *100 /100; ?></strong></div>
 				</div>
 				<div class="c x1 y10 w3 h6">
-					<div class="t m0 x9 h7 yc ff3 fs1 fc0 sc0 ls1 ws1"><?php echo $candidate[4]['number']; ?></div>
+					<div class="t m0 x9 h7 yc ff3 fs1 fc0 sc0 ls1 ws1 font-size"><?php echo $candidate[4]['number']; ?></div>
 				</div>
 				<div class="c x5 y10 w4 h6">
-					<div class="t m0 x8 h3 yc ff1 fs1 fc0 sc0 ls1 ws1"><?php echo $candidate[4]['name']; ?>  </div>
+					<div class="t m0 x8 h3 yc ff1 fs1 fc0 sc0 ls1 ws1 font-size"><?php echo $candidate[4]['name']; ?>  </div>
 				</div>
 				<div class="c x7 y10 w5 h6">
-					<div class="t m0 xa h3 yc ff1 fs1 fc0 sc0 ls1 ws1"><strong><?php echo ($candidate[4]['rank']) *100 /100; ?></strong></div>
+					<div class="t m0 xa h3 yc ff1 fs1 fc0 sc0 ls1 ws1 font-size"><strong><?php echo ($candidate[4]['rank']) *100 /100; ?></strong></div>
 				</div>
 				<div class="c x0 y1 w2 h0">
 					<div class="t m0 x1 h2 y11 ff1 fs0 fc0 sc0 ls1 ws1"> </div>

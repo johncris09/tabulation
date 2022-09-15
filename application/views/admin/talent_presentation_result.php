@@ -172,6 +172,7 @@
 
 	.font-size{
 		font-size: 60px !important;
+		font-family: Arial, Helvetica, sans-serif !important;
 	}
 	
 	.t {
@@ -848,6 +849,7 @@
 		} 
 		.font-size{
 			font-size: 90px !important;
+			font-family: Arial, Helvetica, sans-serif;
 		}
 	}
 	</style>
