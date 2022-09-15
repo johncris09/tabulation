@@ -14,7 +14,7 @@ class Final_round extends CI_Controller {
 
     public function index()
 	{ 
-        $data['page_title'] = "Production Number"; 
+        $data['page_title'] = "Final Round"; 
 		$candidate = $this->final_round_model->get_all_candidate();
 		if($candidate->num_rows() > 0){
 			$data['candidate'] = $candidate;
@@ -369,7 +369,7 @@ class Final_round extends CI_Controller {
 		// get top 1 candidate
 		$candidate = $this->final_round_model->get_top_five_candidate();
 		if($candidate->num_rows() > 0 ){ 
-			$data['page_title'] = "Top 5";
+			$data['page_title'] = "Final Round";
 			$data['candidate'] = $candidate->result_array() ;
 			$data['judge'] = $this->user_model->get_chairman(); 
 			$this->load->view('admin/final_round_result', $data); 
