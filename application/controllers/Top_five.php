@@ -361,6 +361,20 @@ class Top_five extends CI_Controller {
     }
 
 	
+	function is_all_done_scoring()
+	{
+		// get top five
+		$data = $this->top_five_model->is_all_done_scoring();
+ 
+
+        echo json_encode($data);
+
+	}
+
+
+
+
+	
 	function insert_to_final_round()
 	{
 		// get top five

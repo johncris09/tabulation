@@ -198,13 +198,42 @@
         });  
       }   
       
-      $(document).on('click','#save-final-round',function(e){    
+      $(document).on('click','#save-final-round',function(e){ 
+				// check if all judge done scoring
+
+				
         $.ajax({
           type : 'POST',
-          url : BASE_URL + "top_five/insert_to_final_round", 
+          url : BASE_URL + "top_five/is_all_done_scoring", 
           dataType: "json",
           success : function(data){  
-            console.info(data)
+						if(data == 5){ 
+							
+							$.ajax({
+								type : 'POST',
+								url : BASE_URL + "top_five/insert_to_final_round", 
+								dataType: "json",
+								success : function(data){  
+									console.info(data)
+								}, 
+								error: function(xhr, textStatus, error){
+									console.info(xhr.responseText);
+								} 
+							})
+
+
+							Swal.fire({
+								icon: 'success',
+								title: 'Successfully Saved to Final Round', 
+							}) 
+						}else{
+							
+							Swal.fire({
+								title: "Unavailable this time",
+								icon: 'error',
+								text: 'Please wait until all judges have completed their scoring.', 
+							}) 
+						}
           }, 
           error: function(xhr, textStatus, error){
             console.info(xhr.responseText);
@@ -212,10 +241,7 @@
         })
 
 
-        Swal.fire({
-          icon: 'success',
-          title: 'Successfully Saved to Final Round', 
-        }) 
+
          
       });
 

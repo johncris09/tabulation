@@ -25,6 +25,20 @@ class Top_five_model extends CI_Model
         }
     }
 
+	public function is_all_done_scoring()
+	{ 
+		$query = $this->db  
+			->select('judge')
+			->distinct()
+            ->where('judge != 0') 
+			->get('top_five');
+			
+		if($query->num_rows() > 0){
+			return $query->num_rows();
+		}
+		return 0;
+		
+	}
 
     
     public function get_top_five_candidate()
