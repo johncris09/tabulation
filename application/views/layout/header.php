@@ -10,7 +10,7 @@
           <span class="app-brand-logo demo">
             <img src="<?php echo base_url() ?>assets/img/icon.png" style="width: 1000px; height:30px;" alt="Icon">
         </span>
-          <span class="app-brand-text demo menu-text fw-bold">Binibining Oroquieta</span>
+          <span class="app-brand-text demo menu-text fw-bold">Automated Scoring Tabulation System</span>
         </a> 
         
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-xl-none">

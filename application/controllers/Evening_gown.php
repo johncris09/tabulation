@@ -20,6 +20,7 @@ class Evening_gown extends CI_Controller {
 			$data['judge'] = $this->user_model->get_all_judge();  
 			$this->load->view('admin/evening_gown', $data);   
 		}else{
+			$data['status'] = $this->evening_gown_model->get_status(['judge' => $_SESSION['id']]);
 			$this->load->view('user/evening_gown', $data);  
 		}
 		
@@ -274,6 +275,7 @@ class Evening_gown extends CI_Controller {
 			'candidate' =>  $this->input->post('candidate'),
 			'rank' =>  $this->input->post('rank'),
 			'judge' =>  $this->input->post('judge'), 
+			'status' =>  $this->input->post('status'), 
 		);  
  
 
@@ -371,6 +373,31 @@ class Evening_gown extends CI_Controller {
 			show_404();
 		}
 	}
+
+	
+	public function unlock()
+	{ 
+		$unlock = array(
+			'judge' => $this->input->post('judgeId'), 
+			'status' => "unlocked", 
+		);
+		$update = $this->evening_gown_model->update_status($unlock); 
+		
+		if($update){ 
+			$data = array(
+				'response' => true,
+				'message'  => 'Successfully Unlocked!',
+			);
+
+		}else{ 
+			$data = array(
+				'response' => false,
+				'message'  => 'Something went wrong.',
+			);
+		}
+        echo json_encode($data);
+	}
+
 
         
 } 

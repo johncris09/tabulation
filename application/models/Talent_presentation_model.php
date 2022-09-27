@@ -137,5 +137,26 @@ class Talent_presentation_model extends CI_Model
             ->order_by('rank asc')
 			->get('talent_presentation, candidate');
     }
+
+	public function update_status($data)
+	{
+		return $this->db 
+			->where('judge', $data['judge']) 
+			->update($this->table, $data);
+	}
+
+	public function get_status($data)
+	{
+		$status =  $this->db 
+			->select('distinct(status)')
+            ->where($data)
+			->get('talent_presentation');
+
+		if($status->num_rows() > 0){
+			return $status->result_array()[0]['status'];
+		}
+		return "unlocked";
+			
+	}
  
 }

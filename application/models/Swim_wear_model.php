@@ -62,13 +62,7 @@ class Swim_wear_model extends CI_Model
         $this->db->where($data); 
         $this->db->where('swim_wear.judge != 0');
         return $this->db->get('swim_wear');//->result_array()[0]['score']; 
-    }
-
-    
-
-
-
-    
+    } 
     
     
     function get_all_score()
@@ -145,6 +139,29 @@ class Swim_wear_model extends CI_Model
             ->order_by('rank asc')
 			->get('swim_wear, candidate');
     }
+
+	
+	public function update_status($data)
+	{
+		return $this->db 
+			->where('judge', $data['judge']) 
+			->update($this->table, $data);
+	}
+
+	public function get_status($data)
+	{
+		$status =  $this->db 
+			->select('distinct(status)')
+            ->where($data)
+			->get('swim_wear');
+
+		if($status->num_rows() > 0){
+			return $status->result_array()[0]['status'];
+		}
+		return "unlocked";
+			
+	}
+
 
 
  

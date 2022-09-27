@@ -148,7 +148,29 @@ class Top_five_model extends CI_Model
             ->where('candidate', $data['candidate'])
             ->where('judge', $data['judge']) 
             ->update($this->table, $data);
-    }
+    } 
+
+	public function update_status($data)
+	{
+		return $this->db 
+			->where('judge', $data['judge']) 
+			->update($this->table, $data);
+	}
+
+	public function get_status($data)
+	{
+		$status =  $this->db 
+			->select('distinct(status)')
+            ->where($data)
+			->get('top_five');
+
+		if($status->num_rows() > 0){
+			return $status->result_array()[0]['status'];
+		}
+		return "unlocked";
+			
+	}
+ 
  
 }
  

@@ -21,6 +21,7 @@ class Swim_wear extends CI_Controller {
 			// $data['score'] = $this->swim_wear_model->get_all_score(); 
 			$this->load->view('admin/swim_wear', $data);   
 		}else{
+			$data['status'] = $this->swim_wear_model->get_status(['judge' => $_SESSION['id']]); 
 			$this->load->view('user/swim_wear', $data);  
 		}
 		
@@ -372,6 +373,30 @@ class Swim_wear extends CI_Controller {
 			show_404();
 		}
 	}
+	
+	public function unlock()
+	{ 
+		$unlock = array(
+			'judge' => $this->input->post('judgeId'), 
+			'status' => "unlocked", 
+		);
+		$update = $this->talent_presentation_model->update_status($unlock); 
+		
+		if($update){ 
+			$data = array(
+				'response' => true,
+				'message'  => 'Successfully Unlocked!',
+			);
+
+		}else{ 
+			$data = array(
+				'response' => false,
+				'message'  => 'Something went wrong.',
+			);
+		}
+        echo json_encode($data);
+	}
+
 
         
 } 

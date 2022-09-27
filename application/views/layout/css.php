@@ -16,11 +16,19 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/demo.css" />
+	<?php  
+		if($_SESSION['role_type'] == "admin"){
+			echo '<link rel="stylesheet" href="'.base_url().'assets/css/css-admin-custom.css" />';	
+		}else{
+			echo '<link rel="stylesheet" href="'.base_url().'assets/css/css-user-custom.css" />';	
 
+		}
+	?>
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/libs/typeahead-js/typeahead.css" />
     
+	
  
     <!-- Helpers -->
     <script src="<?php echo base_url(); ?>assets/vendor/js/helpers.js"></script>

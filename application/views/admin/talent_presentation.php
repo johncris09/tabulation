@@ -4,35 +4,7 @@
 <head>
 	<?php $this->view('layout/meta') ?>
 		<?php $this->view('layout/css') ?>
-    <style>
-      
-      .star {
-        font-weight: bolder;
-        height: 40px;
-        width: 40px;
-        -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-        text-align: center;
-        background: #F0D512;
-        color: white;
-        float: left; 
-        color: black;
-      }
-
-      .star::before {
-        display: inline-block;
-        height: 100%;
-        background: blue;
-        vertical-align: middle;
-        content: '';
-      }
-
-      input[type="number"]::-webkit-outer-spin-button,
-      input[type="number"]::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-      } 
-    </style>
+     
 </head>
 
 <body> 
@@ -55,6 +27,7 @@
                 <button class="btn btn-primary" id="print-result"> <i class="bx bx-printer "></i> Print Result</button>
               </div>
               <div class="table-responsive text-nowrap">
+								<hr>
                 <table class="table">
                   <thead>
                     <tr> 
@@ -62,7 +35,9 @@
                       <?php
                         foreach($judge as $row){
                           echo '
-                            <th>'.$row['name'].'</th>
+                            <th>
+															'.$row['name'].'  <i style="font-size: 15px;" class="bx bx-lock text-danger font-weight-bolder unlock" title="Unlock" data-table="talent_presentation" data-judge-id="'.$row['id'].'"></i>
+														</th>
                           ';
                         } 
                       ?>
@@ -227,6 +202,67 @@
           window.open( BASE_URL + "talent_presentation/result" , "Print Result", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=300,width=600,height=505");
         })
 
+        
+        $('.unlock').on('click', function(){
+          var _this = $(this) 
+					// check password 
+					Swal.fire({
+						title: "Enter Password To Unlock",
+						input: 'password',  
+						icon: "info",
+						customClass:{
+							validationMessage: "my-validation-message",
+						}, 
+						preConfirm: (value) => { 
+							if(!value){
+								Swal.showValidationMessage('This field is required'); 
+							} 
+						},
+						showCancelButton: true,
+						confirmButtonText: "Unlock"
+					}).then(function(result) {  
+						if (result.value) {  
+							$.ajax({
+								url: BASE_URL + 'user/check_password',
+								type: 'POST',   
+								data: {'password' : result.value},
+								dataType: 'JSON',
+								success: function(data){    
+									if(data){ 
+									$.ajax({
+										url: BASE_URL + 'talent_presentation/unlock',
+										type: 'POST',   
+										data: _this.data(),
+										dataType: 'JSON',
+										success: function(data){    
+											Swal.fire({
+												icon: 'success',
+												title: data.message, 
+											})  
+										},
+										// Error Handler
+										error: function(xhr, textStatus, error){
+											console.info(xhr.responseText);
+										}
+									});  
+									} else {
+										Swal.fire({
+											icon: 'error',
+											title: "Invalid Password", 
+										})  
+									}
+								},
+								// Error Handler
+								error: function(xhr, textStatus, error){
+									console.info(xhr.responseText);
+								}
+							});  
+						}
+					}); 
+
+					
+					
+        })
         
       });
 

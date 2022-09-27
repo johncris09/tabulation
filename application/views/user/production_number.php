@@ -3,41 +3,7 @@
 
 <head>
 	<?php $this->view('layout/meta') ?>
-	<?php $this->view('layout/css') ?>
-  <style>
-    .star {
-      font-weight: bolder;
-      height: 40px;
-      width: 40px;
-      -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-      text-align: center;
-      background: #F0D512;
-      color: white;
-      float: left; 
-      color: black;
-    }
-
-    .star::before {
-      display: inline-block;
-      height: 100%;
-      background: blue;
-      vertical-align: middle;
-      content: '';
-    }
-
-    input[type="number"]::-webkit-outer-spin-button,
-    input[type="number"]::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-    input[type="number"] {
-        -moz-appearance: textfield;
-    }
-
-
-
-  </style>
+	<?php $this->view('layout/css') ?> 
 </head>
 
 <body> 
@@ -70,18 +36,18 @@
                     </tr>
                   </thead>
                   <tbody class="table-border-bottom-0">
-                    <?php 
+										<?php 
                       if($candidate->num_rows() > 0){
                         foreach($candidate->result_array() as $row){
+													$readonly = ($status == "locked") ? "readonly" :"" ;
                           echo '
                             <tr> 
                               <td> <div class="star">' .$row['number']. '</div>   <div style="margin-top: 10px !important;">' .$row['name'].'</div></td> 
-                              <td><input type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10" onKeyUp="if(this.value>10){this.value=\'10\';}else if(this.value<0){this.value=\'0\';}" class="form-control text-center candidate"></td>
+                              <td><input '.$readonly.'  type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10" onKeyUp="if(this.value>10){this.value=\'10\';}else if(this.value<0){this.value=\'0\';}" class="form-control text-center candidate"  ></td>
                               <td> <span data-candidate="'.$row['id'].'" class="rank h6 text-center candidate-'.$row['id'].'"></span> </td> 
                             </tr>
                           ';
-                        }
-
+                        } 
                       }
                     ?> 
                   </tbody>
@@ -184,36 +150,57 @@
       // submit score 
       $('#submit-score').on('click', function(){  
         var _this = $(this)  
-        $('.rank').each(function(){   
-          var _this = $(this) 
-          $.ajax({
-            type : 'POST',
-            url : BASE_URL + "production_number/update_rank",
-            data : { 
-              candidate : $(this).data('candidate'),
-              judge : '<?php echo $_SESSION['id'] ?>', 
-              rank : $(this).html(),
-            },
-            dataType: "json",
-            success : function(data){  
-            }, 
-            error: function(xhr, textStatus, error){
-              console.info(xhr.responseText);
-            }
-          }); 
-        })
-  
-        Swal.fire({
-          icon: 'success',
-          title: 'Score Submitted', 
-        }) 
+				
+				Swal.fire({
+					title: "Is this your final Score?",
+					text: "This tabulator will be locked after submitting your score. Please review your score.",
+					icon: "warning",
+					showCancelButton: true,
+					confirmButtonText: "Yes, submit it!"
+				}).then(function(result) { 
+					if (result.value) { 
+						$('.rank').each(function(){   
+							var _this = $(this) 
+							$.ajax({
+								type : 'POST',
+								url : BASE_URL + "production_number/update_rank",
+								data : { 
+									candidate : $(this).data('candidate'),
+									judge : '<?php echo $_SESSION['id'] ?>', 
+									rank : $(this).html(),
+									status : "locked",
+								},
+								dataType: "json",
+								success : function(data){  
+								}, 
+								error: function(xhr, textStatus, error){
+									console.info(xhr.responseText);
+								}
+							}); 
+						})  
+
+
+						Swal.fire({
+							icon: 'success',
+							title: 'Score Submitted', 
+						}) 
+
+						// locked tabulator
+						$('#submit-score').prop('disabled', true)
+						$('table  input').prop('readonly', true)
+
+					}
+				}); 
+
+				
          
       });
 
-
-
- 
-      });
+    
+    
+    
+    
+    });
 
 
 

@@ -166,8 +166,29 @@ class Final_round_model extends CI_Model
             ->order_by('rank','asc')
             ->limit('5')
 			->get('candidate, final_round');
-    }  
+    }   
+	
+	public function update_status($data)
+	{
+		return $this->db 
+			->where('judge', $data['judge']) 
+			->update('final_round', $data);
+	}
 
+	public function get_status($data)
+	{
+		$status =  $this->db 
+			->select('distinct(status)')
+            ->where($data)
+			->get('final_round');
+
+		if($status->num_rows() > 0){
+			return $status->result_array()[0]['status'];
+		}
+		return "unlocked";
+			
+	}
+	
 
  
 }

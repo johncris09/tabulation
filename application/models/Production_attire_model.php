@@ -62,15 +62,8 @@ class Production_attire_model extends CI_Model
         $this->db->where($data); 
         $this->db->where('production_attire.judge != 0');
         return $this->db->get('production_attire');//->result_array()[0]['score']; 
-    }
-
-    
-
-
-
-    
-    
-    
+    } 
+	
     function get_all_score()
     { 
         return $this->db->get($this->table)->result_array()[0]['score']; 
@@ -143,5 +136,26 @@ class Production_attire_model extends CI_Model
             ->order_by('rank asc')
 			->get('production_attire, candidate');
     }
- 
+	
+	public function update_status($data)
+	{
+		return $this->db 
+			->where('judge', $data['judge']) 
+			->update($this->table, $data);
+	}
+
+	public function get_status($data)
+	{
+		$status =  $this->db 
+			->select('distinct(status)')
+            ->where($data)
+			->get('production_attire');
+
+		if($status->num_rows() > 0){
+			return $status->result_array()[0]['status'];
+		}
+		return "unlocked";
+			
+	} 
+	
 }

@@ -21,9 +21,9 @@ class Talent_presentation extends CI_Controller {
 			// $data['score'] = $this->talent_presentation_model->get_all_score(); 
 			$this->load->view('admin/talent_presentation', $data);   
 		}else{
-			$this->load->view('user/talent_presentation', $data);  
-		}
-		
+			$data['status'] = $this->talent_presentation_model->get_status(['judge' => $_SESSION['id']]); 
+			$this->load->view('user/talent_presentation', $data);   
+		} 
 	}
 	
 	
@@ -275,6 +275,7 @@ class Talent_presentation extends CI_Controller {
 			'candidate' =>  $this->input->post('candidate'),
 			'rank' =>  $this->input->post('rank'),
 			'judge' =>  $this->input->post('judge'), 
+			'status' =>  $this->input->post('status'), 
 		);  
  
 
@@ -373,6 +374,31 @@ class Talent_presentation extends CI_Controller {
 		}
 	}
 
+
+	public function unlock()
+	{ 
+		$unlock = array(
+			'judge' => $this->input->post('judgeId'), 
+			'status' => "unlocked", 
+		);
+		$update = $this->talent_presentation_model->update_status($unlock); 
+		
+		if($update){ 
+			$data = array(
+				'response' => true,
+				'message'  => 'Successfully Unlocked!',
+			);
+
+		}else{ 
+			$data = array(
+				'response' => false,
+				'message'  => 'Something went wrong.',
+			);
+		}
+        echo json_encode($data);
+	}
+
+	
 
         
 } 
