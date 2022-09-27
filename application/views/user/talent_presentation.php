@@ -21,8 +21,7 @@
             <div class="card"> 
               <div class="card-header d-flex justify-content-between pb-3">
                 <div class="conversion-title">
-                  <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5>
-                  
+                  <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5> 
                 </div>
                 <button class="btn btn-primary" <?php echo $status == "locked" ? "disabled" : "" ?> id="submit-score"> <i class=" bx bx-check"> </i> Submit Score</button>
               </div>

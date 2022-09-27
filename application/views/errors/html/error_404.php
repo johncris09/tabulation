@@ -25,7 +25,7 @@ $base_url = load_class('Config')->config['base_url'];
                     <p class="lead">
                         The page you’re looking for doesn’t exist.
                     </p>
-                    <a href="index.html" class="btn btn-primary">Go Home</a>
+                    <a href="<?php echo base_url(); ?>" class="btn btn-primary">Go Home</a>
                 </div>
 
             </div>

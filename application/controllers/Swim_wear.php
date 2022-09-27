@@ -276,6 +276,7 @@ class Swim_wear extends CI_Controller {
 			'candidate' =>  $this->input->post('candidate'),
 			'rank' =>  $this->input->post('rank'),
 			'judge' =>  $this->input->post('judge'), 
+			'status' =>  $this->input->post('status'), 
 		);  
  
 

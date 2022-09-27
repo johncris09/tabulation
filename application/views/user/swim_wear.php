@@ -24,7 +24,7 @@
                   <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5>
                   
                 </div>
-                <button class="btn btn-primary" id="submit-score"> <i class=" bx bx-check"> </i> Submit Score</button>
+                <button class="btn btn-primary" <?php echo $status == "locked" ? "disabled" : "" ?> id="submit-score"> <i class=" bx bx-check"> </i> Submit Score</button>
               </div>
               <div class="table-responsive text-nowrap">
                 <table class="table">

@@ -382,7 +382,7 @@ class Production_number extends CI_Controller {
 			'judge' => $this->input->post('judgeId'), 
 			'status' => "unlocked", 
 		);
-		$update = $this->talent_presentation_model->update_status($unlock); 
+		$update = $this->production_number_model->update_status($unlock); 
 		
 		if($update){ 
 			$data = array(

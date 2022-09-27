@@ -26,7 +26,7 @@ class Final_round extends CI_Controller {
 				$this->load->view('user/final_round', $data);  
 			}   
 		}else{
-			echo "Not Availabled";
+			show_404();
 		}
 		
 		

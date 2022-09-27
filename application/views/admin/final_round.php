@@ -94,13 +94,12 @@
     
     $(document).ready(function(){  
       
-      // setInterval(function(){  
-        // consolidate_rank()  
-        // get_tot_score();
-        // load_rank();
-      // }, 1000); 
-      
-      consolidate_rank();
+      setInterval(function(){  
+        consolidate_rank()  
+        get_tot_score();
+        load_rank();
+      }, 1000);  
+
       function consolidate_rank(){
         $('.candidate-consolidate').each(function(){   
           var _this = $(this)  
@@ -120,8 +119,7 @@
             }
           });
         })
-      }
-      get_tot_score();
+      } 
       function get_tot_score(){
         $('.tot-score').each(function(){   
           var _this = $(this) 
@@ -158,8 +156,7 @@
         })
       } 
       
-
-      load_rank()
+ 
       function load_rank(){ 
         $.ajax({
           url: BASE_URL + 'final_round/get_consolidated_ranking',
