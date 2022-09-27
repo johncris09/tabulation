@@ -153,7 +153,7 @@
 				
 				Swal.fire({
 					title: "Is this your final Score?",
-					text: "This tabulator will be locked after submitting your score. Please review your score.",
+					html: "This tabulator will be locked once you have submitted your score. Please review your score. <br> <span class='text-danger'><small>Note: If you want to adjust your score, you can consult with administrator.</small></span>",
 					icon: "warning",
 					showCancelButton: true,
 					confirmButtonText: "Yes, submit it!"
