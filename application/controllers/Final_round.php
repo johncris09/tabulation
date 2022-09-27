@@ -365,6 +365,13 @@ class Final_round extends CI_Controller {
     } 
 	
 
+	function is_all_done_scoring()
+	{
+		$data = $this->final_round_model->is_all_done_scoring();
+		
+        echo json_encode($data);
+
+	}
 	
 	function result()
 	{

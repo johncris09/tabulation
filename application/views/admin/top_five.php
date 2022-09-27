@@ -200,8 +200,6 @@
       
       $(document).on('click','#save-final-round',function(e){ 
 				// check if all judge done scoring
-
-				
         $.ajax({
           type : 'POST',
           url : BASE_URL + "top_five/is_all_done_scoring", 
@@ -245,10 +243,28 @@
          
       });
 
-      
         
-        $('#print-result').on('click', function(){
-          window.open( BASE_URL + "top_five/result" , "Print Result", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=300,width=600,height=505");
+				$('#print-result').on('click', function(){
+					$.ajax({
+						type : 'POST',
+						url : BASE_URL + "top_five/is_all_done_scoring", 
+						dataType: "json",
+						success : function(data){
+							if(data == 5){
+								window.open( BASE_URL + "top_five/result" , "Print Result", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=300,width=600,height=505");
+							}else{ 
+								Swal.fire({
+									title: "Unavailable this time",
+									icon: 'error',
+									text: 'Please wait until all judges have completed their scoring.', 
+								}) 
+							}
+						}, 
+						error: function(xhr, textStatus, error){
+							console.info(xhr.responseText);
+						} 
+					})
+
         })
         
         $('.unlock').on('click', function(){

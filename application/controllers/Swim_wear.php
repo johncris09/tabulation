@@ -14,7 +14,7 @@ class Swim_wear extends CI_Controller {
 
     public function index()
 	{ 
-        $data['page_title'] = "Best in Sweam Wear"; 
+        $data['page_title'] = "Best in Swim Wear"; 
 		$data['candidate'] = $this->candidate_model->get_all_candidate();
 		if( strtolower ($_SESSION['role_type'] ) == "admin"){ 
 			$data['judge'] = $this->user_model->get_all_judge(); 
@@ -360,6 +360,14 @@ class Swim_wear extends CI_Controller {
 		} 
         echo json_encode($data);
     }
+
+	function is_all_done_scoring()
+	{
+		$data = $this->swim_wear_model->is_all_done_scoring();
+		
+        echo json_encode($data);
+
+	}
 
 	function result()
 	{

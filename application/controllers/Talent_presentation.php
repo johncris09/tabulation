@@ -266,8 +266,6 @@ class Talent_presentation extends CI_Controller {
 	
 
 
-	
-
 	function update_rank()
 	{
 		 
@@ -359,6 +357,17 @@ class Talent_presentation extends CI_Controller {
 		} 
         echo json_encode($data);
     }
+
+	
+	function is_all_done_scoring()
+	{
+		$data = $this->talent_presentation_model->is_all_done_scoring();
+		
+        echo json_encode($data);
+
+	}
+
+
 
 	function result()
 	{

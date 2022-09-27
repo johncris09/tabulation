@@ -361,6 +361,15 @@ class Production_attire extends CI_Controller {
         echo json_encode($data);
     }
 
+	function is_all_done_scoring()
+	{
+		// get top five
+		$data = $this->production_attire_model->is_all_done_scoring();
+ 
+
+        echo json_encode($data);
+
+	}
 	
 	function result()
 	{

@@ -199,7 +199,26 @@
 
         
         $('#print-result').on('click', function(){
-          window.open( BASE_URL + "talent_presentation/result" , "Print Result", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=300,width=600,height=505");
+					$.ajax({
+          type : 'POST',
+          url : BASE_URL + "talent_presentation/is_all_done_scoring", 
+          dataType: "json",
+          success : function(data){
+						if(data == 5){
+							window.open( BASE_URL + "talent_presentation/result" , "Print Result", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=300,width=600,height=505");
+						}else{ 
+							Swal.fire({
+								title: "Unavailable this time",
+								icon: 'error',
+								text: 'Please wait until all judges have completed their scoring.', 
+							}) 
+						}
+          }, 
+          error: function(xhr, textStatus, error){
+            console.info(xhr.responseText);
+          } 
+        })
+
         })
 
         

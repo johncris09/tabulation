@@ -23,6 +23,20 @@ class Production_attire_model extends CI_Model
         }
     }
 
+	public function is_all_done_scoring()
+	{ 
+		$query = $this->db  
+			->select('judge')
+			->distinct()
+            ->where('judge != 0') 
+			->get('production_attire');
+			
+		if($query->num_rows() > 0){
+			return $query->num_rows();
+		}
+		return 0;
+		
+	}
     
     public function update($data)
     { 

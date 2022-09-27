@@ -360,6 +360,14 @@ class Evening_gown extends CI_Controller {
         echo json_encode($data);
     }
 
+	function is_all_done_scoring()
+	{
+		$data = $this->evening_gown_model->is_all_done_scoring();
+		
+        echo json_encode($data);
+
+	}
+
 	function result()
 	{
 		// get top 1 candidate
