@@ -142,7 +142,7 @@ class Production_attire_model extends CI_Model
             ->where('judge', $data['judge']) 
             ->update($this->table, $data);
     }
-    public function get_top_one_candidate()
+    public function get_top_candidate()
     { 
         return $this->db 
             ->where('production_attire.judge = 0')

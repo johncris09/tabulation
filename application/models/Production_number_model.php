@@ -152,7 +152,7 @@ class Production_number_model extends CI_Model
     }
 
     
-    public function get_top_one_candidate()
+    public function get_top_candidate()
     { 
         return $this->db 
             ->where('production_number.judge = 0')

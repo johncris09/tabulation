@@ -368,19 +368,48 @@ class Evening_gown extends CI_Controller {
 
 	}
 
+
 	function result()
 	{
-		// get top 1 candidate
-		$candidate = $this->evening_gown_model->get_top_one_candidate();
+		// get top 3 candidate
+		$candidate = $this->evening_gown_model->get_top_candidate();
 		if($candidate->num_rows() > 0 ){
+
+			$candidate = $candidate->result_array(); 
+			$maxRank = 1; 
+			$rank = 0;
+			$result = [];
+			$counter = 0;
+			foreach ($candidate as ['rank' => $number]) { 
+				$ranks[$number] ??= ++$rank;
+				if ($ranks[$number] > $maxRank) {
+					break;
+				} 
+				$result[] = array(
+					"id" => $candidate[$counter]['id'],
+					"candidate" => $candidate[$counter]['candidate'],
+					"judge" => $candidate[$counter]['judge'],
+					"score" => $candidate[$counter]['score'], 
+					"rank" => $candidate[$counter]['rank'], 
+					"status" => $candidate[$counter]['status'],  
+					"number" => $candidate[$counter]['number'],   
+					"name" => $candidate[$counter]['name'],
+				);
+				$counter++;
+			} 
+ 
 			$data['page_title'] = "Best in Evening Gown";
-			$data['candidate'] = $candidate->result_array()[0];
-			$data['judge'] = $this->user_model->get_chairman();
+			$data['candidate'] = $result;
+			$data['judge'] = $this->user_model->get_chairman(); 
 			$this->load->view('admin/evening_gown_result', $data); 
+
 		}else{
 			show_404();
 		}
+		  
+
 	}
+
 
 	
 	public function unlock()

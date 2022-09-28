@@ -372,14 +372,13 @@ class Talent_presentation extends CI_Controller {
 	function result()
 	{
 		// get top 3 candidate
-		$candidate = $this->talent_presentation_model->get_top_three_candidate();
+		$candidate = $this->talent_presentation_model->get_top_candidate();
 		if($candidate->num_rows() > 0 ){ 
 
 			 
 
 			$candidate = $candidate->result_array(); 
-			$maxRank = 3;
-
+			$maxRank = 3; 
 			$rank = 0;
 			$result = [];
 			$counter = 0;

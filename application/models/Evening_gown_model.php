@@ -151,7 +151,7 @@ class Evening_gown_model extends CI_Model
     }
 
     
-    public function get_top_one_candidate()
+    public function get_top_candidate()
     { 
         return $this->db 
             ->where('evening_gown.judge = 0')

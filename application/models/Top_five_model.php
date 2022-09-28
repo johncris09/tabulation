@@ -41,7 +41,7 @@ class Top_five_model extends CI_Model
 	}
 
     
-    public function get_top_five_candidate()
+    public function get_top_candidate()
     { 
         return $this->db 
             ->where('judge',0)
