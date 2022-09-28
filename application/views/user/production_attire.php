@@ -125,7 +125,8 @@
         var _this = this
         var candidate = $(this).data('candidate') 
  
-        if(_this.value > 10 || _this.value < 0  ){ 
+ 
+        if(_this.value > 10  ){ 
           Swal.fire({
             icon: 'error',
             title: 'Please only provide ratings between 1 and 10.', 
@@ -133,7 +134,8 @@
             // empty all fields
             _this.value = "";  
             $('.rank.candidate-' + candidate).html('')
-          })
+          }) 
+					 
 
 					// delete previous score by candidate and judge
 					$.ajax({
@@ -147,11 +149,27 @@
             success : function(data){    
               load_rank();
             }
+          });  
+
+        }else if(_this.value  == 0  ){    
+					_this.value = "";  
+            $('.rank.candidate-' + candidate).html('') 
+					// delete previous score by candidate and judge
+					$.ajax({
+            type : 'POST',
+            url : BASE_URL + "production_attire/delete_previous_score", 
+            data : { 
+              candidate : $(this).data('candidate'),
+              judge : '<?php echo $_SESSION['id'] ?>', 
+            },
+            dataType: "json",
+            success : function(data){    
+              load_rank();
+            }
           }); 
-
-
-        }else if(_this.value  == ""){ 
-          $('.rank.candidate-' + candidate).html('') 
+        }else if(_this.value  == ""   ){  
+          _this.value = "";  
+          $('.rank.candidate-' + candidate).html('')  
 					// delete previous score by candidate and judge
 					$.ajax({
             type : 'POST',
