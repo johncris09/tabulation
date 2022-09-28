@@ -410,32 +410,7 @@ class Talent_presentation extends CI_Controller {
 		}else{
 			show_404();
 		}
-		
-		// $array = [
-		// 	['number' => 1117],
-		// 	['number' => 1097],
-		// 	['number' => 1162],
-		// 	['number' => 1158],
-		// 	['number' => 1162],
-		// 	['number' => 1157],
-		// 	['number' => 1086],
-		// 	['number' => 1157],
-		// 	['number' => 1130],
-		// ];
-		
-		
-		// rsort($array);  // sort DESC
-		// $rank = 0;
-		// $result = [];
-		// foreach ($array as ['number' => $number]) {
-		// 	$ranks[$number] ??= ++$rank;
-		// 	if ($ranks[$number] > $maxRank) {
-		// 		break;
-		// 	}
-		// 	$result[] = $number;
-		// }
-		// var_export($result);
-
+		  
 
 	}
 
