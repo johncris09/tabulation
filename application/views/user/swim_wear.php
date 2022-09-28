@@ -136,9 +136,38 @@
             // empty all fields
             _this.value = "";  
             $('.rank.candidate-' + candidate).html('')
-          }) 
+          })
+
+					// delete previous score by candidate and judge
+					$.ajax({
+            type : 'POST',
+            url : BASE_URL + "swim_wear/delete_previous_score", 
+            data : { 
+              candidate : $(this).data('candidate'),
+              judge : '<?php echo $_SESSION['id'] ?>', 
+            },
+            dataType: "json",
+            success : function(data){    
+              load_rank();
+            }
+          }); 
+
+
         }else if(_this.value  == ""){ 
           $('.rank.candidate-' + candidate).html('') 
+					// delete previous score by candidate and judge
+					$.ajax({
+            type : 'POST',
+            url : BASE_URL + "swim_wear/delete_previous_score", 
+            data : { 
+              candidate : $(this).data('candidate'),
+              judge : '<?php echo $_SESSION['id'] ?>', 
+            },
+            dataType: "json",
+            success : function(data){    
+              load_rank();
+            }
+          }); 
         }else{  
           var _this = $(this)  
           $.ajax({

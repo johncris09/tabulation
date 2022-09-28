@@ -200,6 +200,13 @@ class Final_round_model extends CI_Model
 			
 	}
 	
+	
+	public function delete_previous_score($data)
+	{ 
+		return $this->db
+            ->where($data)
+            ->delete('final_round');
+	}
 
  
 }

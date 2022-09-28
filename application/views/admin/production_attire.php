@@ -201,7 +201,7 @@
           type : 'POST',
           url : BASE_URL + "production_attire/is_all_done_scoring", 
           dataType: "json",
-          success : function(data){
+          success : function(data){ 
 						if(data == 5){
 							window.open( BASE_URL + "production_attire/result" , "Print Result", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=300,width=600,height=505");
 						}else{ 

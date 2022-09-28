@@ -179,7 +179,12 @@ class Evening_gown_model extends CI_Model
 		}
 		return "unlocked";
 			
+	} 
+	
+	public function delete_previous_score($data)
+	{ 
+		return $this->db
+            ->where($data)
+            ->delete('evening_gown');
 	}
-
- 
 }

@@ -406,6 +406,22 @@ class Evening_gown extends CI_Controller {
         echo json_encode($data);
 	}
 
+	
+	public function delete_previous_score()
+	{
+		$data = array(
+			'candidate' =>  $this->input->post('candidate'), 
+			'judge' =>  $this->input->post('judge'), 
+		);  
+		$record = $this->evening_gown_model->if_exist($data);
+
+		if($record->num_rows() > 0){
+			$this->evening_gown_model->delete_previous_score($data);
+		}
+		
+        echo json_encode($data);
+	}
+
 
         
 } 

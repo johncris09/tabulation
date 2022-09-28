@@ -184,6 +184,13 @@ class Top_five_model extends CI_Model
 		return "unlocked";
 			
 	}
+
+	public function delete_previous_score($data)
+	{ 
+		return $this->db
+            ->where($data)
+            ->delete('top_five');
+	}
  
  
 }

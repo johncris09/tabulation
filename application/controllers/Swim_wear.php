@@ -389,20 +389,35 @@ class Swim_wear extends CI_Controller {
 			'judge' => $this->input->post('judgeId'), 
 			'status' => "unlocked", 
 		);
-		$update = $this->talent_presentation_model->update_status($unlock); 
+		$update = $this->swim_wear_model->update_status($unlock); 
 		
 		if($update){ 
 			$data = array(
 				'response' => true,
 				'message'  => 'Successfully Unlocked!',
 			);
-
 		}else{ 
 			$data = array(
 				'response' => false,
 				'message'  => 'Something went wrong.',
 			);
 		}
+        echo json_encode($data);
+	}
+
+	
+	public function delete_previous_score()
+	{
+		$data = array(
+			'candidate' =>  $this->input->post('candidate'), 
+			'judge' =>  $this->input->post('judge'), 
+		);  
+		$record = $this->swim_wear_model->if_exist($data);
+
+		if($record->num_rows() > 0){
+			$this->swim_wear_model->delete_previous_score($data);
+		}
+		
         echo json_encode($data);
 	}
 

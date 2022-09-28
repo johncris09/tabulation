@@ -173,5 +173,14 @@ class Talent_presentation_model extends CI_Model
 		return "unlocked";
 			
 	}
+
+	public function delete_previous_score($data)
+	{ 
+		return $this->db
+            ->where($data)
+            ->delete('talent_presentation');
+	}
+
+	
  
 }

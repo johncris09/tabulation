@@ -172,4 +172,11 @@ class Production_attire_model extends CI_Model
 			
 	} 
 	
+	public function delete_previous_score($data)
+	{ 
+		return $this->db
+            ->where($data)
+            ->delete('production_attire');
+	}
+
 }

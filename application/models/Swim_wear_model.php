@@ -177,6 +177,12 @@ class Swim_wear_model extends CI_Model
 			
 	}
 
+	public function delete_previous_score($data)
+	{ 
+		return $this->db
+            ->where($data)
+            ->delete('swim_wear');
+	}
 
 
  

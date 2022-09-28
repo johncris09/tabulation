@@ -126,7 +126,6 @@
         var _this = this
         var candidate = $(this).data('candidate')  
  
-				
         if(_this.value > 10 || _this.value < 0  ){ 
           Swal.fire({
             icon: 'error',
@@ -135,9 +134,38 @@
             // empty all fields
             _this.value = "";  
             $('.rank.candidate-' + candidate).html('')
-          }) 
+          })
+
+					// delete previous score by candidate and judge
+					$.ajax({
+            type : 'POST',
+            url : BASE_URL + "final_round/delete_previous_score", 
+            data : { 
+              candidate : $(this).data('candidate'),
+              judge : '<?php echo $_SESSION['id'] ?>', 
+            },
+            dataType: "json",
+            success : function(data){    
+              load_rank();
+            }
+          }); 
+
+
         }else if(_this.value  == ""){ 
           $('.rank.candidate-' + candidate).html('') 
+					// delete previous score by candidate and judge
+					$.ajax({
+            type : 'POST',
+            url : BASE_URL + "final_round/delete_previous_score", 
+            data : { 
+              candidate : $(this).data('candidate'),
+              judge : '<?php echo $_SESSION['id'] ?>', 
+            },
+            dataType: "json",
+            success : function(data){    
+              load_rank();
+            }
+          }); 
         }else{  
           var _this = $(this)  
           $.ajax({

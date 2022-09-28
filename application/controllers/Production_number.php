@@ -411,6 +411,20 @@ class Production_number extends CI_Controller {
 	
 
 
+	public function delete_previous_score()
+	{
+		$data = array(
+			'candidate' =>  $this->input->post('candidate'), 
+			'judge' =>  $this->input->post('judge'), 
+		);  
+		$record = $this->production_number_model->if_exist($data);
+
+		if($record->num_rows() > 0){
+			$this->production_number_model->delete_previous_score($data);
+		}
+		
+        echo json_encode($data);
+	}
 
 	
         
