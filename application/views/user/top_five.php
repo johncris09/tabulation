@@ -43,7 +43,7 @@
                           echo '
                             <tr> 
                               <td> <div class="star">' .$row['number']. '</div>   <div style="margin-top: 10px !important;">' .$row['name'].'</div></td> 
-                              <td><input '.$readonly.'  type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10" onKeyUp="if(this.value>10){this.value=\'10\';}else if(this.value<0){this.value=\'0\';}" class="form-control text-center candidate"  ></td>
+                              <td><input '.$readonly.'  type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
                               <td> <span data-candidate="'.$row['id'].'" class="rank h6 text-center candidate-'.$row['id'].'"></span> </td> 
                             </tr>
                           ';
@@ -116,90 +116,125 @@
             }); 
         })
       }
+			
+
+			
       // save score while typing
+      // 1 to 10 input only
+
       $('input').on('keyup', function(){  
-        var _this = $(this)  
-        $.ajax({
-          type : 'POST',
-          url : BASE_URL + "top_five/insert", 
-          data : {
-            score : $(this).val(),
-            candidate : $(this).data('candidate'),
-            judge : '<?php echo $_SESSION['id'] ?>',
+        var _this = this
+        var candidate = $(this).data('candidate') 
+ 
+ 
+        if(_this.value > 10 || _this.value < 0  ){ 
+          Swal.fire({
+            icon: 'error',
+            title: 'Please only provide ratings between 1 and 10.', 
+          }).then(function(){
+            // empty all fields
+            _this.value = "";  
+            $('.rank.candidate-' + candidate).html('')
+          }) 
+        }else if(_this.value  == ""){ 
+          $('.rank.candidate-' + candidate).html('') 
+        }else{  
+          var _this = $(this)  
+          $.ajax({
+            type : 'POST',
+            url : BASE_URL + "top_five/insert", 
+            data : {
+              score : $(this).val(),
+              candidate : $(this).data('candidate'),
+              judge : '<?php echo $_SESSION['id'] ?>',
 
-          },
-          dataType: "json",
-          success : function(data){   
-            if(data.response == true){ 
-              
-              $(_this).css("border", "2px solid blue");
-              $(_this).css('font-weight', 'bolder');
-              setTimeout(function() {  
-                $(_this).css("border", "1px solid black");
-                $(_this).css('font-weight', 'normal');
-              }, 500); 
-              
+            },
+            dataType: "json",
+            success : function(data){   
+              if(data.response == true){ 
+                
+                $(_this).css("border", "1px solid blue");
+                $(_this).css('font-weight', 'bolder');
+                setTimeout(function() {  
+                  $(_this).css("border", "1px solid black");
+                  $(_this).css('font-weight', 'normal');
+                }, 500); 
+                
+              } 
+              load_rank();
             }
-
-            load_rank();
-          }
-        });
+          }); 
+        } 
       });
-      
-
       
 
       // submit score 
       $('#submit-score').on('click', function(){  
-        var _this = $(this)  
+        var _this = $(this)
 				
-				Swal.fire({
-					title: "Is this your final Score?",
-					html: "This tabulator will be locked once you have submitted your score. Please review your score. <br> <span class='text-danger'><small>Note: If you want to adjust your score, you can consult with administrator.</small></span>",
-					icon: "warning",
-					showCancelButton: true,
-					confirmButtonText: "Yes, submit it!"
-				}).then(function(result) { 
-					if (result.value) { 
-						$('.rank').each(function(){   
-							var _this = $(this) 
-							$.ajax({
-								type : 'POST',
-								url : BASE_URL + "top_five/update_rank",
-								data : { 
-									candidate : $(this).data('candidate'),
-									judge : '<?php echo $_SESSION['id'] ?>', 
-									rank : $(this).html(),
-									status : "locked",
-								},
-								dataType: "json",
-								success : function(data){  
-								}, 
-								error: function(xhr, textStatus, error){
-									console.info(xhr.responseText);
-								}
-							}); 
-						})  
+				var emp = []; 
+				$('.rank').each(function(){ 
+					if($(this).html() == ""){  
+						emp.push($(this).data('candidate'))
+					} 
+				})
+ 
+        // no empty fields
+				if(emp.length > 0){ 
+					Swal.fire({
+						icon: 'error',
+						title: 'All input field must not be empty', 
+					})
+
+					$.each(emp , function(index, val) { 
+						$('input[data-candidate='+val+']').css({"border": "1px solid red"})
+					});
+  
+				}else{
+					
+					Swal.fire({
+						title: "Is this your final Score?",
+						html: "This tabulator will be locked once you have submitted your score. Please review your score. <br> <span class='text-danger'><small>Note: If you want to adjust your score, you can consult with administrator.</small></span>  ",
+						icon: "warning",
+						showCancelButton: true,
+						confirmButtonText: "Yes, submit it!"
+					}).then(function(result) { 
+						if (result.value) { 
+							$('.rank').each(function(){   
+								var _this = $(this) 
+								$.ajax({
+									type : 'POST',
+									url : BASE_URL + "top_five/update_rank",
+									data : { 
+										candidate : $(this).data('candidate'),
+										judge : '<?php echo $_SESSION['id'] ?>', 
+										rank : $(this).html(),
+										status : "locked",
+									},
+									dataType: "json",
+									success : function(data){  
+									}, 
+									error: function(xhr, textStatus, error){
+										console.info(xhr.responseText);
+									}
+								}); 
+							})  
 
 
-						Swal.fire({
-							icon: 'success',
-							title: 'Score Submitted', 
-						}) 
+							Swal.fire({
+								icon: 'success',
+								title: 'Score Submitted', 
+							}) 
 
-						// locked tabulator
-						$('#submit-score').prop('disabled', true)
-						$('table  input').prop('readonly', true)
+							// locked tabulator
+							$('#submit-score').prop('disabled', true)
+							$('table  input').prop('readonly', true)
 
-					}
-				}); 
-
-				
-         
-      });
-
-
-
+						}
+					});   
+				}
+ 
+      });  
  
       });
 
