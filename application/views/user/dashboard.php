@@ -42,7 +42,7 @@
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/production_attire.jpg" alt="Card image cap">
 										<div class="card-body">
-											<h3 class="card-title text-center">PRODUCTION ATTIRE</h3>
+											<h3 class="card-title text-center">PRODUCTION ATTIRE</h3><br>
 											<div class="d-grid gap-2 col-lg-6 mx-auto">
 												<a class="btn btn-primary  " href="<?php echo base_url() ?>production_attire">Score</a> 
 											</div>
@@ -53,7 +53,7 @@
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/swim_wear.jpg" alt="Card image cap">
 										<div class="card-body">
-											<h3 class="card-title text-center">BEST IN SWIM WEAR  </h3>
+											<h3 class="card-title text-center">BEST IN SWIM WEAR</h3><br>
 											<div class="d-grid gap-2 col-lg-6 mx-auto">
 												<a class="btn btn-primary  " href="<?php echo base_url() ?>swim_wear">Score</a> 
 											</div>
@@ -75,7 +75,7 @@
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/top_5.jpg" alt="Card image cap">
 										<div class="card-body">
-											<h3 class="card-title text-center">TOP 5</h3>
+											<h3 class="card-title text-center">TOP 5</h3><br>
 											<div class="d-grid gap-2 col-lg-6 mx-auto">
 												<a class="btn btn-primary  " href="<?php echo base_url() ?>top_five">Score</a> 
 											</div>
@@ -86,7 +86,7 @@
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/5.jpg" alt="Card image cap">
 										<div class="card-body">
-											<h3 class="card-title text-center">FINAL ROUND</h3>
+											<h3 class="card-title text-center">FINAL ROUND</h3><br>
 											<div class="d-grid gap-2 col-lg-6 mx-auto">
 												<a class="btn btn-primary  " href="<?php echo base_url() ?>final_round">Score</a> 
 											</div>
