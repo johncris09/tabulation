@@ -373,14 +373,70 @@ class Talent_presentation extends CI_Controller {
 	{
 		// get top 3 candidate
 		$candidate = $this->talent_presentation_model->get_top_three_candidate();
-		if($candidate->num_rows() > 0 ){
+		if($candidate->num_rows() > 0 ){ 
+
+			 
+
+			$candidate = $candidate->result_array(); 
+			$maxRank = 3;
+
+			$rank = 0;
+			$result = [];
+			$counter = 0;
+			foreach ($candidate as ['rank' => $number]) { 
+				$ranks[$number] ??= ++$rank;
+				if ($ranks[$number] > $maxRank) {
+					break;
+				} 
+				$result[] = array(
+					"id" => $candidate[$counter]['id'],
+					"candidate" => $candidate[$counter]['candidate'],
+					"judge" => $candidate[$counter]['judge'],
+					"score" => $candidate[$counter]['score'], 
+					"rank" => $candidate[$counter]['rank'], 
+					"status" => $candidate[$counter]['status'],  
+					"number" => $candidate[$counter]['number'],   
+					"name" => $candidate[$counter]['name'],
+				);
+				$counter++;
+			} 
 			$data['page_title'] = "Best in Talent Presentation";
-			$data['candidate'] = $candidate->result_array();
+			$data['candidate'] = $result;
 			$data['judge'] = $this->user_model->get_chairman(); 
-			$this->load->view('admin/talent_presentation_result', $data); 
+			$this->load->view('admin/talent_presentation_result', $data);
+
+
+
 		}else{
 			show_404();
 		}
+		
+		// $array = [
+		// 	['number' => 1117],
+		// 	['number' => 1097],
+		// 	['number' => 1162],
+		// 	['number' => 1158],
+		// 	['number' => 1162],
+		// 	['number' => 1157],
+		// 	['number' => 1086],
+		// 	['number' => 1157],
+		// 	['number' => 1130],
+		// ];
+		
+		
+		// rsort($array);  // sort DESC
+		// $rank = 0;
+		// $result = [];
+		// foreach ($array as ['number' => $number]) {
+		// 	$ranks[$number] ??= ++$rank;
+		// 	if ($ranks[$number] > $maxRank) {
+		// 		break;
+		// 	}
+		// 	$result[] = $number;
+		// }
+		// var_export($result);
+
+
 	}
 
 
