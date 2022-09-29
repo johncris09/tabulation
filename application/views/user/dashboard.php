@@ -3,7 +3,12 @@
 
 <head>
 	<?php $this->view('layout/meta') ?>
-		<?php $this->view('layout/css') ?>
+	<?php $this->view('layout/css') ?>
+	<style>
+		.display-card{
+			display: none;
+		}
+	</style>
 </head>
 
 <body> 
@@ -14,9 +19,9 @@
 					<div class="content-wrapper">
 						<?php $this->view('layout/menu') ?>
 						<div class="container-xxl flex-grow-1 container-p-y">
-              
-							<div class="row mb-5">
-								<div class="col-md-3 col-lg-3 col-sm-4 mb-3">
+		
+							<div class="row mb-5"> 
+								<div data-settings="talent_presentation_card" class="col-md-3 col-lg-3 col-sm-4 mb-3 display-card">
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/talent.jpg" alt="Card image cap">
 										<div class="card-body">
@@ -27,7 +32,7 @@
 										</div>
 									</div>
 								</div> 
-								<div class="col-md-3 col-lg-3 col-sm-4 mb-3">
+								<div data-settings="production_number_card" class="col-md-3 col-lg-3 col-sm-4 mb-3 display-card">
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/production_number.jpg" alt="Card image cap">
 										<div class="card-body">
@@ -38,7 +43,7 @@
 										</div>
 									</div>
 								</div> 
-								<div class="col-md-3 col-lg-3 col-sm-4 mb-3">
+								<div data-settings="production_attire_card" class="col-md-3 col-lg-3 col-sm-4 mb-3 display-card">
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/production_attire.jpg" alt="Card image cap">
 										<div class="card-body">
@@ -49,7 +54,7 @@
 										</div>
 									</div>
 								</div> 
-								<div class="col-md-3 col-lg-3 col-sm-4 mb-3">
+								<div data-settings="swim_wear_card" class="col-md-3 col-lg-3 col-sm-4 mb-3 display-card">
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/swim_wear.jpg" alt="Card image cap">
 										<div class="card-body">
@@ -60,7 +65,7 @@
 										</div>
 									</div>
 								</div> 
-								<div class="col-md-3 col-lg-3 col-sm-4 mb-3">
+								<div data-settings="evening_gown_card" class="col-md-3 col-lg-3 col-sm-4 mb-3 display-card">
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/evening_gown.jpg" alt="Card image cap">
 										<div class="card-body">
@@ -71,7 +76,7 @@
 										</div>
 									</div>
 								</div>  
-								<div class="col-md-3 col-lg-3 col-sm-4 mb-3">
+								<div data-settings="top_five_card" class="col-md-3 col-lg-3 col-sm-4 mb-3 display-card">
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/top_5.jpg" alt="Card image cap">
 										<div class="card-body">
@@ -82,7 +87,7 @@
 										</div>
 									</div>
 								</div> 
-								<div class="col-md-3 col-lg-3 col-sm-4 mb-3">
+								<div data-settings="final_round_card" class="col-md-3 col-lg-3 col-sm-4 mb-3 display-card">
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/5.jpg" alt="Card image cap">
 										<div class="card-body">
@@ -105,6 +110,66 @@
 	<div class="layout-overlay layout-menu-toggle"></div> 
 	<div class="drag-target"></div> 
 	<?php $this->view('layout/js') ?>
+	<script>
+		
+		$(document).ready(function(){ 
+			
+			setInterval(function(){   
+				display_card();
+			}, 500); 
+			
+			function display_card(){
+				console.info(1)
+				$('.display-card').each(function(){   
+					var _this = $(this)  
+					$.ajax({
+						type : 'POST',
+						url : BASE_URL + "settings/get_settings",
+						data : { 
+							settings : $(this).data('settings'), 
+						},
+						dataType: "json",
+						success : function(data){   
+							if(data != 1){
+								$('div[data-settings="'+_this.data('settings')+'"]').hide()
+							}else{
+								$('div[data-settings="'+_this.data('settings')+'"]').show()
+							}
+							// $('td.candidate-consolidate.'+data.judge_no+'.candidate-' + data.candidate).html(data.rank == 0 ? "" : data.rank) 
+
+						}, 
+						error: function(xhr, textStatus, error){
+							console.info(xhr.responseText);
+						}
+					});
+				})
+			}
+
+			
+
+			
+			// $('.toggle-button').on('change', function() {
+			// 	var status = this.checked ? 1 : 0;
+			// 	var settings = $(this).data('table') 
+			// 	$.ajax({
+			// 		type : 'POST',
+			// 		url : BASE_URL + "settings/update", 
+			// 		data : {
+			// 		status : status,
+			// 		settings : settings,  
+			// 		},
+			// 		dataType: "json",
+			// 		success : function(data){   
+			// 			console.info(data)
+			// 		}
+				
+			// 	}); 
+			// });
+
+		});
+
+
+	</script>
 </body>
 
 </html>
