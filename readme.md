@@ -1,6 +1,5 @@
-###################
-Tabulation
-###################  
+
+## Tabulation  
 
 Tabulator for Bb. Oroquieta.
 
