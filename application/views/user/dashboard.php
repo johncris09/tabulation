@@ -118,8 +118,7 @@
 				display_card();
 			}, 500); 
 			
-			function display_card(){
-				console.info(1)
+			function display_card(){ 
 				$('.display-card').each(function(){   
 					var _this = $(this)  
 					$.ajax({

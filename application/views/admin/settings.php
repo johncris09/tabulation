@@ -105,26 +105,26 @@
 	<?php $this->view('layout/js') ?>
 	<script>
 
-$(document).ready(function(){  
-	$('.toggle-button').on('change', function() {
-		var status = this.checked ? 1 : 0;
-		var settings = $(this).data('table') 
-		$.ajax({
-            type : 'POST',
-            url : BASE_URL + "settings/update", 
-            data : {
-              status : status,
-              settings : settings,  
-            },
-            dataType: "json",
-            success : function(data){   
-				console.info(data)
-            }
-		
-		}); 
-	});
+		$(document).ready(function(){  
+			$('.toggle-button').on('change', function() {
+				var status = this.checked ? 1 : 0;
+				var settings = $(this).data('table') 
+				$.ajax({
+					type : 'POST',
+					url : BASE_URL + "settings/update", 
+					data : {
+					status : status,
+					settings : settings,  
+					},
+					dataType: "json",
+					success : function(data){   
+						console.info(data)
+					}
+				
+				}); 
+			});
 
-});
+		});
 	</script>
 </body>
 

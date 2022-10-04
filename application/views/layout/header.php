@@ -79,6 +79,15 @@
                   </div>
                 </a>
               </li> 
+							<?php  if( strtolower ($_SESSION['role_type'] ) == "admin"){ ?>
+              <li>
+                <a class="dropdown-item" href="<?php echo base_url() ?>settings">
+                  <i class="bx bx-cog me-2"></i>
+                  <span class="align-middle">Settings</span>
+                </a>
+              </li>
+
+							<?php } ?>
               <li>
                 <a class="dropdown-item" href="<?php echo base_url() ?>dashboard/signout"  >
                   <i class="bx bx-power-off me-2"></i>
