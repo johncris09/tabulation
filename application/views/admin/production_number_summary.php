@@ -1145,7 +1145,7 @@
 		}
 
 		.x-final-rank {
-			left: 899.653333pt;
+			left: 890.653333pt;
 		}
 
 		

@@ -181,7 +181,7 @@ class Talent_presentation_model extends CI_Model
             ->delete('talent_presentation');
 	}
 
-	function get_candidate_rank_summary($data)
+	public function get_candidate_rank_summary($data)
     { 
         $this->db->where($data);
         return $this->db->get($this->table)->result_array()[0]['rank']; 

@@ -573,8 +573,14 @@
 	
 	.y15 {
 		bottom: 400.870000px;
-	}
+	} 
+	
+	
 
+
+
+
+	/* ?????????????????????? */
 	<?php 
 		$y  = 401;
 		foreach($candidate->result_array() as $row){ 
@@ -585,11 +591,16 @@
 			';
 			$y-=15;
 		}
-	?>
+	?> 
 
 	
+	.x-candidate {
+		left: 71.999987px;
+	}
+
+
 	.x-judge1 {
-		left: 218.260000px;
+		left: 213.260000px;
 	}
 
 	.x-judge2 {
@@ -597,7 +608,7 @@
 	}
 	
 	.x-judge3 {
-		left: 365.930000px;
+		left: 360.930000px;
 	}
 
 	.x-judge4 {
@@ -605,15 +616,15 @@
 	}
 
 	.x-judge5 {
-		left: 509.830000px;
+		left: 503.830000px;
 	}
 
 	.x-total-score {
-		left: 589.750000px;
+		left: 584.750000px;
 	}
 	 
 	.x-final-rank {
-		left: 670.740000px;
+		left: 675.740000px;
 	}
 
 	
@@ -625,6 +636,7 @@
 		width: 150.344000px;
 	}
 
+	/* ?????????????????????? */
 
 	
 	.y13 {
@@ -769,18 +781,8 @@
 	
 	.x1 {
 		left: 71.999987px;
-	}
+	} 
 
-
-	
-
-
-
-	
-	.x-candidate {
-		left: 71.999987px;
-	}
-	
 	.x11 {
 		left: 73.950000px;
 	}
@@ -963,6 +965,10 @@
 			bottom: 534.493333pt;
 		}
 
+		 
+
+		/* ???????????????????????????? */
+		
 		.width {
 			width: 150.792000pt;
 		}
@@ -971,10 +977,6 @@
 			left: 95.999983pt;
 		} 
 
-		
-		.x-judge1 {
-			left: 295.346667pt;
-		} 
 
 
 		<?php 
@@ -989,7 +991,39 @@
 			}
 		?>
 
+		
+		.x-judge1 {
+			left: 280.346667pt;
+		}
 
+		.x-judge2 {
+			left: 380.786667pt;
+		}
+		.x-judge3 {
+			left: 475.906667pt;
+		}
+		.x-judge4 {
+			left: 575.133333pt;
+		}
+		.x-judge5 {
+			left: 660.773333pt;
+		}
+		.x-total-score {
+			left: 777.333333pt;
+		}
+
+		.x-final-rank {
+			left: 899.653333pt;
+		}
+
+		
+		.judge-down {
+			left: 250.999983pt;
+		}
+
+
+
+		/* ???????????????????????????? */
 
 
 		.y13 {
@@ -1125,33 +1159,6 @@
 		}
 
 		
-		.x-judge1 {
-			left: 290.346667pt;
-		}
-		.x-judge2 {
-			left: 380.786667pt;
-		}
-		.x-judge3 {
-			left: 480.906667pt;
-		}
-		.x-judge4 {
-			left: 575.133333pt;
-		}
-		.x-judge5 {
-			left: 675.773333pt;
-		}
-		.x-total-score {
-			left: 786.333333pt;
-		}
-
-		.x-final-rank {
-			left: 899.653333pt;
-		}
-
-		
-		.judge-down {
-			left: 250.999983pt;
-		}
 
 
 
@@ -1754,7 +1761,7 @@
 							<div class="t m0 x6 h2 y16 ff1 fs0 fc0 sc0 ls2 ws0">Candidate #<?php echo $row['number'];  ?></div>
 						</div>
 						<div class="c x-judge1 y-candidate-<?php echo $row['number'] ?> width h6">
-							<div class="t m0 xe h2 y16 ff1 fs0 fc0 sc0 ls2 ws0"><?php   $judge_id = $this->user_model->get_per_judge_role('judge1')["id"];  $controller->get_candidate_rank_summary($row['id'],  $judge_id) ; ?>  </div>
+							<div class="t m0 xe h2 y16 ff1 fs0 fc0 sc0 ls2 ws0"><?php   $judge_id = $this->user_model->get_per_judge_role('judge1')["id"];  $controller->get_candidate_rank_summary($row['id'],  $judge_id) ; ?> </div>
 						</div> 
 						 <div class="c x-judge2 y-candidate-<?php echo $row['number'] ?> width h6">
 							<div class="t m0 xe h2 y16 ff1 fs0 fc0 sc0 ls2 ws0"><?php   $judge_id = $this->user_model->get_per_judge_role('judge2')["id"];  $controller->get_candidate_rank_summary($row['id'],  $judge_id) ; ?>  </div>

@@ -23,7 +23,10 @@
                 <div class="conversion-title">
                   <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5> 
                 </div> 
-                <button class="btn btn-primary" id="print-result"> <i class="bx bx-printer "></i> Print Result</button>
+								<div>
+									<button class="btn btn-outline-primary" id="print-summary"> <i class="bx bx-printer "></i> Print Summary</button>
+									<button class="btn btn-primary" id="print-result"> <i class="bx bx-printer "></i> Print Result</button>
+								</div>
               </div>
               <div class="table-responsive text-nowrap">
 								<hr>
@@ -35,7 +38,7 @@
                         foreach($judge as $row){
                           echo '
                             <th>
-															'.$row['name'].'  <i style="font-size: 15px;" class="bx bx-lock text-danger font-weight-bolder unlock" title="Unlock" data-table="talent_presentation" data-judge-id="'.$row['id'].'"></i>
+															'.$row['name'].'  <i style="font-size: 15px;" class="bx bx-lock text-danger font-weight-bolder unlock" title="Unlock" data-table="evening_gown" data-judge-id="'.$row['id'].'"></i>
 														</th>
                           ';
                         } 
@@ -196,6 +199,30 @@
       } 
 
         
+				$('#print-summary').on('click', function(){ 
+					$.ajax({
+						type : 'POST',
+						url : BASE_URL + "evening_gown/is_all_done_scoring", 
+						dataType: "json",
+						success : function(data){ 
+							if(data == 5){
+								window.open( BASE_URL + "evening_gown/print_summary" , "Print Summary", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=450,width=870,height=630");
+							}else{ 
+								Swal.fire({
+									title: "Unavailable this time",
+									icon: 'error',
+									text: 'Please wait until all judges have completed their scoring.', 
+								}) 
+							}
+						}, 
+						error: function(xhr, textStatus, error){
+							console.info(xhr.responseText);
+						} 
+					})
+
+        })
+
+				
 				$('#print-result').on('click', function(){
 					$.ajax({
 						type : 'POST',
@@ -203,7 +230,7 @@
 						dataType: "json",
 						success : function(data){
 							if(data == 5){
-								window.open( BASE_URL + "evening_gown/result" , "Print Result", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=300,width=600,height=505");
+								window.open( BASE_URL + "evening_gown/result" , "Print Result", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=600,width=600,height=870");
 							}else{ 
 								Swal.fire({
 									title: "Unavailable this time",

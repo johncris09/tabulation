@@ -589,7 +589,7 @@
 
 	
 	.x-judge1 {
-		left: 218.260000px;
+		left: 210.260000px;
 	}
 
 	.x-judge2 {
@@ -597,23 +597,23 @@
 	}
 	
 	.x-judge3 {
-		left: 365.930000px;
+		left: 350.930000px;
 	}
 
 	.x-judge4 {
-		left: 433.350000px;
+		left: 425.350000px;
 	}
 
 	.x-judge5 {
-		left: 509.830000px;
+		left: 498.830000px;
 	}
 
 	.x-total-score {
-		left: 589.750000px;
+		left: 578.750000px;
 	}
 	 
 	.x-final-rank {
-		left: 670.740000px;
+		left: 660.740000px;
 	}
 
 	
@@ -970,11 +970,7 @@
 		.x-candidate {
 			left: 95.999983pt;
 		} 
-
-		
-		.x-judge1 {
-			left: 295.346667pt;
-		} 
+ 
 
 
 		<?php 
@@ -1126,27 +1122,27 @@
 
 		
 		.x-judge1 {
-			left: 290.346667pt;
+			left: 280.346667pt;
 		}
 		.x-judge2 {
 			left: 380.786667pt;
 		}
 		.x-judge3 {
-			left: 480.906667pt;
+			left: 475.906667pt;
 		}
 		.x-judge4 {
-			left: 575.133333pt;
+			left: 568.133333pt;
 		}
 		.x-judge5 {
-			left: 675.773333pt;
+			left: 660.773333pt;
 		}
 		.x-total-score {
-			left: 786.333333pt;
+			left: 770.333333pt;
 		}
 
 		.x-final-rank {
-			left: 899.653333pt;
-		}
+			left: 890.653333pt;
+		} 
 
 		
 		.judge-down {

@@ -184,6 +184,21 @@ class Swim_wear_model extends CI_Model
             ->delete('swim_wear');
 	}
 
+	public function get_candidate_rank_summary($data)
+    { 
+        $this->db->where($data);
+        return $this->db->get($this->table)->result_array()[0]['rank']; 
+
+    }
+
+
+	public function get_summary_candidate_final_rank($data)
+	{ 
+        $this->db->where($data);  
+        return $this->db->get('swim_wear');
+	}
+
+
 
  
 }

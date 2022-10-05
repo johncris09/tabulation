@@ -208,5 +208,28 @@ class Final_round_model extends CI_Model
             ->delete('final_round');
 	}
 
+	public function get_candidate_rank_summary($data)
+    { 
+        $this->db->where($data);
+        return $this->db->get('final_round')->result_array()[0]['rank']; 
+
+    }
+
+
+	public function get_summary_candidate_final_rank($data)
+	{ 
+        $this->db->where($data);  
+        return $this->db->get('final_round');
+	}
+
+
+	public function get_finalist()
+	{
+		return $this->db  
+            ->where("judge", "0")
+            ->where("final_round.candidate = candidate.id")
+			->order_by('candidate.id')
+			->get('final_round, candidate');
+	}
  
 }

@@ -589,27 +589,27 @@
 
 	
 	.x-judge1 {
-		left: 218.260000px;
+		left: 210.260000px;
 	}
 
 	.x-judge2 {
-		left: 285.090000px;
+		left: 280.090000px;
 	}
 	
 	.x-judge3 {
-		left: 365.930000px;
+		left: 358.930000px;
 	}
 
 	.x-judge4 {
-		left: 433.350000px;
+		left: 428.350000px;
 	}
 
 	.x-judge5 {
-		left: 509.830000px;
+		left: 500.830000px;
 	}
 
 	.x-total-score {
-		left: 589.750000px;
+		left: 580.750000px;
 	}
 	 
 	.x-final-rank {
@@ -1135,20 +1135,19 @@
 			left: 480.906667pt;
 		}
 		.x-judge4 {
-			left: 575.133333pt;
+			left: 570.133333pt;
 		}
 		.x-judge5 {
-			left: 675.773333pt;
+			left: 670.773333pt;
 		}
 		.x-total-score {
-			left: 786.333333pt;
+			left: 775.333333pt;
 		}
 
 		.x-final-rank {
-			left: 899.653333pt;
+			left: 890.653333pt;
 		}
-
-		
+ 
 		.judge-down {
 			left: 250.999983pt;
 		}

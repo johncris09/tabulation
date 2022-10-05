@@ -189,5 +189,20 @@ class Production_number_model extends CI_Model
             ->delete('production_number');
 	}
 
+	
+	public function get_candidate_rank_summary($data)
+    { 
+        $this->db->where($data);
+        return $this->db->get($this->table)->result_array()[0]['rank'];  
+    }
+
+
+	public function get_summary_candidate_final_rank($data)
+	{ 
+        $this->db->where($data);  
+        return $this->db->get('production_number');
+	}
+
+
  
 }
