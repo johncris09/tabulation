@@ -17,8 +17,7 @@ class Talent_presentation extends CI_Controller {
         $data['page_title'] = "Talent Presentation"; 
 		$data['candidate'] = $this->candidate_model->get_all_candidate();
 		if( strtolower ($_SESSION['role_type'] ) == "admin"){ 
-			$data['judge'] = $this->user_model->get_all_judge(); 
-			// $data['score'] = $this->talent_presentation_model->get_all_score(); 
+			$data['judge'] = $this->user_model->get_all_judge();  
 			$this->load->view('admin/talent_presentation', $data);   
 		}else{
 			$data['status'] = $this->talent_presentation_model->get_status(['judge' => $_SESSION['id']]); 
@@ -96,7 +95,7 @@ class Talent_presentation extends CI_Controller {
 		$get_candidate_score = $this->talent_presentation_model->get_candidate_score($data);
 
 
-		$data = $get_candidate_score;
+		$data = $get_candidate_score; 
 		
         echo json_encode($data );
 	}
@@ -453,6 +452,68 @@ class Talent_presentation extends CI_Controller {
         echo json_encode($data);
 	}
 	
+
+	
+	function print_summary()
+	{
+		// get top 3 candidate
+		$data['controller'] = $this;
+		$data['candidate'] = $this->candidate_model->get_all_candidate();
+		$data['judge'] = $this->user_model->get_all_judge();  
+		$this->load->view('admin/talent_presentation_summary', $data);
+		  
+
+	}
+
+	
+
+	function get_candidate_rank_summary($candidate, $judge)
+	{
+		
+        $data = array(
+			'candidate' =>  $candidate, 
+			'judge' =>  $judge, 
+		);  
+		$rank = $this->talent_presentation_model->get_candidate_rank_summary($data); 
+ 
+		echo ($rank/100) *100 ;
+		 
+	}
+
+	
+	function get_summary_candidate_tot_score($candidate)
+	{
+		
+        $data = array(
+			'candidate' =>  $candidate,  
+		); 
+		$tot_score= 0; 
+		$get_tot_score = $this->talent_presentation_model->get_tot_score($data);
+		if($get_tot_score->num_rows() > 0){
+			$tot_score =  ($get_tot_score->result_array()[0]['tot_score'] * 100 ) /100;
+		}
+
+		echo $tot_score; 
+	}
+
+	
+	function get_summary_candidate_final_rank($candidate, $judge = 0)
+	{
+		
+        $data = array(
+			'candidate' =>  $candidate,  
+			'judge' =>  0,  
+		); 
+		$final_rank= 0; 
+		$get_final_rank = $this->talent_presentation_model->get_summary_candidate_final_rank($data);
+		 
+		if($get_final_rank->num_rows() > 0){
+			$final_rank =  ($get_final_rank->result_array()[0]['rank'] * 100 ) /100;
+		}
+
+		echo $final_rank; 
+	} 
+
 
         
 } 

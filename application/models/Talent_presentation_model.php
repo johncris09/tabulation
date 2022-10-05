@@ -62,7 +62,7 @@ class Talent_presentation_model extends CI_Model
         return $this->db->get($this->table)->result_array()[0]['score']; 
 
     }
-
+	
     function get_candidate_consolidated_score($data)
     {
         $this->db->where($data);
@@ -179,6 +179,20 @@ class Talent_presentation_model extends CI_Model
 		return $this->db
             ->where($data)
             ->delete('talent_presentation');
+	}
+
+	function get_candidate_rank_summary($data)
+    { 
+        $this->db->where($data);
+        return $this->db->get($this->table)->result_array()[0]['rank']; 
+
+    }
+
+
+	public function get_summary_candidate_final_rank($data)
+	{ 
+        $this->db->where($data);  
+        return $this->db->get('talent_presentation');
 	}
 
 	

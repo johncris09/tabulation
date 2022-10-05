@@ -47,6 +47,15 @@ class User_model extends CI_Model
         return $this->db->get($this->table)->result_array()[0];
     } 
  
+
+	
+    public function get_per_judge_role($judge_role)
+    { 
+        return $this->db 
+            ->where('judge_no', $judge_role)
+			->get($this->table)
+            ->result_array()[0];
+    }
   
 
  
