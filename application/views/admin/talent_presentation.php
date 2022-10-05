@@ -207,7 +207,7 @@
 						dataType: "json",
 						success : function(data){ 
 							if(data == 5){
-								window.open( BASE_URL + "talent_presentation/print_summary" , "Print Summary", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=550,width=870,height=630");
+								window.open( BASE_URL + "talent_presentation/print_summary" , "Print Summary", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=450,width=870,height=630");
 							}else{ 
 								Swal.fire({
 									title: "Unavailable this time",
