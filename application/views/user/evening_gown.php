@@ -22,9 +22,13 @@
               <div class="card-header d-flex justify-content-between pb-3">
                 <div class="conversion-title">
                   <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5>
-                  
+									<p><span class="text-danger font-weight-bold">Criteria:</span> Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on
+										Attire to candidate's match, Poise and carriage and General beauty.
+									</p>
                 </div>
-                <button class="btn btn-primary" <?php echo $status == "locked" ? "disabled" : "" ?> id="submit-score"> <i class=" bx bx-check"> </i> Submit Score</button>
+								<div>
+									<button class="btn btn-primary" <?php echo $status == "locked" ? "disabled" : "" ?> id="submit-score"> <i class=" bx bx-check"> </i> Submit Score</button>
+								</div>
               </div>
               <div class="table-responsive text-nowrap">
                 <table class="table">

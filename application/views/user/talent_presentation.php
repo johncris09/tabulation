@@ -23,8 +23,11 @@
                 <div class="conversion-title">
                   <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5> 
                 </div>
-                <button class="btn btn-primary" <?php echo $status == "locked" ? "disabled" : "" ?> id="submit-score"> <i class=" bx bx-check"> </i> Submit Score</button>
-              </div>
+								<div>
+									<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#criteria-modal">  <i class="bx bx-list-check"> </i> Click to view the Criteria</button> 
+                	<button class="btn btn-primary" <?php echo $status == "locked" ? "disabled" : "" ?> id="submit-score"> <i class=" bx bx-check"> </i> Submit Score</button>
+								</div>
+              </div> 
               <div class="table-responsive text-nowrap">
                 <table class="table">
                   <thead>
@@ -52,8 +55,57 @@
                   </tbody>
                 </table>
               </div>
-            </div> 
-            
+            </div>  
+						<div class="modal-onboarding modal fade animate__animated" id="criteria-modal" tabindex="-1" aria-hidden="true">
+							<div class="modal-dialog modal-xl" role="document">
+								<div class="modal-content text-center">
+									<div class="modal-header"> 
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+										</button>
+									</div>
+									<div class="modal-body onboarding-horizontal p-0">
+										<div class="onboarding-media">
+											<img src="<?php echo base_url() ?>assets/img/rate1.png" alt="boy-verify-email-light" width="273" class="img-fluid" data-app-light-img="illustrations/boy-verify-email-light.png" data-app-dark-img="illustrations/boy-verify-email-dark.png">
+										</div>
+										<div class="onboarding-content mb-0">
+											<h4 class="onboarding-title text-body">Criteria</h4>
+											<div class="onboarding-info">Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on the following</div>
+                        <hr>
+											 <table class="table table-bordered"> 
+                        <thead>
+                          <tr>
+                            <th>Criteria</th>
+                            <th>%</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr> 
+                            <th>Reality of Talent</th>
+                            <td>40%</td>
+                          </tr>
+                          <tr>
+                            <th>Deportment/Stage Presence</th>
+                            <td>20%</td>
+                          </tr>
+                          <tr>
+                            <th>Performance/Mastery</th>
+                            <td>30%</td>
+                          </tr>
+                          <tr>
+                            <th>Costume & Relevance of Props</th>
+                            <td>10%</td>
+                          </tr> 
+                          <tr>
+                            <td> </td>
+                            <td>100%</td>
+                          </tr> 
+                        </tbody>
+                       </table>
+										</div>
+									</div> 
+								</div>
+							</div>
+						</div>
 
           </div>
   
