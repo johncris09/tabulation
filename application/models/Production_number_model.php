@@ -182,6 +182,22 @@ class Production_number_model extends CI_Model
 			
 	}
 
+    
+    public function get_scoring_status($data)
+    {
+        $status =  $this->db  
+            ->where($data)
+			->get('production_number');
+        
+
+		if($status->num_rows() > 0){
+			return $status->result_array()[0]['status'];
+		}
+		return "unlocked";
+    }
+
+
+
 	public function delete_previous_score($data)
 	{ 
 		return $this->db
