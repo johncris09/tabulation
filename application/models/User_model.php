@@ -15,8 +15,7 @@ class User_model extends CI_Model
     public function login($data)
     { 
         return $this->db->where($data)
-			->get('user')
-			->num_rows();
+			->get('user');
     }
 
 	
@@ -56,7 +55,13 @@ class User_model extends CI_Model
 			->get($this->table)
             ->result_array()[0];
     }
-  
-
+    
+    
+    public function update($data)
+    { 
+        return $this->db
+            ->where("id", $data['id'])
+            ->update($this->table, $data);
+    } 
  
 }

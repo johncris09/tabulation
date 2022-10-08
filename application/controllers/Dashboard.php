@@ -27,7 +27,16 @@ class Dashboard extends CI_Controller {
 	
     public function signout()
     { 
+
+        $user_id  = $this->user_model->get_user(["id" => $_SESSION['id']])['id']; 
         
+        $is_logged_in_update = array(
+            'is_logged_in' => 0,
+            'id' => $user_id
+        ); 
+
+        $update = $this->user_model->update($is_logged_in_update);
+ 
         $all_sessions = $this->session->all_userdata();
         // unset all sessions
         foreach ($all_sessions as $key => $val) {
