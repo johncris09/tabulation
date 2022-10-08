@@ -3,7 +3,12 @@
 
 <head>
 	<?php $this->view('layout/meta') ?>
-		<?php $this->view('layout/css') ?>
+	<?php $this->view('layout/css') ?>
+	<style>
+		.hidden{
+			display: none;
+		}
+	</style>
 </head>
 
 <body> 
@@ -18,7 +23,7 @@
 
 							<!-- Examples -->
 							<div class="row mb-5">
-								<div class="col-md-3 col-lg-3 col-sm-4 mb-3">
+								<div class="col-md-3 col-lg-3 col-sm-4 mb-3 hidden">
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/talent.jpg" alt="Card image cap">
 										<div class="card-body">
@@ -29,7 +34,7 @@
 										</div>
 									</div>
 								</div> 
-								<div class="col-md-3 col-lg-3 col-sm-4 mb-3">
+								<div class="col-md-3 col-lg-3 col-sm-4 mb-3 ">
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/production_number.jpg" alt="Card image cap">
 										<div class="card-body">
@@ -40,7 +45,7 @@
 										</div>
 									</div>
 								</div> 
-								<div class="col-md-3 col-lg-3 col-sm-4 mb-3">
+								<div class="col-md-3 col-lg-3 col-sm-4 mb-3 ">
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/production_attire.jpg" alt="Card image cap">
 										<div class="card-body">
@@ -51,7 +56,7 @@
 										</div>
 									</div>
 								</div> 
-								<div class="col-md-3 col-lg-3 col-sm-4 mb-3">
+								<div class="col-md-3 col-lg-3 col-sm-4 mb-3 ">
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/swim_wear.jpg" alt="Card image cap">
 										<div class="card-body">
@@ -62,7 +67,7 @@
 										</div>
 									</div>
 								</div> 
-								<div class="col-md-3 col-lg-3 col-sm-4 mb-3">
+								<div class="col-md-3 col-lg-3 col-sm-4 mb-3 ">
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/evening_gown.jpg" alt="Card image cap">
 										<div class="card-body">
@@ -73,7 +78,7 @@
 										</div>
 									</div>
 								</div>  
-								<div class="col-md-3 col-lg-3 col-sm-4 mb-3">
+								<div class="col-md-3 col-lg-3 col-sm-4 mb-3 ">
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/top_5.jpg" alt="Card image cap">
 										<div class="card-body">
@@ -84,7 +89,7 @@
 										</div>
 									</div>
 								</div> 
-								<div class="col-md-3 col-lg-3 col-sm-4 mb-3">
+								<div class="col-md-3 col-lg-3 col-sm-4 mb-3 ">
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/5.jpg" alt="Card image cap">
 										<div class="card-body">
