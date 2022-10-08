@@ -23,7 +23,7 @@
                 <div class="conversion-title">
                   <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5> 
 									<p><span class="text-danger font-weight-bold">Criteria:</span> Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on
-										Mastery, Gracefulness and Stage projection.
+										<strong>Mastery, Gracefulness and Stage projection.</strong> 
 									</p>
                 </div>
 								<div>
@@ -31,10 +31,20 @@
 								</div>
               </div>
               <div class="table-responsive text-nowrap">
-                <table class="table">
+                <table class="table table-striped table-bordered">
                   <thead>
-                    <tr> 
+                    <tr class="text-center"> 
+                      <th> </th> 
+                      <th colspan="2">Production Number</th>
+                      <th colspan="2">Production Attire</th>
+                      <th colspan="2">Top Five</th> 
+                    </tr>
+                    <tr class="text-center"> 
                       <th>Candidate</th> 
+                      <th>Score</th>
+                      <th>Rank</th> 
+                      <th>Score</th>
+                      <th>Rank</th> 
                       <th>Score</th>
                       <th>Rank</th> 
                     </tr>
@@ -45,11 +55,19 @@
                         foreach($candidate->result_array() as $row){
 													$readonly = ($status == "locked") ? "readonly" :"" ;
                           echo '
-                            <tr> 
-                              <td> <div class="star">' .$row['number']. '</div>   <div style="margin-top: 10px !important;">' .$row['name'].'</div></td> 
+                            <tr class="text-center"> 
+                              <td class=""> <div class="star">#' .$row['number']. '</div>     </td> 
                               <td><input '.$readonly.'  type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
                               <td> <span data-candidate="'.$row['id'].'" class="rank h6 text-center candidate-'.$row['id'].'"></span> </td> 
-                            </tr>
+
+                              
+                              <td><input '.$readonly.'  type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
+                              <td> <span data-candidate="'.$row['id'].'" class="rank h6 text-center candidate-'.$row['id'].'"></span> </td> 
+
+                              
+                              <td><input '.$readonly.'  type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
+                              <td> <span data-candidate="'.$row['id'].'" class="rank h6 text-center candidate-'.$row['id'].'"></span> </td> 
+                            </tr> 
                           ';
                         } 
                       }
@@ -232,7 +250,7 @@
 				if(emp.length > 0){ 
 					Swal.fire({
 						icon: 'error',
-						title: 'All input field must not be empty', 
+						title: 'All input fields must not be empty', 
 					})
 
 					$.each(emp , function(index, val) { 
