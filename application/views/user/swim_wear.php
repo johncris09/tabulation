@@ -64,8 +64,12 @@
                                 <td class=""> <div class="star">#' .$row['number']. '</div></td>
                                 <td><input '.$readonly.'  data-table="swim-wear"  id="score-swim-wear"  type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
                                 <td> <span data-table="swim-wear"  data-candidate="'.$row['id'].'" class="rank-swim-wear h6 text-center candidate-'.$row['id'].'"></span> </td> 
-                                
-                                <td class="seperate" ><input  id="score-top-five" type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
+                              ';
+
+                              $top_five_status = $this->top_five_model->get_scoring_status(['candidate' => $row['id']]);
+                              $top_five_status = ($top_five_status == "locked")  ? "readonly" :"" ; 
+                              echo ' 
+                                <td class="seperate" ><input  '.$top_five_status.' id="score-top-five" type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
                                 <td> <span data-candidate="'.$row['id'].'" class="rank-top-five h6 text-center candidate-'.$row['id'].'"></span> </td> 
                               </tr>
                             ';
