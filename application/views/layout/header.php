@@ -74,7 +74,7 @@
                     </div>
                     <div class="flex-grow-1">
                       <span class="fw-semibold d-block lh-1"><?php echo $_SESSION['name']; ?></span>
-                      <small><?php echo $_SESSION['role_type']; ?></small>
+                      <small><?php echo ucwords($_SESSION['role_type']); ?></small>
                     </div>
                   </div>
                 </a>
