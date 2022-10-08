@@ -8,14 +8,14 @@ $(document).ready(function(){
         type: 'POST',  
         data: $('#formAuthentication').serialize(),
         dataType: 'JSON',
-        success: function(data){ 
+        success: function(data){  
           if(data.response){
               location.reload();
           }else{ 
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
-              text: 'Invalid Username/Password', 
+              text: data.message, 
             })
           }
         },
