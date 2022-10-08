@@ -13,15 +13,16 @@ class Production_number extends CI_Controller {
     }
 
     public function index()
-	{ 
-        $data['page_title'] = "Production Number"; 
+	{  
 		$data['candidate'] = $this->candidate_model->get_all_candidate();
 		if( strtolower ($_SESSION['role_type'] ) == "admin"){ 
-			$data['judge'] = $this->user_model->get_all_judge(); 
-			// $data['score'] = $this->production_number_model->get_all_score(); 
+			$data['page_title'] = "Production Number"; 
+			$data['judge'] = $this->user_model->get_all_judge();  
 			$this->load->view('admin/production_number', $data);   
 		}else{
-			$data['status'] = $this->production_number_model->get_status(['judge' => $_SESSION['id']]); 
+			$data['page_title'] = "Production Number & Production Attire"; 
+			$data['production_number_status'] = $this->production_number_model->get_status(['judge' => $_SESSION['id']]); 
+			$data['production_attire_status'] = $this->production_attire_model->get_status(['judge' => $_SESSION['id']]); 
 			$this->load->view('user/production_number', $data);  
 		}
 		
