@@ -25,13 +25,14 @@
                   <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5> 
                 </div> 
 								<div>
+									<button class="btn btn-primary" id="print-per-judge"> <i class="bx bx-printer "></i> Print The Judge's Score</button>
 									<button class="btn btn-outline-primary" id="print-summary"> <i class="bx bx-printer "></i> Print Summary</button>
 									<button class="btn btn-primary" id="print-result"> <i class="bx bx-printer "></i> Print Result</button>
 								</div>
               </div>
               <div class="table-responsive text-nowrap">
 								<hr>
-                <table class="table">
+                <table class="table table-striped">
                   <thead>
                     <tr> 
                       <th>Candidate</th> 
@@ -39,7 +40,7 @@
                         foreach($judge as $row){
                           echo '
                             <th>
-															'.$row['name'].'  <i style="font-size: 15px;" class="bx bx-lock text-danger font-weight-bolder unlock" title="Unlock" data-table="talent_presentation" data-judge-id="'.$row['id'].'"></i>
+															'.$row['short_name'].'  <i style="font-size: 15px;" class="bx bx-lock text-danger font-weight-bolder unlock" title="Unlock" data-table="talent_presentation" data-judge-id="'.$row['id'].'"></i>
 														</th>
                           ';
                         } 
@@ -55,7 +56,7 @@
                       if($candidate->num_rows() > 0){
                         foreach($candidate->result_array() as $row){
                           echo '
-                            <tr class="candidate-row">
+                            <tr class="candidate-row  ">
                               <td> <div class="star">' .$row['number']. '</div>   <div style="margin-top: 10px !important;">' .$row['name'].'</div></td>   
                               <td class="candidate-consolidate judge1 candidate-'.$row['id'].'" data-candidate="'.$row['id'].'" data-judge="judge1"></td>   
                               <td class="candidate-consolidate judge2 candidate-'.$row['id'].'" data-candidate="'.$row['id'].'" data-judge="judge2"></td>  
@@ -200,6 +201,30 @@
       }    
 
 
+        $('#print-per-judge').on('click', function(){ 
+          $.ajax({
+            type : 'POST',
+            url : BASE_URL + "talent_presentation/is_all_done_scoring", 
+            dataType: "json",
+            success : function(data){ 
+              if(data == 5){
+                window.open(BASE_URL + "talent_presentation/result_judge_score", "_blank")
+              }else{ 
+                Swal.fire({
+                  title: "Unavailable this time",
+                  icon: 'error',
+                  text: 'Please wait until all judges have completed their scoring.', 
+                }) 
+              }
+            }, 
+            error: function(xhr, textStatus, error){
+              console.info(xhr.responseText);
+            } 
+          })
+
+        })
+
+        
 				$('#print-summary').on('click', function(){ 
 					$.ajax({
 						type : 'POST',
@@ -207,7 +232,8 @@
 						dataType: "json",
 						success : function(data){ 
 							if(data == 5){
-								window.open( BASE_URL + "talent_presentation/print_summary" , "Print Summary", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=450,width=870,height=630");
+                window.open(BASE_URL + "talent_presentation/print_summary", "_blank")
+								// window.open( BASE_URL + "talent_presentation/print_summary" , "Print Summary", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=450,width=870,height=630", "black");
 							}else{ 
 								Swal.fire({
 									title: "Unavailable this time",
@@ -230,7 +256,8 @@
           dataType: "json",
           success : function(data){
 						if(data == 5){
-							window.open( BASE_URL + "talent_presentation/result" , "Print Result", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=600,width=600,height=870");
+              window.open(BASE_URL + "talent_presentation/result" , "_blank");
+							// window.open( BASE_URL + "talent_presentation/result" , "Print Result", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=600,width=600,height=870");
 						}else{ 
 							Swal.fire({
 								title: "Unavailable this time",
