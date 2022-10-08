@@ -15,23 +15,24 @@
 						<?php $this->view('layout/menu') ?>
 						<div class="container-xxl flex-grow-1 container-p-y">
             
-        
-
-            <!-- Basic Bootstrap Table -->
+         
             <div class="card"> 
               <div class="card-header d-flex justify-content-between pb-3">
                 <div class="conversion-title">
                   <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5> 
+									<p><span class="text-danger font-weight-bold">Criteria:</span> Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on
+									<strong> Reality of Talent, Deportment/Stage Presence, Performance/Mastery, Costume & Relevance of Props.</strong>
+									</p>
                 </div>
 								<div>
-									<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#criteria-modal">  <i class="bx bx-list-check"> </i> Click to view the Criteria</button> 
                 	<button class="btn btn-primary" <?php echo $status == "locked" ? "disabled" : "" ?> id="submit-score"> <i class=" bx bx-check"> </i> Submit Score</button>
 								</div>
               </div> 
+              <hr>
               <div class="table-responsive text-nowrap">
-                <table class="table">
+                <table class="table table-striped">
                   <thead>
-                    <tr> 
+                    <tr class="text-center"> 
                       <th>Candidate</th> 
                       <th>Score</th>
                       <th>Rank</th> 
@@ -42,10 +43,12 @@
                       if($candidate->num_rows() > 0){
                         foreach($candidate->result_array() as $row){
 													$readonly = ($status == "locked") ? "readonly" :"" ;
+                          
+                          // <td> <div class="star">' .$row['number']. '</div>   <div style="margin-top: 10px !important;">' .$row['name'].'</div></td> 
                           echo '
-                            <tr> 
-                              <td> <div class="star">' .$row['number']. '</div>   <div style="margin-top: 10px !important;">' .$row['name'].'</div></td> 
-                              <td><input '.$readonly.'  type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
+                            <tr class="text-center"> 
+                              <td class=""> <div class="star">#' .$row['number']. '</div>     </td>
+                              <td><input  '.$readonly.'  type="number" data-candidate="'.$row['id'].'" step="0.1" min="1" max="10"  class="form-control text-center candidate"  ></td>
                               <td> <span data-candidate="'.$row['id'].'" class="rank h6 text-center candidate-'.$row['id'].'"></span> </td> 
                             </tr>
                           ';
@@ -55,58 +58,7 @@
                   </tbody>
                 </table>
               </div>
-            </div>  
-						<div class="modal-onboarding modal fade animate__animated" id="criteria-modal" tabindex="-1" aria-hidden="true">
-							<div class="modal-dialog modal-xl" role="document">
-								<div class="modal-content text-center">
-									<div class="modal-header"> 
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-										</button>
-									</div>
-									<div class="modal-body onboarding-horizontal p-0">
-										<div class="onboarding-media">
-											<img src="<?php echo base_url() ?>assets/img/rate1.png" alt="boy-verify-email-light" width="273" class="img-fluid" data-app-light-img="illustrations/boy-verify-email-light.png" data-app-dark-img="illustrations/boy-verify-email-dark.png">
-										</div>
-										<div class="onboarding-content mb-0">
-											<h4 class="onboarding-title text-body">Criteria</h4>
-											<div class="onboarding-info">Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on the following</div>
-                        <hr>
-											 <table class="table table-bordered"> 
-                        <thead>
-                          <tr>
-                            <th>Criteria</th>
-                            <th>%</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr> 
-                            <th>Reality of Talent</th>
-                            <td>40%</td>
-                          </tr>
-                          <tr>
-                            <th>Deportment/Stage Presence</th>
-                            <td>20%</td>
-                          </tr>
-                          <tr>
-                            <th>Performance/Mastery</th>
-                            <td>30%</td>
-                          </tr>
-                          <tr>
-                            <th>Costume & Relevance of Props</th>
-                            <td>10%</td>
-                          </tr> 
-                          <tr>
-                            <td> </td>
-                            <td>100%</td>
-                          </tr> 
-                        </tbody>
-                       </table>
-										</div>
-									</div> 
-								</div>
-							</div>
-						</div>
-
+            </div>    
           </div>
   
 
@@ -126,8 +78,7 @@
     $(document).ready(function(){  
       load_score(); 
       load_rank();
-      
-
+       
     function load_rank(){
  
       $.ajax({
@@ -173,8 +124,7 @@
 
       $('input').on('keyup', function(){  
         var _this = this
-        var candidate = $(this).data('candidate') 
- 
+        var candidate = $(this).data('candidate')  
  
         if(_this.value > 10  ){ 
           Swal.fire({
@@ -278,7 +228,7 @@
 				if(emp.length > 0){ 
 					Swal.fire({
 						icon: 'error',
-						title: 'All input field must not be empty', 
+						title: 'All input fields must not be empty', 
 					})
 
 					$.each(emp , function(index, val) { 
