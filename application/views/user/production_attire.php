@@ -23,7 +23,7 @@
                 <div class="conversion-title">
                   <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5>
                   <p> <span class="text-danger font-weight-bold">Criteria:</span> Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on
-										Attire to candidate's match, Poise and carriage and General beauty.
+									 <strong>	Attire to candidate's match, Poise and carriage and General beauty.</strong>
 									</p>
                 </div>
 								<div> 
@@ -232,7 +232,7 @@
 				if(emp.length > 0){ 
 					Swal.fire({
 						icon: 'error',
-						title: 'All input field must not be empty', 
+						title: 'All input fields must not be empty', 
 					})
 
 					$.each(emp , function(index, val) { 
