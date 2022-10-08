@@ -47,66 +47,57 @@
                     <td>Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on
                 <strong>Attire to candidate's match, Poise and carriage and General beauty.</strong></td>
                   </tr>  
-              </table> 
+                </table> 
 
-              <hr style="border-top:1px dotted #000;">
-              <div class="table-responsive text-nowrap">
-                <table class="table table-striped table-bordered">
-                  <thead>
-                    <tr class="text-center"> 
-                      <th> </th> 
-                      <th colspan="2">Production Number</th>
-                      <th colspan="2">Production Attire</th>
-                      <th class="seperate" colspan="2">Top Five</th> 
-                    </tr>
-                    <tr class="text-center"> 
-                      <th>Candidate</th> 
-                      <th>Score</th>
-                      <th>Rank</th> 
-                      <th>Score</th>
-                      <th>Rank</th> 
-                      <th class="seperate" >Score</th>
-                      <th>Rank</th> 
-                    </tr>
-                  </thead>
-                  <tbody class="table-border-bottom-0">
-										<?php 
-                      if($candidate->num_rows() > 0){
-                        foreach($candidate->result_array() as $row){
-													$readonly = ($status == "locked") ? "readonly" :"" ;
-                          echo '
-                            <tr class="text-center"> 
-                              <td class=""> <div class="star">#' .$row['number']. '</div>     </td> 
-                              <td><input '.$readonly.' id="score-production-number" type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
-                              <td> <span data-candidate="'.$row['id'].'" class="rank-production-number h6 text-center candidate-'.$row['id'].'"></span> </td> 
+                <hr style="border-top:1px dotted #000;">
+                <div class="table-responsive text-nowrap">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr class="text-center"> 
+                        <th> </th> 
+                        <th colspan="2">Production Number</th>
+                        <th colspan="2">Production Attire</th>
+                        <th class="seperate" colspan="2">Top Five</th> 
+                      </tr>
+                      <tr class="text-center"> 
+                        <th>Candidate</th> 
+                        <th>Score</th>
+                        <th>Rank</th> 
+                        <th>Score</th>
+                        <th>Rank</th> 
+                        <th class="seperate" >Score</th>
+                        <th>Rank</th> 
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                      <?php 
+                        if($candidate->num_rows() > 0){
+                          foreach($candidate->result_array() as $row){
+                            $readonly = ($status == "locked") ? "readonly" :"" ;
+                            echo '
+                              <tr class="text-center"> 
+                                <td class=""> <div class="star">#' .$row['number']. '</div>     </td> 
+                                <td><input '.$readonly.' data-table="production-number" id="score-production-number" type="number"  data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
+                                <td> <span data-table="production-number" data-candidate="'.$row['id'].'" class="rank-production-number h6 text-center candidate-'.$row['id'].'"></span> </td> 
 
-                              
-                              <td><input '.$readonly.'  id="score-production-attire"   type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
-                              <td> <span data-candidate="'.$row['id'].'" class="rank-production-attire h6 text-center candidate-'.$row['id'].'"></span> </td> 
+                                
+                                <td><input '.$readonly.' data-table="production-attire"   id="score-production-attire" type="number"  data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
+                                <td> <span data-table="production-attire" data-candidate="'.$row['id'].'" class="rank-production-attire h6 text-center candidate-'.$row['id'].'"></span> </td> 
 
-                              
-                              <td class="seperate" ><input '.$readonly.'   id="score-top-five"   type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
-                              <td> <span data-candidate="'.$row['id'].'" class="rank-top-five h6 text-center candidate-'.$row['id'].'"></span> </td> 
-                            </tr> 
-                          ';
-                        } 
-                      }
-                    ?> 
-                  </tbody>
-                </table>
-              </div>
-
-
-              </div>
-              
-
-            
-            </div> 
-            
-
-          </div>
-  
-
+                                
+                                <td class="seperate" ><input  id="score-top-five" type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
+                                <td> <span data-candidate="'.$row['id'].'" class="rank-top-five h6 text-center candidate-'.$row['id'].'"></span> </td> 
+                              </tr> 
+                            ';
+                          } 
+                        }
+                      ?> 
+                    </tbody>
+                  </table>
+                </div> 
+              </div> 
+            </div>   
+          </div> 
 						<?php $this->view('layout/footer') ?>
 						<div class="content-backdrop fade"></div>
 					</div> 
@@ -128,6 +119,9 @@
 
       load_top_five_score(); 
       load_top_five_rank();
+      
+
+
       
 
       //________________________________//
@@ -522,33 +516,47 @@
           }); 
         } 
       });
-      
 
-			
-      // submit score 
+
+      
+      //________________________________//
+      //________________________________//
+      //        Submit Score
+      //________________________________//
+      //________________________________//
       $('#submit-score').on('click', function(){  
         var _this = $(this)  
-				
-				var emp = [];
-				$('.rank').each(function(){ 
+				var table;
+				var emp = new Array();
+				$('.rank-production-number, .rank-production-attire').each(function(){   
+          table = $(this).data('table')  
 					if($(this).html() == ""){  
-						emp.push($(this).data('candidate'))
+            if(table == "production-number"){
+              emp.push({
+                table: $(this).data('table'),
+                candidate: $(this).data('candidate') 
+              })
+            }else{ 
+              emp.push({
+                table: $(this).data('table'),
+                candidate: $(this).data('candidate') 
+              })
+            }
 					} 
 				})  
+  
  
         // no empty fields
 				if(emp.length > 0){ 
 					Swal.fire({
 						icon: 'error',
-						title: 'All input fields must not be empty', 
+						title: 'All input fields in production number and attire must not be empty!', 
 					})
 
-					$.each(emp , function(index, val) { 
-						$('input[data-candidate='+val+']').css({"border": "1px solid red"})
-					});
-  
+					$.each(emp , function(index, val) {  
+						$('input[data-table='+val.table+'][data-candidate='+val.candidate+']').css({"border": "1px solid red"})
+					}); 
 				}else{
-					
 					Swal.fire({
 						title: "Is this your final Score?",
 						html: "This tabulator will be locked once you have submitted your score. Please review your score. <br> <span class='text-danger'><small>Note: If you want to adjust your score, you can consult with administrator.</small></span>  ",
@@ -557,19 +565,21 @@
 						confirmButtonText: "Yes, submit it!"
 					}).then(function(result) { 
 						if (result.value) { 
-							$('.rank').each(function(){   
+				      $('.rank-production-number, .rank-production-attire').each(function(){  
 								var _this = $(this) 
+                table = _this.data('table').replace("-", "_")  
 								$.ajax({
 									type : 'POST',
-									url : BASE_URL + "production_number/update_rank",
+									url : BASE_URL + "/" + table + "/update_rank",
 									data : { 
 										candidate : $(this).data('candidate'),
 										judge : '<?php echo $_SESSION['id'] ?>', 
-										rank : $(this).html(),
+										rank :  $(this).html(),
 										status : "locked",
 									},
 									dataType: "json",
 									success : function(data){  
+                    console.info(data)
 									}, 
 									error: function(xhr, textStatus, error){
 										console.info(xhr.responseText);
@@ -585,13 +595,18 @@
 
 							// locked tabulator
 							$('#submit-score').prop('disabled', true)
-							$('table  input').prop('readonly', true)
+							$('input#score-production-number, input#score-production-attire').prop('readonly', true)
 
 						}
 					});  
 
 				} 
       }); 
+
+      
+      
+
+			
     
     });
 
