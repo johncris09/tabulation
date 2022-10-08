@@ -21,39 +21,54 @@
             <div class="card"> 
               <div class="card-header d-flex justify-content-between pb-3">
                 <div class="conversion-title">
-                  <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5> 
+                  <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5>  
                 </div>
 								<div>
-									<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#criteria-modal">  <i class="bx bx-list-check"> </i> Click to view the Criteria</button> 
 									<button class="btn btn-primary" <?php echo $status == "locked" ? "disabled" : "" ?> id="submit-score"> <i class=" bx bx-check"> </i> Submit Score</button>
 								</div>
               </div>
-              <div class="table-responsive text-nowrap">
-                <table class="table">
-                  <thead>
-                    <tr> 
-                      <th>Candidate</th> 
-                      <th>Score</th>
-                      <th>Rank</th> 
-                    </tr>
-                  </thead>
-                  <tbody class="table-border-bottom-0">
-										<?php 
-                      if($candidate->num_rows() > 0){
-                        foreach($candidate->result_array() as $row){
-													$readonly = ($status == "locked") ? "readonly" :"" ;
-                          echo '
-                            <tr> 
-                              <td> <div class="star">' .$row['number']. '</div>   <div style="margin-top: 10px !important;">' .$row['name'].'</div></td> 
-                              <td><input '.$readonly.'  type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
-                              <td> <span data-candidate="'.$row['id'].'" class="rank h6 text-center candidate-'.$row['id'].'"></span> </td> 
-                            </tr>
-                          ';
-                        } 
-                      }
-                    ?> 
-                  </tbody>
+              <div class="card-body">
+                <table class="table "> 
+                  <tr class="text-center">
+                    <th colspan="2" class="text-danger">Criteria</th>
+                  </tr> 
+                  <tr>
+                    <th>Top Five &nbsp;&nbsp;&nbsp;</th>
+                    <td>Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on <strong>Beauty and Face Charm(3), Poise, Grace and Carriage(2), Stage Projection(2),  Wit and Intelligence(3).</strong></td>
+                  </tr>  
                 </table>
+
+                <hr style="border-top:1px dotted #000;">
+                <div class="table-responsive text-nowrap">
+                  <table class="table">
+                    <thead>
+                      <tr class="text-center">
+                        <th>Candidate</th> 
+                        <th>Score</th>
+                        <th>Rank</th> 
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                      <?php 
+                        if($candidate->num_rows() > 0){
+                          foreach($candidate->result_array() as $row){
+                            $readonly = ($status == "locked") ? "readonly" :"" ;
+                            echo '
+                              <tr> 
+                              <td class=""> <div class="star">#' .$row['number']. '</div></td>
+                                <td><input '.$readonly.'  type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
+                                <td> <span data-candidate="'.$row['id'].'" class="rank h6 text-center candidate-'.$row['id'].'"></span> </td> 
+                              </tr>
+                            ';
+                          } 
+                        }
+                      ?> 
+                    </tbody>
+                  </table>
+                </div>
+
+                
+
               </div>
             </div> 
 						
@@ -70,7 +85,7 @@
 										</div>
 										<div class="onboarding-content mb-0">
 											<h4 class="onboarding-title text-body">Criteria</h4>
-											<div class="onboarding-info"><span class="h6">eLIMINATION ROUND</span> (Selection of 5 finalist) <br>
+											<div class="onboarding-info"><span class="h6">ELIMINATION ROUND</span> (Selection of 5 finalist) <br>
 											Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on the following
 											</div>
                       <hr>
@@ -249,16 +264,6 @@
             },
             dataType: "json",
             success : function(data){   
-              if(data.response == true){ 
-                
-                $(_this).css("border", "1px solid blue");
-                $(_this).css('font-weight', 'bolder');
-                setTimeout(function() {  
-                  $(_this).css("border", "1px solid black");
-                  $(_this).css('font-weight', 'normal');
-                }, 500); 
-                
-              } 
               load_rank();
             }
           }); 
@@ -281,7 +286,7 @@
 				if(emp.length > 0){ 
 					Swal.fire({
 						icon: 'error',
-						title: 'All input field must not be empty', 
+						title: 'All input fields must not be empty', 
 					})
 
 					$.each(emp , function(index, val) { 
