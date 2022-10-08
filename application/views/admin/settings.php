@@ -27,7 +27,7 @@
 												<tr>
 												<th></th>
 												<th>Card Show/Hide</th>
-												<th>Button Show/Hide</th> 
+												<!-- <th>Button Show/Hide</th>  -->
 												</tr>
 											</thead>
 											<tbody class="table-border-bottom-0">  
@@ -76,17 +76,17 @@
 																		<label class="form-check-label" for="">Show/Hide</label>
 																	</div>
 																</td> 
-																<td>
-																	<div class="form-check form-switch mb-2">
-																		<input class="form-check-input toggle-button" '.$button_check.'   data-table="'.$row['value'].'_button"  type="checkbox" id="">
-																		<label class="form-check-label" for="">Show/Hide</label>
-																	</div>
-																</td>  
 															</tr>
-														';
-
+														'; 
 													}
 												?>
+												
+												<!-- <td>
+													<div class="form-check form-switch mb-2">
+														<input class="form-check-input toggle-button" '.$button_check.'   data-table="'.$row['value'].'_button"  type="checkbox" id="">
+														<label class="form-check-label" for="">Show/Hide</label>
+													</div>
+												</td>   -->
 											</tbody>
 										</table>
 									</div>
