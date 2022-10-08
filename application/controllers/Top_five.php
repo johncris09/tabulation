@@ -376,31 +376,8 @@ class Top_five extends CI_Controller {
 
 	
 	function insert_to_final_round()
-	{
-		// get top five
-		$top_five = $this->top_five_model->get_top_five_candidate();
-
-		if($top_five->num_rows() > 0){ 
-
-			foreach($top_five->result_array() as $row){
-				$candidate = array(
-					'candidate' => $row['candidate']
-				);
-				$is_exist = $this->final_round_model->is_exist($candidate); 
-				// echo json_encode($is_exist->num_rows());
-				if($is_exist->num_rows() > 0){ 
-				}else{
-					$insert = $this->final_round_model->insert($candidate);
-				}
-			} 
-		} 
-
-	} 
-
-	
-	function result()
-	{
-		// get top 3 candidate
+	{ 
+		// get top 5 candidate
 		$candidate = $this->top_five_model->get_top_candidate();
 		if($candidate->num_rows() > 0 ){
 
@@ -415,12 +392,50 @@ class Top_five extends CI_Controller {
 					break;
 				} 
 				$result[] = array(
-					"id" => $candidate[$counter]['id'],
-					"candidate" => $candidate[$counter]['candidate'],
-					"judge" => $candidate[$counter]['judge'],
-					"score" => $candidate[$counter]['score'], 
-					"rank" => $candidate[$counter]['rank'], 
-					"status" => $candidate[$counter]['status'],  
+					"id" => $candidate[$counter]['id'],  
+					"rank" => $candidate[$counter]['rank'],  
+					"number" => $candidate[$counter]['number'],   
+					"name" => $candidate[$counter]['name'],
+				);
+				$counter++;
+			}
+
+			foreach($result as $row){
+				$candidate = array(
+					'candidate' => $row['id']
+				); 
+				$is_exist = $this->final_round_model->is_exist($candidate);  
+				if($is_exist->num_rows() > 0){ 
+				}else{
+					$insert = $this->final_round_model->insert($candidate);
+				} 
+			} 
+
+		}else{
+			show_404();
+		}  
+	} 
+
+	
+	function result()
+	{
+		// get top 5 candidate
+		$candidate = $this->top_five_model->get_top_candidate();
+		if($candidate->num_rows() > 0 ){
+
+			$candidate = $candidate->result_array(); 
+			$maxRank = 5; 
+			$rank = 0;
+			$result = [];
+			$counter = 0;
+			foreach ($candidate as ['rank' => $number]) { 
+				$ranks[$number] ??= ++$rank;
+				if ($ranks[$number] > $maxRank) {
+					break;
+				} 
+				$result[] = array(
+					"id" => $candidate[$counter]['id'], 
+					"rank" => $candidate[$counter]['rank'],   
 					"number" => $candidate[$counter]['number'],   
 					"name" => $candidate[$counter]['name'],
 				);
