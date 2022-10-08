@@ -49,7 +49,7 @@
                   </tr>  
               </table> 
 
-              <hr style="border-top:2px dotted #000;">
+              <hr style="border-top:1px dotted #000;">
               <div class="table-responsive text-nowrap">
                 <table class="table table-striped table-bordered">
                   <thead>
@@ -118,10 +118,16 @@
 	<?php $this->view('layout/js') ?>
   <script> 
     $(document).ready(function(){  
+
       load_production_number_score(); 
       load_production_number_rank();
+
+
       load_production_attire_score(); 
       load_production_attire_rank();
+
+      load_top_five_score(); 
+      load_top_five_rank();
       
 
       //________________________________//
@@ -386,6 +392,137 @@
       });
 
 
+
+
+      
+      //________________________________//
+      //________________________________//
+      //        Top Five
+      //________________________________//
+      //________________________________//  
+      function load_top_five_rank(){
+        
+        $.ajax({
+          url: BASE_URL + 'top_five/get_ranking_specific_judge',
+          type: 'POST',   
+          dataType: 'JSON',
+          success: function(data){  
+            // console.info(data)
+            $.each(data, function (key, val) {  
+              $('span.rank-top-five.candidate-' + val.candidate).html(val.rank) 
+            });
+            
+          }, 
+          error: function(xhr, textStatus, error){
+            console.info(xhr.responseText);
+          }
+        }); 
+
+      }
+
+      
+      // load score
+      function load_top_five_score()
+      {
+        $('input#score-top-five.candidate').each(function(){   
+          var _this = $(this)
+            $.ajax({
+              type : 'POST',
+              url : BASE_URL + "top_five/get_candidate_score",
+              data : { 
+                candidate : $(this).data('candidate'),
+                judge : '<?php echo $_SESSION['id'] ?>', 
+              },
+              dataType: "json",
+              success : function(data){   
+                $(_this).val(data)
+              }
+            }); 
+        })
+      }
+
+
+      $('input#score-top-five').on('keyup', function(){  
+        var _this = this
+        var candidate = $(this).data('candidate') 
+ 
+ 
+        if(_this.value > 10  ){ 
+          Swal.fire({
+            icon: 'error',
+            title: 'Please only provide ratings between 1 and 10.', 
+          }).then(function(){
+            // empty all fields
+            _this.value = "";  
+            $('.rank-top-five.candidate-' + candidate).html('')
+          }) 
+					 
+
+					// delete previous score by candidate and judge
+					$.ajax({
+            type : 'POST',
+            url : BASE_URL + "top_five/delete_previous_score", 
+            data : { 
+              candidate : $(this).data('candidate'),
+              judge : '<?php echo $_SESSION['id'] ?>', 
+            },
+            dataType: "json",
+            success : function(data){    
+              load_top_five_rank();
+            }
+          });  
+
+        }else if(_this.value  == 0  ){    
+					_this.value = "";  
+            $('.rank-top-five.candidate-' + candidate).html('') 
+					// delete previous score by candidate and judge
+					$.ajax({
+            type : 'POST',
+            url : BASE_URL + "top_five/delete_previous_score", 
+            data : { 
+              candidate : $(this).data('candidate'),
+              judge : '<?php echo $_SESSION['id'] ?>', 
+            },
+            dataType: "json",
+            success : function(data){    
+              load_top_five_rank();
+            }
+          }); 
+        }else if(_this.value  == ""   ){  
+          _this.value = "";  
+          $('.rank-top-five.candidate-' + candidate).html('')  
+					// delete previous score by candidate and judge
+					$.ajax({
+            type : 'POST',
+            url : BASE_URL + "top_five/delete_previous_score", 
+            data : { 
+              candidate : $(this).data('candidate'),
+              judge : '<?php echo $_SESSION['id'] ?>', 
+            },
+            dataType: "json",
+            success : function(data){    
+              load_top_five_rank();
+            }
+          }); 
+        }else{  
+          var _this = $(this)  
+          $.ajax({
+            type : 'POST',
+            url : BASE_URL + "top_five/insert", 
+            data : {
+              score : $(this).val(),
+              candidate : $(this).data('candidate'),
+              judge : '<?php echo $_SESSION['id'] ?>',
+
+            },
+            dataType: "json",
+            success : function(data){   
+              load_top_five_rank();
+            }
+          }); 
+        } 
+      });
+      
 
 			
       // submit score 
