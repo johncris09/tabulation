@@ -3,6 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
+	<title><?Php echo $page_title; ?></title>
+	<link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/favicon.ico" />	 
 	<meta charset="utf-8" />
 	<meta name="generator" content="pdf2htmlEX" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -519,6 +521,7 @@
 		bottom: 196.490000px;
 	}
 	
+	
 	.yc {
 		bottom: 211.010000px;
 	}
@@ -635,9 +638,19 @@
 		bottom: 444.460000px;
 	}
 	
-	.y9 {
-		bottom: 467.860000px;
+	.y-talent-presentation {
+		bottom: 460.860000px;
 	}
+	
+	.x-talent-presentation {
+		left: 360.059987px;
+	}
+	.font{ 
+		font-weight: bold;
+	}
+	/* .y9 {
+		bottom: 467.860000px;
+	} */
 	
 	.y8 {
 		bottom: 490.300000px;
@@ -810,7 +823,7 @@
 	}
 	
 	.x3 {
-		left: 239.059987px;
+		left: 360.059987px;
 	}
 	
 	.x8 {
@@ -1001,6 +1014,15 @@
 		.y9 {
 			bottom: 623.813333pt;
 		}
+
+		.y-talent-presentation {
+			bottom: 613.813333pt;
+		}
+
+		.x-talent-presentation {
+			left: 470.746650pt;
+		}
+		
 		.y8 {
 			bottom: 653.733333pt;
 		}
@@ -1707,9 +1729,9 @@
 					<div class="t m0 x1 h2 y4 ff1 fs0 fc0 sc0 ls2 ws0">Printed on  <?php echo date('l, F d, Y h:i a'); ?></div>
 					<div class="t m0 x1 h2 y5 ff1 fs0 fc0 sc0 ls2 ws0"> </div>
 					<div class="t m0 x2 h2 y6 ff1 fs0 fc0 sc0 ls2 ws0"> </div>
-					<div class="t m0 x2 h2 y7 ff1 fs0 fc0 sc0 ls2 ws0"> </div>
+					<div class="t m0 x2 h2 y7 ff1 fs0 fc0 sc0 ls2 ws0"></div>
 					<div class="t m0 x2 h2 y8 ff1 fs0 fc0 sc0 ls2 ws0"> </div>
-					<div class="t m0 x3 h2 y9 ff1 fs0 fc0 sc0 ls2 ws0"> </div>
+					<div class="t m0 x-talent-presentation h2 y-talent-presentation ff1 fs0 fc0 sc0 ls2 ws0 font">Best in Talent Presentation </div>
 					<div class="t m0 x4 h3 ya ff3 fs1 fc0 sc0 ls2 ws0">SUMMARY </div>
 					<div class="t m0 x1 h2 yb ff1 fs0 fc0 sc0 ls2 ws0"> </div>
 					<div class="t m0 x1 h2 yc ff1 fs0 fc0 sc0 ls2 ws0"> </div>

@@ -600,15 +600,15 @@
 
 
 	.x-judge1 {
-		left: 213.260000px;
+		left: 205.260000px;
 	}
 
 	.x-judge2 {
-		left: 285.090000px;
+		left: 280.090000px;
 	}
 	
 	.x-judge3 {
-		left: 360.930000px;
+		left: 350.930000px;
 	}
 
 	.x-judge4 {
@@ -616,15 +616,15 @@
 	}
 
 	.x-judge5 {
-		left: 503.830000px;
+		left: 498.830000px;
 	}
 
 	.x-total-score {
-		left: 584.750000px;
+		left: 580.750000px;
 	}
 	 
 	.x-final-rank {
-		left: 675.740000px;
+		left: 670.740000px;
 	}
 
 	
@@ -993,7 +993,7 @@
 
 		
 		.x-judge1 {
-			left: 280.346667pt;
+			left: 275.346667pt;
 		}
 
 		.x-judge2 {
