@@ -3,12 +3,7 @@
 
 <head>
 	<?php $this->view('layout/meta') ?>
-	<?php $this->view('layout/css') ?> 
-  <style>
-    .seperate{
-      border-left: 5px solid gray !important;
-    }
-  </style>
+	<?php $this->view('layout/css') ?>  
 </head>
 
 <body> 
@@ -39,13 +34,11 @@
                   </tr> 
                   <tr>
                     <th>Production Number</th>
-                    <td>Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on
-                <strong>Mastery, Gracefulness and Stage projection.</strong></td>
+                    <td>Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on <strong>Mastery, Gracefulness and Stage projection.</strong></td>
                   </tr> 
                   <tr>
                     <th>Production Attire</th>
-                    <td>Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on
-                <strong>Attire to candidate's match, Poise and carriage and General beauty.</strong></td>
+                    <td>Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on <strong>Attire to candidate's match, Poise and carriage and General beauty.</strong></td>
                   </tr>  
                 </table> 
 
@@ -603,7 +596,7 @@
 				} 
       }); 
 
-      
+
       
 
 			
