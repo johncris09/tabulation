@@ -16,46 +16,65 @@
 						<div class="container-xxl flex-grow-1 container-p-y">
             
         
-
-            <!-- Basic Bootstrap Table -->
+ 
             <div class="card"> 
               <div class="card-header d-flex justify-content-between pb-3">
                 <div class="conversion-title">
                   <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5>
-									<p><span class="text-danger font-weight-bold">Criteria:</span> Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on
-										Attire to candidate's match, Poise and carriage and General beauty.
-									</p>
                 </div>
 								<div>
-									<button class="btn btn-primary" <?php echo $status == "locked" ? "disabled" : "" ?> id="submit-score"> <i class=" bx bx-check"> </i> Submit Score</button>
+									<button class="btn btn-primary" <?php echo $status == "locked" ? "disabled" : "" ?> id="submit-score"> <i class=" bx bx-check"> </i> Submit Evening Gown Score</button>
 								</div>
               </div>
-              <div class="table-responsive text-nowrap">
-                <table class="table">
-                  <thead>
-                    <tr> 
-                      <th>Candidate</th> 
-                      <th>Score</th>
-                      <th>Rank</th> 
-                    </tr>
-                  </thead>
-                  <tbody class="table-border-bottom-0">
-                    <?php 
-                      if($candidate->num_rows() > 0){
-                        foreach($candidate->result_array() as $row){
-													$readonly = ($status == "locked") ? "readonly" :"" ;
-                          echo '
-                            <tr> 
-                              <td> <div class="star">' .$row['number']. '</div>   <div style="margin-top: 10px !important;">' .$row['name'].'</div></td> 
-                              <td><input '.$readonly.'  type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
-                              <td> <span data-candidate="'.$row['id'].'" class="rank h6 text-center candidate-'.$row['id'].'"></span> </td> 
-                            </tr>
-                          ';
-                        } 
-                      }
-                    ?> 
-                  </tbody>
+              <div class="card-body"> 
+                <table class="table "> 
+                  <tr class="text-center">
+                    <th colspan="2" class="text-danger">Criteria</th>
+                  </tr> 
+                  <tr>
+                    <th>Best in Evening Gown</th>
+                    <td>Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on <strong>Attire to candidate's match, Poise and carriage and General beauty.</strong></td>
+                  </tr>  
                 </table>
+
+                <hr style="border-top:1px dotted #000;">
+                <div class="table-responsive text-nowrap">
+                  <table class="table">
+                    <thead>
+                      <tr class="text-center"> 
+                        <th> </th>  
+                        <th colspan="2">Evening Gown</th>
+                        <th class="seperate" colspan="2">Top Five</th> 
+                      </tr>
+                      <tr class="text-center"> 
+                        <th>Candidate</th>  
+                        <th>Score</th>
+                        <th>Rank</th> 
+                        <th class="seperate" >Score</th>
+                        <th>Rank</th> 
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                      <?php 
+                        if($candidate->num_rows() > 0){
+                          foreach($candidate->result_array() as $row){
+                            $readonly = ($status == "locked") ? "readonly" :"" ;
+                            echo '
+                            <tr> 
+                              <td class=""> <div class="star">#' .$row['number']. '</div></td>
+                                <td><input '.$readonly.' data-table="evening-gown"  id="score-evening-gown"  type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
+                                <td> <span  data-table="evening-gown" data-candidate="'.$row['id'].'" class="rank-evening-gown h6 text-center candidate-'.$row['id'].'"></span> </td> 
+                                
+                                <td class="seperate" ><input  id="score-top-five" type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
+                                <td> <span data-candidate="'.$row['id'].'" class="rank-top-five h6 text-center candidate-'.$row['id'].'"></span> </td> 
+                              </tr>
+                            ';
+                          } 
+                        }
+                      ?> 
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div> 
             
@@ -72,25 +91,25 @@
 	<div class="layout-overlay layout-menu-toggle"></div> 
 	<div class="drag-target"></div> 
 	<?php $this->view('layout/js') ?>
-  <script>
-    // window.onload = function () {
-    //   load_rank();
-    // }
+  <script> 
     $(document).ready(function(){  
-      load_score(); 
-      load_rank();
+      load_evening_gown_score(); 
+      load_evening_gown_rank();
+
+      
+      load_top_five_score(); 
+      load_top_five_rank();
       
 
-    function load_rank(){
+    function load_evening_gown_rank(){
  
       $.ajax({
         url: BASE_URL + 'evening_gown/get_ranking_specific_judge',
         type: 'POST',   
         dataType: 'JSON',
-        success: function(data){  
-          // console.info(data)
+        success: function(data){   
           $.each(data, function (key, val) {  
-            $('span.candidate-' + val.candidate).html(val.rank) 
+              $('span.rank-evening-gown.candidate-' + val.candidate).html(val.rank)  
           });
           
         }, 
@@ -102,9 +121,9 @@
     }
 
       // load score
-    function load_score()
+    function load_evening_gown_score()
       {
-        $('input.candidate').each(function(){   
+        $('input#score-evening-gown.candidate').each(function(){   
           var _this = $(this)
             $.ajax({
               type : 'POST',
@@ -125,7 +144,7 @@
       // save score while typing
       // 1 to 10 input only
 
-      $('input').on('keyup', function(){  
+      $('input#score-evening-gown').on('keyup', function(){  
         var _this = this
         var candidate = $(this).data('candidate') 
  
@@ -137,7 +156,7 @@
           }).then(function(){
             // empty all fields
             _this.value = "";  
-            $('.rank.candidate-' + candidate).html('')
+            $('.rank-evening-gown.candidate-' + candidate).html('')
           }) 
 					 
 
@@ -151,13 +170,13 @@
             },
             dataType: "json",
             success : function(data){    
-              load_rank();
+              load_evening_gown_rank();
             }
           });  
 
         }else if(_this.value  == 0  ){    
 					_this.value = "";  
-            $('.rank.candidate-' + candidate).html('') 
+            $('.rank-evening-gown.candidate-' + candidate).html('') 
 					// delete previous score by candidate and judge
 					$.ajax({
             type : 'POST',
@@ -168,12 +187,12 @@
             },
             dataType: "json",
             success : function(data){    
-              load_rank();
+              load_evening_gown_rank();
             }
           }); 
         }else if(_this.value  == ""   ){  
           _this.value = "";  
-          $('.rank.candidate-' + candidate).html('')  
+          $('.rank-evening-gown.candidate-' + candidate).html('')  
 					// delete previous score by candidate and judge
 					$.ajax({
             type : 'POST',
@@ -184,7 +203,7 @@
             },
             dataType: "json",
             success : function(data){    
-              load_rank();
+              load_evening_gown_rank();
             }
           }); 
         }else{  
@@ -199,31 +218,157 @@
 
             },
             dataType: "json",
-            success : function(data){   
-              if(data.response == true){ 
-                
-                $(_this).css("border", "1px solid blue");
-                $(_this).css('font-weight', 'bolder');
-                setTimeout(function() {  
-                  $(_this).css("border", "1px solid black");
-                  $(_this).css('font-weight', 'normal');
-                }, 500); 
-                
-              } 
-              load_rank();
+            success : function(data){  
+              load_evening_gown_rank();
             }
           }); 
         } 
       });
       
 
-      // submit score 
+      
+      //________________________________//
+      //________________________________//
+      //        Top Five
+      //________________________________//
+      //________________________________//  
+      function load_top_five_rank(){
+        
+        $.ajax({
+          url: BASE_URL + 'top_five/get_ranking_specific_judge',
+          type: 'POST',   
+          dataType: 'JSON',
+          success: function(data){  
+            // console.info(data)
+            $.each(data, function (key, val) {  
+              $('span.rank-top-five.candidate-' + val.candidate).html(val.rank) 
+            });
+            
+          }, 
+          error: function(xhr, textStatus, error){
+            console.info(xhr.responseText);
+          }
+        }); 
+
+      }
+
+      
+      // load score
+      function load_top_five_score()
+      {
+        $('input#score-top-five.candidate').each(function(){   
+          var _this = $(this)
+            $.ajax({
+              type : 'POST',
+              url : BASE_URL + "top_five/get_candidate_score",
+              data : { 
+                candidate : $(this).data('candidate'),
+                judge : '<?php echo $_SESSION['id'] ?>', 
+              },
+              dataType: "json",
+              success : function(data){   
+                $(_this).val(data)
+              }
+            }); 
+        })
+      }
+
+
+      $('input#score-top-five').on('keyup', function(){  
+        var _this = this
+        var candidate = $(this).data('candidate') 
+ 
+ 
+        if(_this.value > 10  ){ 
+          Swal.fire({
+            icon: 'error',
+            title: 'Please only provide ratings between 1 and 10.', 
+          }).then(function(){
+            // empty all fields
+            _this.value = "";  
+            $('.rank-top-five.candidate-' + candidate).html('')
+          }) 
+					 
+
+					// delete previous score by candidate and judge
+					$.ajax({
+            type : 'POST',
+            url : BASE_URL + "top_five/delete_previous_score", 
+            data : { 
+              candidate : $(this).data('candidate'),
+              judge : '<?php echo $_SESSION['id'] ?>', 
+            },
+            dataType: "json",
+            success : function(data){    
+              load_top_five_rank();
+            }
+          });  
+
+        }else if(_this.value  == 0  ){    
+					_this.value = "";  
+            $('.rank-top-five.candidate-' + candidate).html('') 
+					// delete previous score by candidate and judge
+					$.ajax({
+            type : 'POST',
+            url : BASE_URL + "top_five/delete_previous_score", 
+            data : { 
+              candidate : $(this).data('candidate'),
+              judge : '<?php echo $_SESSION['id'] ?>', 
+            },
+            dataType: "json",
+            success : function(data){    
+              load_top_five_rank();
+            }
+          }); 
+        }else if(_this.value  == ""   ){  
+          _this.value = "";  
+          $('.rank-top-five.candidate-' + candidate).html('')  
+					// delete previous score by candidate and judge
+					$.ajax({
+            type : 'POST',
+            url : BASE_URL + "top_five/delete_previous_score", 
+            data : { 
+              candidate : $(this).data('candidate'),
+              judge : '<?php echo $_SESSION['id'] ?>', 
+            },
+            dataType: "json",
+            success : function(data){    
+              load_top_five_rank();
+            }
+          }); 
+        }else{  
+          var _this = $(this)  
+          $.ajax({
+            type : 'POST',
+            url : BASE_URL + "top_five/insert", 
+            data : {
+              score : $(this).val(),
+              candidate : $(this).data('candidate'),
+              judge : '<?php echo $_SESSION['id'] ?>',
+
+            },
+            dataType: "json",
+            success : function(data){   
+              load_top_five_rank();
+            }
+          }); 
+        } 
+      });
+
+      
+      //________________________________//
+      //________________________________//
+      //        Submit Score
+      //________________________________//
+      //________________________________//
+
+
       $('#submit-score').on('click', function(){  
         var _this = $(this)  
 				
 				var emp = [];
 				var count = 1;
-				$('.rank').each(function(){ 
+				$('.rank-evening-gown').each(function(){ 
 					if($(this).html() == ""){  
 						emp.push(count)
 					}
@@ -234,11 +379,11 @@
 				if(emp.length > 0){ 
 					Swal.fire({
 						icon: 'error',
-						title: 'All input fields must not be empty', 
+						title: 'All input fields in evening gown must not be empty', 
 					})
 
 					$.each(emp , function(index, val) { 
-						$('input[data-candidate='+val+']').css({"border": "1px solid red"})
+						$('input[data-table=evening-gown][data-candidate='+val+']').css({"border": "1px solid red"})
 					});
   
 				}else{
@@ -251,7 +396,7 @@
 						confirmButtonText: "Yes, submit it!"
 					}).then(function(result) { 
 						if (result.value) { 
-							$('.rank').each(function(){   
+							$('.rank-evening-gown').each(function(){   
 								var _this = $(this) 
 								$.ajax({
 									type : 'POST',
@@ -279,7 +424,7 @@
 
 							// locked tabulator
 							$('#submit-score').prop('disabled', true)
-							$('table  input').prop('readonly', true)
+							$('input#score-evening-gown').prop('readonly', true)
 
 						}
 					});  
