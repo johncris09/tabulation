@@ -34,32 +34,21 @@
 								</div> 
 								<div data-settings="production_number_card" class="col-md-3 col-lg-3 col-sm-4 mb-3 display-card">
 									<div class="card h-100">
-										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/production_number.jpg" alt="Card image cap">
+										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/production_attire.jpg" alt="Card image cap">
 										<div class="card-body">
-											<h3 class="card-title text-center">PRODUCTION NUMBER</h3>
+											<h3 class="card-title text-center">PRODUCTION NUMBER & PRODUCTION ATTIRE</h3>
 											<div class="d-grid gap-2 col-lg-6 mx-auto">
 												<a class="btn btn-primary  " href="<?php echo base_url() ?>production_number">Score</a> 
 											</div>
 										</div>
 									</div>
-								</div> 
-								<div data-settings="production_attire_card" class="col-md-3 col-lg-3 col-sm-4 mb-3 display-card">
-									<div class="card h-100">
-										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/production_attire.jpg" alt="Card image cap">
-										<div class="card-body">
-											<h3 class="card-title text-center">PRODUCTION ATTIRE</h3><br>
-											<div class="d-grid gap-2 col-lg-6 mx-auto">
-												<a class="btn btn-primary  " href="<?php echo base_url() ?>production_attire">Score</a> 
-											</div>
-										</div>
-									</div>
-								</div> 
+								</div>
 								<div data-settings="swim_wear_card" class="col-md-3 col-lg-3 col-sm-4 mb-3 display-card">
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/swim_wear.jpg" alt="Card image cap">
 										<div class="card-body">
-											<h3 class="card-title text-center">BEST IN SWIM WEAR</h3><br>
-											<div class="d-grid gap-2 col-lg-6 mx-auto">
+											<h3 class="card-title text-center">BEST IN SWIM WEAR</h3> <br><br>
+											<div class="d-grid gap-2 col-lg-6 mt-3 mx-auto">
 												<a class="btn btn-primary  " href="<?php echo base_url() ?>swim_wear">Score</a> 
 											</div>
 										</div>
@@ -69,8 +58,8 @@
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/evening_gown.jpg" alt="Card image cap">
 										<div class="card-body">
-											<h3 class="card-title text-center">BEST IN EVENING GOWN</h3>
-											<div class="d-grid gap-2 col-lg-6 mx-auto">
+											<h3 class="card-title text-center">BEST IN EVENING GOWN</h3><br> 
+											<div class="d-grid gap-2 col-lg-6  mt-2 mx-auto">
 												<a class="btn btn-primary  " href="<?php echo base_url() ?>evening_gown">Score</a> 
 											</div>
 										</div>
@@ -80,9 +69,9 @@
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/top_5.jpg" alt="Card image cap">
 										<div class="card-body">
-											<h3 class="card-title text-center">TOP 5</h3><br>
-											<div class="d-grid gap-2 col-lg-6 mx-auto">
-												<a class="btn btn-primary  " href="<?php echo base_url() ?>top_five">Score</a> 
+											<h3 class="card-title text-center">TOP 5</h3><br><br>
+											<div class="d-grid gap-3 col-lg-6  mt-3 mx-auto">
+												<a class="btn btn-primary " href="<?php echo base_url() ?>top_five">Score</a> 
 											</div>
 										</div>
 									</div>
@@ -91,7 +80,7 @@
 									<div class="card h-100">
 										<img class="card-img-top p-2" src="<?php echo base_url(); ?>assets/img/5.jpg" alt="Card image cap">
 										<div class="card-body">
-											<h3 class="card-title text-center">FINAL ROUND</h3><br>
+											<h3 class="card-title text-center">FINAL ROUND</h3>
 											<div class="d-grid gap-2 col-lg-6 mx-auto">
 												<a class="btn btn-primary  " href="<?php echo base_url() ?>final_round">Score</a> 
 											</div>
