@@ -38,7 +38,7 @@
                         foreach($judge as $row){
                           echo '
                             <th>
-															'.$row['name'].'  <i style="font-size: 15px;" class="bx bx-lock text-danger font-weight-bolder unlock" title="Unlock" data-table="swim_wear" data-judge-id="'.$row['id'].'"></i>
+															'.$row['short_name'].'  <i style="font-size: 15px;" class="bx bx-lock text-danger font-weight-bolder unlock" title="Unlock" data-table="swim_wear" data-judge-id="'.$row['id'].'"></i>
 														</th>
                           ';
                         } 
@@ -56,11 +56,11 @@
                           echo '
                             <tr class="candidate-row">
                               <td> <div class="star">' .$row['number']. '</div>   <div style="margin-top: 10px !important;">' .$row['name'].'</div></td>   
-                              <td class="candidate-consolidate judge1 candidate-'.$row['id'].'" data-candidate="'.$row['id'].'" data-judge="judge1"></td>   
-                              <td class="candidate-consolidate judge2 candidate-'.$row['id'].'" data-candidate="'.$row['id'].'" data-judge="judge2"></td>  
-                              <td class="candidate-consolidate judge3 candidate-'.$row['id'].'" data-candidate="'.$row['id'].'" data-judge="judge3"></td>  
-                              <td class="candidate-consolidate judge4 candidate-'.$row['id'].'" data-candidate="'.$row['id'].'" data-judge="judge4"></td>  
-                              <td class="candidate-consolidate judge5 candidate-'.$row['id'].'" data-candidate="'.$row['id'].'" data-judge="judge5"></td>  
+                              <td class="text-center candidate-consolidate judge1 candidate-'.$row['id'].'" data-candidate="'.$row['id'].'" data-judge="judge1"></td>   
+                              <td class="text-center candidate-consolidate judge2 candidate-'.$row['id'].'" data-candidate="'.$row['id'].'" data-judge="judge2"></td>  
+                              <td class="text-center candidate-consolidate judge3 candidate-'.$row['id'].'" data-candidate="'.$row['id'].'" data-judge="judge3"></td>  
+                              <td class="text-center candidate-consolidate judge4 candidate-'.$row['id'].'" data-candidate="'.$row['id'].'" data-judge="judge4"></td>  
+                              <td class="text-center candidate-consolidate judge5 candidate-'.$row['id'].'" data-candidate="'.$row['id'].'" data-judge="judge5"></td>  
                             ';  
                           echo '    
                               <td data-candidate="'.$row['id'].'"  data-score="'.$tot_score.'" class="text-center candidate-'.$row['id'].' tot-score" style="border-left: 1px dotted #677788;border-right: 1px dotted #677788;"></td>  
