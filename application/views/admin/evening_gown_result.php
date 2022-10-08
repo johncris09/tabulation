@@ -665,11 +665,30 @@
 		left: 250.289991px;
 	}
 	
+	
+	.underline {
+		left: 215.569991px;
+	}
+	
+	.chairman {
+		left: 240.289991px;
+	}
+
+
 	.x7 {
 		left: 433.270000px;
 	}
 	
 	@media print {
+		
+		.underline {
+			left: 280.426655pt;
+		}
+		.chairman {
+			left: 310.386655pt;
+		}
+
+
 		.v0 {
 			vertical-align: 0.000000pt;
 		}
@@ -1479,8 +1498,8 @@
 				<div class="c x0 y1 w2 h0">
 					<div class="t m0 x1 h2 y11 ff1 fs0 fc0 sc0 ls1 ws1"> </div>
 					<div class="t m0 x1 h2 y12 ff1 fs0 fc0 sc0 ls1 ws1"> </div>
-					<div class="t m0 xc h3 y13 ff1 fs1 fc0 sc0 ls1 ws1"><?php echo $judge['name']; ?></div>
-					<div class="t m0 xd h3 y14 ff1 fs1 fc0 sc0 ls1 ws1">Charman </div>
+					<div class="t m0 underline h3 y13 ff1 fs1 fc0 sc0 ls1 ws1">_____________________________</div>
+					<div class="t m0 chairman h3 y14 ff1 fs1 fc0 sc0 ls1 ws1">Chairman, Board of Judges </div>
 				</div> 
 
 			</div>

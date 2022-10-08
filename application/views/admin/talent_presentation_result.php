@@ -6,7 +6,7 @@
 	<meta charset="utf-8" />
 	<meta name="generator" content="pdf2htmlEX" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<link rel="icon" type="image/x-icon" href="http://localhost/tabulation/assets/img/favicon.ico" />	 
+	<link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/favicon.ico" />	 
 	<title><?php echo $page_title; ?></title>
 	<style type="text/css">
 	/*! 
@@ -597,8 +597,11 @@
 		width: 99.000000px;
 	}
 	
-	.w4 {
+	/* .w4 {
 		width: 262.250000px;
+	} */
+	.width {
+		width: 400.250000px;
 	}
 	
 	.w2 {
@@ -660,6 +663,13 @@
 	.xd {
 		left: 275.569991px;
 	}
+	.chairman {
+		left: 230.569991px;
+	}
+	
+	.underline {
+		left: 210.289991px;
+	}
 	
 	.xc {
 		left: 250.289991px;
@@ -670,6 +680,18 @@
 	}
 	
 	@media print {
+
+		
+		.chairman {
+			left: 330.386655pt;
+		}
+		
+		.underline {
+			left: 300.426655pt;
+		}
+ 
+
+		
 		.v0 {
 			vertical-align: 0.000000pt;
 		}
@@ -771,6 +793,10 @@
 		.font-size{
 			font-size: 95px !important;
 			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		.width { 
+			width: 500.250000pt;
 		}
 
 
@@ -1415,7 +1441,7 @@
 					<div class="t m0 x2 h2 y5 ff1 fs0 fc0 sc0 ls1 ws1"> </div>
 					<div class="t m0 x2 h2 y6 ff1 fs0 fc0 sc0 ls1 ws1"> </div>
 					<div class="t m0 x2 h3 y7 ff1 fs1 fc0 sc0 ls1 ws1"> </div>
-					<div class="t m0 x3 h3 y8 ff1 fs1 fc0 sc0 ls1 ws1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $page_title; ?></div>
+					<div class="t m0 x3 h3 y8 ff1 fs1 fc0 sc0 ls1 ws1">&nbsp;&nbsp;<?php echo $page_title; ?></div>
 				</div>
 				<div class="c x1 y9 w3 h4">
 					<div class="t m0 x4 h5 ya ff3 fs2 fc1 sc0 ls1 ws1">Candidate No. </div>
@@ -1437,7 +1463,7 @@
 						<div class="t m0 x9 h7 yc ff3 fs1 fc0 sc0 ls1 ws1 font-size"><?php echo $row['number']; ?></div>
 					</div>
 					
-					<div  style="left: 171.020000px; bottom: <?php echo $bottom ?>px;"  class="c w4 height <?php echo "y-candidate-" . $counter . " " . "x-candidate-" . $x+=1; ?> ">
+					<div  style="left: 151.020000px; bottom: <?php echo $bottom ?>px;"  class="c width height <?php echo "y-candidate-" . $counter . " " . "x-candidate-" . $x+=1; ?> ">
 						<div class="t m0 x8 h3 yc ff1 fs1 fc0 sc0 ls1 ws1 font-size"><?php echo $row['name']; ?>  </div>
 					</div>
 
@@ -1479,8 +1505,8 @@
 				<div class="c x0 y1 w2 h0">
 					<div class="t m0 x1 h2 y11 ff1 fs0 fc0 sc0 ls1 ws1"> </div>
 					<div class="t m0 x1 h2 y12 ff1 fs0 fc0 sc0 ls1 ws1"> </div>
-					<div class="t m0 xc h3 y13 ff1 fs1 fc0 sc0 ls1 ws1"><?php echo $judge['name']; ?></div>
-					<div class="t m0 xd h3 y14 ff1 fs1 fc0 sc0 ls1 ws1">Charman </div>
+					<div class="t m0 underline h3 y13 ff1 fs1 fc0 sc0 ls1 ws1">_____________________________</div>
+					<div class="t m0 chairman h3 y14 ff1 fs1 fc0 sc0 ls1 ws1">Chairman, Board of Judges </div>
 				</div> 
 
 			</div>
