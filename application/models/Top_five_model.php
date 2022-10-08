@@ -43,9 +43,10 @@ class Top_five_model extends CI_Model
     
     public function get_top_candidate()
     { 
-        return $this->db 
+        return $this->db
+            ->select('candidate.id, candidate.number, candidate.name, top_five.rank')
             ->where('judge',0)
-            ->where('candidate.id = top_five.candidate')
+            ->where('top_five.candidate = candidate.id')
             ->where('score != 0')
             ->order_by('rank','asc')
             ->limit('5')
@@ -184,6 +185,18 @@ class Top_five_model extends CI_Model
 		return "unlocked";
 			
 	}
+
+    public function get_scoring_status($data)
+    {
+        $status =  $this->db  
+            ->where($data)
+			->get('top_five');
+
+		if($status->num_rows() > 0){
+			return $status->result_array()[0]['status'];
+		}
+		return "unlocked";
+    }
 
 	public function delete_previous_score($data)
 	{ 
