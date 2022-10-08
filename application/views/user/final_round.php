@@ -21,10 +21,12 @@
             <div class="card"> 
               <div class="card-header d-flex justify-content-between pb-3">
                 <div class="conversion-title">
-                  <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5> 
+                  <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5>
+                  <p><span class="text-danger font-weight-bold">Criteria:</span> Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on
+									<strong>Wit and Intelligence(5), General Beauty(3), Stage Presence(2). </strong>  </p>
                 </div>
 								<div> 
-									<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#criteria-modal">  <i class="bx bx-list-check"> </i> Click to view the Criteria</button> 
+									<!-- <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#criteria-modal">  <i class="bx bx-list-check"> </i> Click to view the Criteria</button>  -->
                 	<button class="btn btn-primary" <?php echo $status == "locked" ? "disabled" : "" ?> id="submit-score"> <i class=" bx bx-check"> </i> Submit Score</button>
 								</div>
               </div>
@@ -279,7 +281,7 @@
 				if(emp.length > 0){ 
 					Swal.fire({
 						icon: 'error',
-						title: 'All input field must not be empty', 
+						title: 'All input fields must not be empty', 
 					})
 					
 
