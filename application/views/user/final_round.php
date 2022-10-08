@@ -21,93 +21,54 @@
             <div class="card"> 
               <div class="card-header d-flex justify-content-between pb-3">
                 <div class="conversion-title">
-                  <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5>
-                  <p><span class="text-danger font-weight-bold">Criteria:</span> Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on
-									<strong>Wit and Intelligence(5), General Beauty(3), Stage Presence(2). </strong>  </p>
+                  <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5> 
                 </div>
-								<div> 
-									<!-- <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#criteria-modal">  <i class="bx bx-list-check"> </i> Click to view the Criteria</button>  -->
+								<div>
                 	<button class="btn btn-primary" <?php echo $status == "locked" ? "disabled" : "" ?> id="submit-score"> <i class=" bx bx-check"> </i> Submit Score</button>
 								</div>
               </div>
-              <div class="table-responsive text-nowrap">
-                <table class="table">
-                  <thead>
-                    <tr> 
-                      <th>Candidate</th> 
-                      <th>Score</th>
-                      <th>Rank</th> 
-                    </tr>
-                  </thead>
-                  <tbody class="table-border-bottom-0">
-										<?php 
-                      if($candidate->num_rows() > 0){
-                        foreach($candidate->result_array() as $row){
-													$readonly = ($status == "locked") ? "readonly" :"" ;
-                          echo '
-                            <tr> 
-                              <td> <div class="star">' .$row['number']. '</div>   <div style="margin-top: 10px !important;">' .$row['name'].'</div></td> 
-                              <td><input '.$readonly.'  type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
-                              <td> <span data-candidate="'.$row['id'].'" class="rank h6 text-center candidate-'.$row['id'].'"></span> </td> 
-                            </tr>
-                          ';
-                        } 
-                      }
-                    ?> 
-                  </tbody>
+              <div class="card-body">
+                <table class="table "> 
+                  <tr class="text-center">
+                    <th colspan="2" class="text-danger">Criteria</th>
+                  </tr> 
+                  <tr>
+                    <th>Final Round</th>
+                    <td>Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on <strong>Wit and Intelligence, General Beauty, Stage Presence.</strong></td>
+                  </tr>  
                 </table>
-              </div>
-            </div> 
-            
+                
+                <hr style="border-top:1px dotted #000;"> 
+                <div class="table-responsive text-nowrap">
+                  <table class="table">
+                    <thead>
+                      <tr class="text-center"> 
+                        <th>Candidate</th> 
+                        <th>Score</th>
+                        <th>Rank</th> 
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                      <?php 
+                        if($candidate->num_rows() > 0){
+                          foreach($candidate->result_array() as $row){
+                            $readonly = ($status == "locked") ? "readonly" :"" ;
+                            echo '
+                              <tr class="text-center"> 
+                                <td class=""> <div class="star">#' .$row['number']. '</div></td>
+                                <td><input '.$readonly.'  type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
+                                <td> <span data-candidate="'.$row['id'].'" class="rank h6 text-center candidate-'.$row['id'].'"></span> </td> 
+                              </tr>
+                            ';
+                          } 
+                        }
+                      ?> 
+                    </tbody>
+                  </table>
+                </div>
 
-						<div class="modal-onboarding modal fade animate__animated" id="criteria-modal" tabindex="-1" aria-hidden="true">
-							<div class="modal-dialog modal-xl" role="document">
-								<div class="modal-content text-center">
-									<div class="modal-header"> 
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-										</button>
-									</div>
-									<div class="modal-body onboarding-horizontal p-0">
-										<div class="onboarding-media">
-											<img src="<?php echo base_url() ?>assets/img/rate1.png" alt="boy-verify-email-light" width="273" class="img-fluid" data-app-light-img="illustrations/boy-verify-email-light.png" data-app-dark-img="illustrations/boy-verify-email-dark.png">
-										</div>
-										<div class="onboarding-content mb-0">
-											<h4 class="onboarding-title text-body">Criteria</h4>
-											<div class="onboarding-info"><span class="h6">FINAL ROUND</span> (After Q and A) <br>
-											Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on the following
-											</div>
-                      <hr>
-											 <table class="table table-bordered"> 
-                        <thead>
-                          <tr>
-                            <th>Criteria</th>
-                            <th>Rating</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr> 
-                            <th>Wit and Intelligence</th>
-                            <td>5</td>
-                          </tr>
-                          <tr>
-                            <th>General Beauty</th>
-                            <td>3</td>
-                          </tr>
-                          <tr>
-                            <th>Stage Presence</th>
-                            <td>2</td>
-                          </tr> 
-                          <tr>
-                            <td> </td>
-                            <td>10</td>
-                          </tr> 
-                        </tbody>
-                       </table>
-										</div>
-									</div> 
-								</div>
-							</div>
-						</div>
+              </div>
+            </div>  
           </div>
   
 
@@ -120,10 +81,7 @@
 	<div class="layout-overlay layout-menu-toggle"></div> 
 	<div class="drag-target"></div> 
 	<?php $this->view('layout/js') ?>
-  <script>
-    // window.onload = function () {
-    //   load_rank();
-    // }
+  <script> 
     $(document).ready(function(){  
       load_score(); 
       load_rank();
