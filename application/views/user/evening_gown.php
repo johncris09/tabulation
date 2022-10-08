@@ -21,10 +21,7 @@
               <div class="card-header d-flex justify-content-between pb-3">
                 <div class="conversion-title">
                   <h5 class="card-title mb-1"> <?php echo $page_title; ?> </h5>
-                </div>
-								<div>
-									<button class="btn btn-primary" <?php echo $status == "locked" ? "disabled" : "" ?> id="submit-score"> <i class=" bx bx-check"> </i> Submit Evening Gown Score</button>
-								</div>
+                </div> 
               </div>
               <div class="card-body"> 
                 <table class="table "> 
@@ -34,17 +31,24 @@
                   <tr>
                     <th>Best in Evening Gown</th>
                     <td>Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on <strong>Attire to candidate's match, Poise and carriage and General beauty.</strong></td>
-                  </tr>  
+                  </tr>    
+                  <tr>
+                    <th>Top Five</th>
+                    <td>Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on <strong>Beauty and Face Charm, Poise, Grace and Carriage, Stage Projection, Wit and Intelligence.</strong></td>
+                  </tr> 
                 </table>
 
                 <hr style="border-top:1px dotted #000;">
                 <div class="table-responsive text-nowrap">
-                  <table class="table">
+                  <table class="table table-bordered table-striped">
                     <thead>
                       <tr class="text-center"> 
-                        <th> </th>  
+                        <th rowspan="2">  </th>  
                         <th colspan="2">Evening Gown</th>
-                        <th class="seperate" colspan="2">Top Five</th> 
+                        <th class="seperate pb-5" rowspan="2" colspan="2">Top Five</th> 
+                      </tr> 
+                      <tr class="text-center">  
+                        <th colspan="2"><button class="btn btn-primary" <?php echo $status == "locked" ? "disabled" : "" ?> id="submit-score"> <i class=" bx bx-check"> </i> Submit Evening Gown Scores</button></th> 
                       </tr>
                       <tr class="text-center"> 
                         <th>Candidate</th>  
@@ -60,8 +64,8 @@
                           foreach($candidate->result_array() as $row){
                             $readonly = ($status == "locked") ? "readonly" :"" ;
                             echo '
-                            <tr> 
-                              <td class=""> <div class="star">#' .$row['number']. '</div></td>
+                              <tr class="text-center"> 
+                                <td class=""> <div class="star">#' .$row['number']. '</div></td>
                                 <td><input '.$readonly.' data-table="evening-gown"  id="score-evening-gown"  type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
                                 <td> <span  data-table="evening-gown" data-candidate="'.$row['id'].'" class="rank-evening-gown h6 text-center candidate-'.$row['id'].'"></span> </td> 
                                 ';

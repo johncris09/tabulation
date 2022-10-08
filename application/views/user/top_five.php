@@ -34,7 +34,7 @@
                   </tr> 
                   <tr>
                     <th>Top Five &nbsp;&nbsp;&nbsp;</th>
-                    <td>Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on <strong>Beauty and Face Charm(3), Poise, Grace and Carriage(2), Stage Projection(2),  Wit and Intelligence(3).</strong></td>
+                    <td>Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on <strong>Beauty and Face Charm, Poise, Grace and Carriage, Stage Projection,  Wit and Intelligence.</strong></td>
                   </tr>  
                 </table>
 
@@ -54,8 +54,8 @@
                           foreach($candidate->result_array() as $row){
                             $readonly = ($status == "locked") ? "readonly" :"" ;
                             echo '
-                              <tr> 
-                              <td class=""> <div class="star">#' .$row['number']. '</div></td>
+                              <tr class="text-center"> 
+                                <td class=""> <div class="star">#' .$row['number']. '</div></td>
                                 <td><input '.$readonly.'  type="number" data-candidate="'.$row['id'].'"  step="0.01" min="1" max="10"  class="form-control text-center candidate"  ></td>
                                 <td> <span data-candidate="'.$row['id'].'" class="rank h6 text-center candidate-'.$row['id'].'"></span> </td> 
                               </tr>
