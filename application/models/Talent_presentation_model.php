@@ -188,6 +188,12 @@ class Talent_presentation_model extends CI_Model
 
     }
 
+	public function get_candidate_score_summary($data)
+    { 
+        $this->db->where($data);
+        return $this->db->get($this->table)->result_array()[0]['score']; 
+
+    }
 
 	public function get_summary_candidate_final_rank($data)
 	{ 
