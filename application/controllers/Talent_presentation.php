@@ -458,12 +458,24 @@ class Talent_presentation extends CI_Controller {
 	{
 		// get top 3 candidate
 		$data['controller'] = $this;
+		$data['page_title'] = "Print Summary";
 		$data['candidate'] = $this->candidate_model->get_all_candidate();
 		$data['judge'] = $this->user_model->get_all_judge();  
-		$this->load->view('admin/talent_presentation_summary', $data);
-		  
+		$this->load->view('admin/talent_presentation_summary', $data); 
 
 	}
+
+	
+	function result_judge_score()
+	{
+		$data['controller'] = $this;
+		$data['page_title'] = "Judge' Score";
+		$data['candidate'] = $this->candidate_model->get_all_candidate();
+		$data['judges'] = $this->user_model->get_all_judge();  
+		$this->load->view('admin/talent_presentation_result_by_judge', $data); 
+
+	}
+
 
 	
 
@@ -477,6 +489,20 @@ class Talent_presentation extends CI_Controller {
 		$rank = $this->talent_presentation_model->get_candidate_rank_summary($data); 
  
 		echo ($rank/100) *100 ;
+		 
+	}
+
+	
+	function get_candidate_score_summary($candidate, $judge)
+	{
+		
+        $data = array(
+			'candidate' =>  $candidate, 
+			'judge' =>  $judge, 
+		);  
+		$score = $this->talent_presentation_model->get_candidate_score_summary($data); 
+ 
+		echo ($score/100) *100 ;
 		 
 	}
 
