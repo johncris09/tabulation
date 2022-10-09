@@ -648,6 +648,14 @@
 	.ya {
 		bottom: 444.460000px;
 	}
+
+	.y-header-title {
+		bottom: 460.860000px;
+	}
+	
+	.x-header-title {
+		left: 360.059987px;
+	}
 	
 	.y9 {
 		bottom: 467.860000px;
@@ -1037,6 +1045,14 @@
 		.y9 {
 			bottom: 623.813333pt;
 		}
+		
+		.y-header-title {
+			bottom: 613.813333pt;
+		}
+
+		.x-header-title {
+			left: 485.746650pt;
+		} 
 		.y8 {
 			bottom: 653.733333pt;
 		}
@@ -1718,7 +1734,7 @@
 					<div class="t m0 x2 h2 y6 ff1 fs0 fc0 sc0 ls2 ws0"> </div>
 					<div class="t m0 x2 h2 y7 ff1 fs0 fc0 sc0 ls2 ws0"> </div>
 					<div class="t m0 x2 h2 y8 ff1 fs0 fc0 sc0 ls2 ws0"> </div>
-					<div class="t m0 x3 h2 y9 ff1 fs0 fc0 sc0 ls2 ws0"> </div>
+					<div class="t m0 x-header-title h2 y-header-title ff1 fs0 fc0 sc0 ls2 ws0 font"><?php echo $page_title; ?> </div>
 					<div class="t m0 x4 h3 ya ff3 fs1 fc0 sc0 ls2 ws0">SUMMARY </div>
 					<div class="t m0 x1 h2 yb ff1 fs0 fc0 sc0 ls2 ws0"> </div>
 					<div class="t m0 x1 h2 yc ff1 fs0 fc0 sc0 ls2 ws0"> </div>
