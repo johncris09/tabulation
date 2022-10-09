@@ -47,10 +47,20 @@ class Production_number_model extends CI_Model
 	public function is_judge_done_scoring($data)
 	{ 
 		$query = $this->db
+            ->select("count(status) as num_row")
             ->where($data) 
+            ->where("status", "locked") 
 			->get('production_number');
-		return $query->num_rows(); 
-		
+        if($query->num_rows() > 0){
+            foreach($query->result_array() as $row){
+                if($row['num_row'] == 12){ 
+                    return true;
+                }else{
+                    return false;  
+                } 
+            }
+        }
+        return false;   
 	}
 
     
