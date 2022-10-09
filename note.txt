@@ -1,0 +1,9 @@
+css animation in required input
+
+when Successfully Submitted the score, 
+all input border red must set to default
+
+dili ma print ang summary kung naay isa sa judge wala
+nag final submit
+
+automate ang lock/unlock sa scoring
