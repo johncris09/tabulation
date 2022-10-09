@@ -98,7 +98,7 @@
       
       setInterval(function(){  
         consolidate_rank()  
-        get_tot_score();
+        get_tot_score(); 
         load_rank();
       }, 1000); 
       
@@ -216,7 +216,7 @@
               Swal.fire({
                 title: "Unavailable this time",
                 icon: 'error',
-                text: 'Please wait until all judges have completed their scoring.', 
+                text: 'Please wait until the judge has finished scoring.', 
               })
             }
           }, 

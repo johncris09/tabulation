@@ -256,13 +256,13 @@
           dataType: "json",
           success : function(data){
             if(data == 5){
-              window.open(BASE_URL + "final_round/result", "_blank")
+              window.open(BASE_URL + "final_round/print_summary", "_blank")
               // window.open( BASE_URL + "final_round/result" ,  "Print Result", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=600,width=600,height=870");
             }else{ 
               Swal.fire({
                 title: "Unavailable this time",
                 icon: 'error',
-                text: 'Please wait until all judges have completed their scoring.', 
+                text: 'Please wait until the judge has finished scoring.',  
               }) 
             }
           }, 

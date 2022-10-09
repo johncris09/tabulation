@@ -265,7 +265,7 @@
               Swal.fire({
                 title: "Unavailable this time",
                 icon: 'error',
-                text: 'Please wait until all judges have completed their scoring.', 
+                text: 'Please wait until the judge has finished scoring.', 
               })
             }
           }, 
