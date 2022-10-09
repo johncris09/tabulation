@@ -222,16 +222,6 @@
             },
             dataType: "json",
             success : function(data){   
-              if(data.response == true){ 
-                
-                $(_this).css("border", "1px solid blue");
-                $(_this).css('font-weight', 'bolder');
-                setTimeout(function() {  
-                  $(_this).css("border", "1px solid black");
-                  $(_this).css('font-weight', 'normal');
-                }, 500); 
-                
-              } 
               load_rank();
             }
           }); 
