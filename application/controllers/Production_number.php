@@ -499,10 +499,9 @@ class Production_number extends CI_Controller {
 	
 	
 	function print_summary()
-	{
-		// get top 3 candidate
+	{ 
 		$data['controller'] = $this;
-		$data['page_title'] = "Print Summary";
+		$data['page_title'] = "Best in Production Number";
 		$data['candidate'] = $this->candidate_model->get_all_candidate();
 		$data['judge'] = $this->user_model->get_all_judge();  
 		$this->load->view('admin/production_number_summary', $data);
