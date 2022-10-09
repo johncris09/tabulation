@@ -415,6 +415,45 @@ class Top_five extends CI_Controller {
 			show_404();
 		}  
 	} 
+	
+
+	
+	function result_judge_score($judge = "")
+	{
+
+		$data['controller'] = $this;
+		$data['candidate'] = $this->candidate_model->get_all_candidate(); 
+		$data['page_title'] = "Top Five";
+		$data['judges'] = $this->user_model->get_judge(["id" => $judge]);  
+		$this->load->view('admin/top_five_result_by_judge', $data);
+		 
+	}
+
+	
+	function get_candidate_score_summary($candidate, $judge)
+	{
+		
+        $data = array(
+			'candidate' =>  $candidate, 
+			'judge' =>  $judge, 
+		);  
+		$score = $this->top_five_model->get_candidate_score_summary($data); 
+ 
+		echo ($score/100) *100 ;
+		 
+	}
+
+
+	
+	function is_judge_done_scoring()
+	{
+		$data = array(
+			"judge" => $_POST['judge'],
+		);
+		$num_rows = $this->top_five_model->is_judge_done_scoring($data); 
+        echo json_encode($num_rows);
+
+	}
 
 	
 	function result()

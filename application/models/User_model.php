@@ -32,6 +32,17 @@ class User_model extends CI_Model
             ->result_array();
     } 
 
+    
+    public function get_judge($data)
+    { 
+        return $this->db 
+            ->where('role_type', 'judge')
+            ->where($data)
+			->get($this->table)
+            ->result_array();
+    } 
+
+
     public function get_chairman()
     { 
         return $this->db 

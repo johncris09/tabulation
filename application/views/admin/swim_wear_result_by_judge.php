@@ -733,6 +733,10 @@
 		left: 231.889991px;
 	}
 	
+	.page-title {
+		left: 270.889991px;
+	}
+	
 	.x5 {
 		left: 270.770000px;
 	}
@@ -987,6 +991,9 @@
 		}
 		.x3 {
 			left: 309.186655pt;
+		}
+		.page-title {
+			left: 360.186655pt;
 		}
 		.x5 {
 			left: 361.026667pt;
@@ -1529,7 +1536,7 @@
 					<div class="t m0 x2 h3 y7 ff1 fs1 fc0 sc0 ls2 ws1"> </div>
 					<div class="t m0 x1 h3 y8 ff1 fs1 fc0 sc0 ls2 ws1"> </div>
 					<div class="t m0 x1 h3 y9 ff1 fs1 fc0 sc0 ls2 ws1"> </div>
-					<div class="t m0 x3 h3 ya ff1 fs1 fc0 sc0 ls2 ws1"><?php echo $page_title; ?></div>
+					<div class="t m0 page-title h3 ya ff1 fs1 fc0 sc0 ls2 ws1"><?php echo $page_title; ?></div>
 				</div>
 				<div class="c x1 yb w3 h4">
 					<div class="t m0 x4 h5 yc ff3 fs2 fc1 sc0 ls2 ws1">Candidate </div>

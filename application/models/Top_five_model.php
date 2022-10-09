@@ -52,6 +52,16 @@ class Top_five_model extends CI_Model
             ->limit('5')
 			->get('candidate, top_five');
     }  
+
+    
+	public function is_judge_done_scoring($data)
+	{ 
+		$query = $this->db
+            ->where($data) 
+			->get('top_five');
+		return $query->num_rows(); 
+		
+	}
     
     public function update($data)
     { 
@@ -209,6 +219,13 @@ class Top_five_model extends CI_Model
     { 
         $this->db->where($data);
         return $this->db->get($this->table)->result_array()[0]['rank']; 
+
+    }
+    
+	public function get_candidate_score_summary($data)
+    { 
+        $this->db->where($data);
+        return $this->db->get($this->table)->result_array()[0]['score']; 
 
     }
 

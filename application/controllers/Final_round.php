@@ -372,6 +372,46 @@ class Final_round extends CI_Controller {
         echo json_encode($data);
 
 	}
+
+	
+	function result_judge_score($judge = "")
+	{
+
+		$data['controller'] = $this;
+		$data['candidate'] = $this->final_round_model->get_finalist(); 
+		$data['page_title'] = "Final Round";
+		$data['judges'] = $this->user_model->get_judge(["id" => $judge]);  
+		$this->load->view('admin/final_round_result_by_judge', $data);
+		 
+	}
+
+	
+	function get_candidate_score_summary($candidate, $judge)
+	{
+		
+        $data = array(
+			'candidate' =>  $candidate, 
+			'judge' =>  $judge, 
+		);  
+		$score = $this->final_round_model->get_candidate_score_summary($data); 
+ 
+		echo ($score/100) *100 ;
+		 
+	}
+
+
+	
+	function is_judge_done_scoring()
+	{
+		$data = array(
+			"judge" => $_POST['judge'],
+		);
+		$num_rows = $this->final_round_model->is_judge_done_scoring($data); 
+        echo json_encode($num_rows);
+
+	}
+
+
 	
 	
 	function result()

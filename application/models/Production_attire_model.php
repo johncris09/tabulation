@@ -37,6 +37,16 @@ class Production_attire_model extends CI_Model
 		return 0;
 		
 	}
+
+    
+	public function is_judge_done_scoring($data)
+	{ 
+		$query = $this->db
+            ->where($data) 
+			->get('production_number');
+		return $query->num_rows(); 
+		
+	}
     
     public function update($data)
     { 
@@ -198,6 +208,13 @@ class Production_attire_model extends CI_Model
     { 
         $this->db->where($data);
         return $this->db->get($this->table)->result_array()[0]['rank']; 
+
+    }
+
+	public function get_candidate_score_summary($data)
+    { 
+        $this->db->where($data);
+        return $this->db->get($this->table)->result_array()[0]['score']; 
 
     }
 

@@ -39,7 +39,9 @@
                         foreach($judge as $row){
                           echo '
                             <th>
-															'.$row['short_name'].'  <i style="font-size: 15px;" class="bx bx-lock text-danger font-weight-bolder unlock" title="Unlock" data-table="top_five" data-judge-id="'.$row['id'].'"></i>
+															'.$row['short_name'].'
+                              <i style="font-size: 15px;" class="bx bx-lock text-danger font-weight-bolder unlock" title="Unlock"  data-judge-id="'.$row['id'].'"></i>
+                              <i style="font-size: 15px;" class="bx bx-printer text-primary font-weight-bolder print-score-summary" title="Print"  data-judge="'.$row['id'].'"></i>
 														</th>
                           ';
                         } 
@@ -244,121 +246,152 @@
          
       });
 
-			
+      
+      $('.print-score-summary').on('click', function(){
 
-				$('#print-summary').on('click', function(){ 
-					$.ajax({
-						type : 'POST',
-						url : BASE_URL + "top_five/is_all_done_scoring", 
-						dataType: "json",
-						success : function(data){ 
-							if(data == 5){
-								window.open( BASE_URL + "top_five/print_summary" , "Print Summary", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=450,width=870,height=630");
-							}else{ 
-								Swal.fire({
-									title: "Unavailable this time",
-									icon: 'error',
-									text: 'Please wait until all judges have completed their scoring.', 
-								}) 
-							}
-						}, 
-						error: function(xhr, textStatus, error){
-							console.info(xhr.responseText);
-						} 
-					})
-
-				})
-
-			
-        
-				$('#print-result').on('click', function(){
-					$.ajax({
-						type : 'POST',
-						url : BASE_URL + "top_five/is_all_done_scoring", 
-						dataType: "json",
-						success : function(data){
-							if(data == 5){
-								window.open( BASE_URL + "top_five/result" , "Print Result", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=600,width=600,height=870");
-							}else{ 
-								Swal.fire({
-									title: "Unavailable this time",
-									icon: 'error',
-									text: 'Please wait until all judges have completed their scoring.', 
-								}) 
-							}
-						}, 
-						error: function(xhr, textStatus, error){
-							console.info(xhr.responseText);
-						} 
-					})
-
-        })
-        
-        $('.unlock').on('click', function(){
-          var _this = $(this) 
-					// check password 
-					Swal.fire({
-						title: "Enter Password To Unlock",
-						input: 'password',  
-						icon: "info",
-						customClass:{
-							validationMessage: "my-validation-message",
-						}, 
-						preConfirm: (value) => { 
-							if(!value){
-								Swal.showValidationMessage('This field is required'); 
-							} 
-						},
-						showCancelButton: true,
-						confirmButtonText: "Unlock"
-					}).then(function(result) {  
-						if (result.value) {  
-							$.ajax({
-								url: BASE_URL + 'user/check_password',
-								type: 'POST',   
-								data: {'password' : result.value},
-								dataType: 'JSON',
-								success: function(data){    
-									if(data){ 
-									$.ajax({
-										url: BASE_URL + 'top_five/unlock',
-										type: 'POST',   
-										data: _this.data(),
-										dataType: 'JSON',
-										success: function(data){    
-											Swal.fire({
-												icon: 'success',
-												title: data.message, 
-											})  
-										},
-										// Error Handler
-										error: function(xhr, textStatus, error){
-											console.info(xhr.responseText);
-										}
-									});  
-									} else {
-										Swal.fire({
-											icon: 'error',
-											title: "Invalid Password", 
-										})  
-									}
-								},
-								// Error Handler
-								error: function(xhr, textStatus, error){
-									console.info(xhr.responseText);
-								}
-							});  
-						}
-					}); 
-
-					
-					
+        var _this = $(this)
+        var judge = _this.data('judge') 
+        $.ajax({
+          type : 'POST',
+          url : BASE_URL + "top_five/is_judge_done_scoring",
+          data: {
+            judge: judge
+          },
+          dataType: "json",
+          success : function(data){  
+            if(data == 12){
+              window.open(BASE_URL + "top_five/result_judge_score/" + judge, "_blank")
+            }else{ 
+              Swal.fire({
+                title: "Unavailable this time",
+                icon: 'error',
+                text: 'Please wait until all judges have completed their scoring.', 
+              })
+            }
+          }, 
+          error: function(xhr, textStatus, error){
+            console.info(xhr.responseText);
+          } 
         })
 
-      
-      
+      })
 
-      });
+			
+
+      $('#print-summary').on('click', function(){ 
+        $.ajax({
+          type : 'POST',
+          url : BASE_URL + "top_five/is_all_done_scoring", 
+          dataType: "json",
+          success : function(data){ 
+            if(data == 5){
+              window.open(BASE_URL + "top_five/print_summary", "_blank")
+              // window.open( BASE_URL + "top_five/print_summary" , "Print Summary", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=450,width=870,height=630");
+            }else{ 
+              Swal.fire({
+                title: "Unavailable this time",
+                icon: 'error',
+                text: 'Please wait until all judges have completed their scoring.', 
+              }) 
+            }
+          }, 
+          error: function(xhr, textStatus, error){
+            console.info(xhr.responseText);
+          } 
+        })
+
+      })
+
+    
+      
+      $('#print-result').on('click', function(){
+        $.ajax({
+          type : 'POST',
+          url : BASE_URL + "top_five/is_all_done_scoring", 
+          dataType: "json",
+          success : function(data){
+            if(data == 5){
+              window.open(BASE_URL + "top_five/result", "_blank") 
+            }else{ 
+              Swal.fire({
+                title: "Unavailable this time",
+                icon: 'error',
+                text: 'Please wait until all judges have completed their scoring.', 
+              }) 
+            }
+          }, 
+          error: function(xhr, textStatus, error){
+            console.info(xhr.responseText);
+          } 
+        })
+
+      })
+      
+      $('.unlock').on('click', function(){
+        var _this = $(this) 
+        // check password 
+        Swal.fire({
+          title: "Enter Password To Unlock",
+          input: 'password',  
+          icon: "info",
+          customClass:{
+            validationMessage: "my-validation-message",
+          }, 
+          preConfirm: (value) => { 
+            if(!value){
+              Swal.showValidationMessage('This field is required'); 
+            } 
+          },
+          showCancelButton: true,
+          confirmButtonText: "Unlock"
+        }).then(function(result) {  
+          if (result.value) {  
+            $.ajax({
+              url: BASE_URL + 'user/check_password',
+              type: 'POST',   
+              data: {'password' : result.value},
+              dataType: 'JSON',
+              success: function(data){    
+                if(data){ 
+                $.ajax({
+                  url: BASE_URL + 'top_five/unlock',
+                  type: 'POST',   
+                  data: _this.data(),
+                  dataType: 'JSON',
+                  success: function(data){    
+                    Swal.fire({
+                      icon: 'success',
+                      title: data.message, 
+                    })  
+                  },
+                  // Error Handler
+                  error: function(xhr, textStatus, error){
+                    console.info(xhr.responseText);
+                  }
+                });  
+                } else {
+                  Swal.fire({
+                    icon: 'error',
+                    title: "Invalid Password", 
+                  })  
+                }
+              },
+              // Error Handler
+              error: function(xhr, textStatus, error){
+                console.info(xhr.responseText);
+              }
+            });  
+          }
+        }); 
+
+        
+        
+      })
+
+    
+    
+
+    });
 
 
 

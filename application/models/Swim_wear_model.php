@@ -39,6 +39,15 @@ class Swim_wear_model extends CI_Model
 	}
 
     
+	public function is_judge_done_scoring($data)
+	{ 
+		$query = $this->db
+            ->where($data) 
+			->get('swim_wear');
+		return $query->num_rows(); 
+		
+	}
+    
     public function update($data)
     { 
         return $this->db
@@ -190,7 +199,13 @@ class Swim_wear_model extends CI_Model
         return $this->db->get($this->table)->result_array()[0]['rank']; 
 
     }
+    
+	public function get_candidate_score_summary($data)
+    { 
+        $this->db->where($data);
+        return $this->db->get($this->table)->result_array()[0]['score']; 
 
+    }
 
 	public function get_summary_candidate_final_rank($data)
 	{ 

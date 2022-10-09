@@ -26,7 +26,7 @@ input[type="number"]::-webkit-inner-spin-button {
 } 
 
 
-.bx-lock:hover{
+.bx-lock:hover, .bx-printer:hover {
 	cursor: pointer;
 }
 

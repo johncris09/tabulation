@@ -664,12 +664,31 @@
 	.xc {
 		left: 250.289991px;
 	}
+
+	
+	.underline {
+		left: 215.569991px;
+	}
+	
+	.chairman {
+		left: 240.289991px;
+	}
+
+
 	
 	.x7 {
 		left: 433.270000px;
 	}
 	
 	@media print {
+		
+		.underline {
+			left: 280.426655pt;
+		}
+		.chairman {
+			left: 310.386655pt;
+		}
+
 		.v0 {
 			vertical-align: 0.000000pt;
 		}

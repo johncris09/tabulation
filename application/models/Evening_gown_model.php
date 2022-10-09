@@ -38,6 +38,16 @@ class Evening_gown_model extends CI_Model
 		
 	}
     
+	public function is_judge_done_scoring($data)
+	{ 
+		$query = $this->db
+            ->where($data) 
+			->get('production_number');
+		return $query->num_rows(); 
+		
+	}
+
+
     public function update($data)
     { 
         return $this->db
@@ -197,6 +207,14 @@ class Evening_gown_model extends CI_Model
 
     }
 
+    
+	public function get_candidate_score_summary($data)
+    { 
+        $this->db->where($data);
+        return $this->db->get($this->table)->result_array()[0]['score']; 
+
+    }
+     
 
 	public function get_summary_candidate_final_rank($data)
 	{ 

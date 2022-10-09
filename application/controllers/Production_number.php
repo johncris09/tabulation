@@ -363,8 +363,7 @@ class Production_number extends CI_Controller {
     } 
 
 	function is_all_done_scoring()
-	{
-		// get top five
+	{ 
 		$data = $this->production_number_model->is_all_done_scoring();
  
 
@@ -372,6 +371,46 @@ class Production_number extends CI_Controller {
 
 	}
 	
+
+	
+	function result_judge_score($judge = "")
+	{
+
+		$data['controller'] = $this;
+		$data['candidate'] = $this->candidate_model->get_all_candidate(); 
+		$data['page_title'] = "Best in Production Number";
+		$data['judges'] = $this->user_model->get_judge(["id" => $judge]);  
+		$this->load->view('admin/production_number_result_by_judge', $data);
+		 
+	}
+
+	
+	function get_candidate_score_summary($candidate, $judge)
+	{
+		
+        $data = array(
+			'candidate' =>  $candidate, 
+			'judge' =>  $judge, 
+		);  
+		$score = $this->production_number_model->get_candidate_score_summary($data); 
+ 
+		echo ($score/100) *100 ;
+		 
+	}
+
+
+	
+	function is_judge_done_scoring()
+	{
+		$data = array(
+			"judge" => $_POST['judge'],
+		);
+		$num_rows = $this->production_number_model->is_judge_done_scoring($data); 
+        echo json_encode($num_rows);
+
+	}
+
+
 	
 
 	function result()
