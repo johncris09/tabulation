@@ -616,6 +616,13 @@
 
 					$.each(emp , function(index, val) { 
 						$('input[data-table=production-number][data-candidate='+val+']').css({"border": "1px solid red"})
+            // animate
+						$('input[data-table=production-number][data-candidate='+val+']').addClass('animate__animated animate__headShake')
+            setTimeout(function(){
+						  $('input[data-table=production-number][data-candidate='+val+']').removeClass('animate__animated animate__headShake')
+            }, 700);
+
+          
 					});
 
 
