@@ -100,7 +100,7 @@
     $(document).ready(function(){  
       
       setInterval(function(){  
-        consolidate_rank()  
+        consolidate_rank()
         get_tot_score();
         load_rank();
       }, 1000);  
@@ -117,7 +117,11 @@
             },
             dataType: "json",
             success : function(data){  
-              $('td.candidate-consolidate.'+data.judge_no+'.candidate-' + data.candidate).html(data.rank == 0 ? "" : data.rank) 
+              if(data.rank == undefined){
+                $('td.candidate-consolidate.'+data.judge_no+'.candidate-' + data.candidate).html("") 
+              }else{
+                $('td.candidate-consolidate.'+data.judge_no+'.candidate-' + data.candidate).html(data.rank == 0 ? "" : data.rank) 
+              }
             }, 
             error: function(xhr, textStatus, error){
               console.info(xhr.responseText);
@@ -213,7 +217,7 @@
               Swal.fire({
                 title: "Unavailable this time",
                 icon: 'error',
-                text: 'Please wait until all judges have completed their scoring.', 
+                text: 'Please wait until the judge has finished scoring.', 
               })
             }
           }, 
@@ -222,7 +226,7 @@
           } 
         })
 
-        })
+      })
 
 				
       $('#print-summary').on('click', function(){ 
@@ -230,8 +234,8 @@
           type : 'POST',
           url : BASE_URL + "final_round/is_all_done_scoring", 
           dataType: "json",
-          success : function(data){ 
-            if(data == 5){
+          success : function(data){
+            if(data){
                 window.open(BASE_URL + "final_round/print_summary", "_blank")
               // window.open( BASE_URL + "final_round/print_summary" , "Print Summary", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=450,width=870,height=630");
             }else{ 
