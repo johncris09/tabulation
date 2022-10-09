@@ -208,7 +208,7 @@
           url : BASE_URL + "top_five/is_all_done_scoring", 
           dataType: "json",
           success : function(data){  
-						if(data == 5){ 
+						if(data){ 
 							
 							$.ajax({
 								type : 'POST',
@@ -284,7 +284,7 @@
           url : BASE_URL + "top_five/is_all_done_scoring", 
           dataType: "json",
           success : function(data){ 
-            if(data == 5){
+            if(data){
               window.open(BASE_URL + "top_five/print_summary", "_blank")
               // window.open( BASE_URL + "top_five/print_summary" , "Print Summary", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=450,width=870,height=630");
             }else{ 

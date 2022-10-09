@@ -28,15 +28,20 @@ class Top_five_model extends CI_Model
 	public function is_all_done_scoring()
 	{ 
 		$query = $this->db  
-			->select('judge')
-			->distinct()
+			->select('judge, count(judge) as num_row') 
             ->where('judge != 0') 
-			->get('top_five');
-			
+            ->group_by('judge') 
+			->get('top_five'); 
 		if($query->num_rows() > 0){
-			return $query->num_rows();
+            foreach($query->result_array() as $row){
+                if($row['num_row'] == 12){ 
+                  return true;
+                }else{
+                  return false;  
+                } 
+            }
 		}
-		return 0;
+        return false;  
 		
 	}
 

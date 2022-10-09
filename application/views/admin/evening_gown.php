@@ -236,7 +236,7 @@
           url : BASE_URL + "evening_gown/is_all_done_scoring", 
           dataType: "json",
           success : function(data){ 
-            if(data == 5){
+            if(data){
               window.open(BASE_URL + "evening_gown/print_summary", "_blank")
               // window.open( BASE_URL + "evening_gown/print_summary" , "Print Summary", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=450,width=870,height=630");
             }else{ 

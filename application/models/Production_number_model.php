@@ -26,15 +26,20 @@ class Production_number_model extends CI_Model
 	public function is_all_done_scoring()
 	{ 
 		$query = $this->db  
-			->select('judge')
-			->distinct()
+			->select('judge, count(judge) as num_row') 
             ->where('judge != 0') 
-			->get('production_number');
-			
+            ->group_by('judge') 
+			->get('production_number'); 
 		if($query->num_rows() > 0){
-			return $query->num_rows();
+            foreach($query->result_array() as $row){
+                if($row['num_row'] == 12){ 
+                  return true;
+                }else{
+                  return false;  
+                } 
+            }
 		}
-		return 0;
+        return false;  
 		
 	}
 
@@ -221,7 +226,7 @@ class Production_number_model extends CI_Model
         $this->db->where($data);
         return $this->db->get($this->table)->result_array()[0]['rank'];  
     }
-    
+
 	public function get_candidate_score_summary($data)
     { 
         $this->db->where($data);

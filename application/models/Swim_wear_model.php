@@ -26,15 +26,20 @@ class Swim_wear_model extends CI_Model
 	public function is_all_done_scoring()
 	{ 
 		$query = $this->db  
-			->select('judge')
-			->distinct()
+			->select('judge, count(judge) as num_row') 
             ->where('judge != 0') 
-			->get('swim_wear');
-			
+            ->group_by('judge') 
+			->get('swim_wear'); 
 		if($query->num_rows() > 0){
-			return $query->num_rows();
+            foreach($query->result_array() as $row){
+                if($row['num_row'] == 12){ 
+                  return true;
+                }else{
+                  return false;  
+                } 
+            }
 		}
-		return 0;
+        return false;  
 		
 	}
 
