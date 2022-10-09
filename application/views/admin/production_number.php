@@ -3,7 +3,7 @@
 
 <head>
 	<?php $this->view('layout/meta') ?>
-		<?php $this->view('layout/css') ?> 
+		<?php $this->view('layout/css') ?>  
 </head>
 
 <body> 
@@ -35,10 +35,18 @@
                       <th>Candidate</th> 
                       <?php
                         foreach($judge as $row){
+                          $is_done_scoring = $this->production_number_model->is_judge_done_scoring(['judge' => $row['id']]); 
+                          if($is_done_scoring){
+                            $icon = "bxs-lock-alt";
+                            $toggle_lock = "unlock";
+                          }else{
+                            $icon = "bx-lock-open-alt";
+                            $toggle_lock = "";
+                          } 
                           echo '
                             <th>
 															'.$row['short_name'].'
-                              <i style="font-size: 15px;" class="bx bx-lock text-danger font-weight-bolder unlock" title="Unlock"  data-judge-id="'.$row['id'].'"></i>
+                              <i style="font-size: 15px;" class="bx '.$icon.' text-danger font-weight-bolder '.$toggle_lock .' " title="Unlock"  data-judge-id="'.$row['id'].'"></i>
                               <i style="font-size: 15px;" class="bx bx-printer text-primary font-weight-bolder print-score-summary" title="Print"  data-judge="'.$row['id'].'"></i>
 														</th>
                           ';
@@ -212,7 +220,7 @@
           },
           dataType: "json",
           success : function(data){  
-            if(data == 12){ 
+            if(data){ 
               window.open(BASE_URL + "production_number/result_judge_score/" + judge, "_blank")
             }else{ 
               Swal.fire({
