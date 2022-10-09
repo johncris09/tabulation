@@ -3,6 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
+	<title><?Php echo $page_title; ?></title>
+	<link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/favicon.ico" />	 
 	<meta charset="utf-8" />
 	<meta name="generator" content="pdf2htmlEX" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />

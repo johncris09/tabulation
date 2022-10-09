@@ -503,6 +503,7 @@ class Production_attire extends CI_Controller {
 	{
 		// get top 3 candidate
 		$data['controller'] = $this;
+		$data['page_title'] = "Print Summary";
 		$data['candidate'] = $this->candidate_model->get_all_candidate();
 		$data['judge'] = $this->user_model->get_all_judge();  
 		$this->load->view('admin/production_attire_summary', $data);

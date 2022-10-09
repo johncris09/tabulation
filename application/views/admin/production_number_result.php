@@ -1433,7 +1433,7 @@
 					<div class="t m0 x2 h2 y5 ff1 fs0 fc0 sc0 ls1 ws1"> </div>
 					<div class="t m0 x2 h2 y6 ff1 fs0 fc0 sc0 ls1 ws1"> </div>
 					<div class="t m0 x2 h3 y7 ff1 fs1 fc0 sc0 ls1 ws1"> </div>
-					<div class="t m0 x3 h3 y8 ff1 fs1 fc0 sc0 ls1 ws1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $page_title; ?></div>
+					<div class="t m0 x3 h3 y8 ff1 fs1 fc0 sc0 ls1 ws1">&nbsp;&nbsp;<?php echo $page_title; ?></div>
 				</div>
 				<div class="c x1 y9 w3 h4">
 					<div class="t m0 x4 h5 ya ff3 fs2 fc1 sc0 ls1 ws1">Candidate No. </div>

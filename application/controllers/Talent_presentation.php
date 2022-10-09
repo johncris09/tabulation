@@ -472,8 +472,7 @@ class Talent_presentation extends CI_Controller {
 		$data['page_title'] = "Judge' Score";
 		$data['candidate'] = $this->candidate_model->get_all_candidate();
 		$data['judges'] = $this->user_model->get_all_judge();  
-		$this->load->view('admin/talent_presentation_result_by_judge', $data); 
-
+		$this->load->view('admin/talent_presentation_result_by_judge', $data);
 	}
 
 
