@@ -600,6 +600,9 @@
 	.w4 {
 		width: 262.250000px;
 	}
+	.width {
+		width: 500.250000px;
+	}
 	
 	.w2 {
 		width: 595.319991px;
@@ -851,6 +854,9 @@
 		}
 		.w4 {
 			width: 349.666667pt;
+		}
+		.width {
+			width: 500.666667pt;
 		}
 		.w2 {
 			width: 793.759988pt;
@@ -1454,7 +1460,7 @@
 						<div class="t m0 x9 h7 yc ff3 fs1 fc0 sc0 ls1 ws1 font-size"><?php echo $row['number']; ?></div>
 					</div>
 					
-					<div  style="left: 171.020000px; bottom: <?php echo $bottom ?>px;"  class="c w4 height <?php echo "y-candidate-" . $counter . " " . "x-candidate-" . $x+=1; ?> ">
+					<div  style="left: 151.020000px; bottom: <?php echo $bottom ?>px;"  class="c width height <?php echo "y-candidate-" . $counter . " " . "x-candidate-" . $x+=1; ?> ">
 						<div class="t m0 x8 h3 yc ff1 fs1 fc0 sc0 ls1 ws1 font-size"><?php echo $row['name']; ?>  </div>
 					</div>
 
