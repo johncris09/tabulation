@@ -117,10 +117,12 @@
               judge_no : $(this).data('judge'), 
             },
             dataType: "json",
-            success : function(data){  
-              $('td.candidate-consolidate.'+data.judge_no+'.candidate-' + data.candidate).html(data.rank == 0 ? "" : data.rank) 
-              
-
+            success : function(data){
+              if(data.rank == undefined){
+                $('td.candidate-consolidate.'+data.judge_no+'.candidate-' + data.candidate).html("") 
+              }else{
+                $('td.candidate-consolidate.'+data.judge_no+'.candidate-' + data.candidate).html(data.rank == 0 ? "" : data.rank) 
+              } 
             }, 
             error: function(xhr, textStatus, error){
               console.info(xhr.responseText);
