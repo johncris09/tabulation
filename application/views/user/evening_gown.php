@@ -116,7 +116,23 @@
         type: 'POST',   
         dataType: 'JSON',
         success: function(data){   
-          $.each(data, function (key, val) {  
+          $.each(data, function (key, val) { 
+              $.ajax({
+                type : 'POST',
+                url : BASE_URL + "evening_gown/update_rank",
+                data : { 
+                  candidate : val.candidate,
+                  judge : '<?php echo $_SESSION['id'] ?>', 
+                  rank :  val.rank,
+                  status : "unlocked",
+                },
+                dataType: "json",
+                success : function(data){
+                }, 
+                error: function(xhr, textStatus, error){
+                  console.info(xhr.responseText);
+                }
+              }); 
               $('span.rank-evening-gown.candidate-' + val.candidate).html(val.rank)  
           });
           
@@ -246,9 +262,24 @@
           url: BASE_URL + 'top_five/get_ranking_specific_judge',
           type: 'POST',   
           dataType: 'JSON',
-          success: function(data){  
-            // console.info(data)
+          success: function(data){   
             $.each(data, function (key, val) {  
+              $.ajax({
+                type : 'POST',
+                url : BASE_URL + "top_five/update_rank",
+                data : { 
+                  candidate : val.candidate,
+                  judge : '<?php echo $_SESSION['id'] ?>', 
+                  rank :  val.rank,
+                  status : "unlocked",
+                },
+                dataType: "json",
+                success : function(data){
+                }, 
+                error: function(xhr, textStatus, error){
+                  console.info(xhr.responseText);
+                }
+              }); 
               $('span.rank-top-five.candidate-' + val.candidate).html(val.rank) 
             });
             

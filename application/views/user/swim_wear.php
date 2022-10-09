@@ -120,9 +120,24 @@
           url: BASE_URL + 'swim_wear/get_ranking_specific_judge',
           type: 'POST',   
           dataType: 'JSON',
-          success: function(data){  
-            // console.info(data)
+          success: function(data){   
             $.each(data, function (key, val) {  
+              $.ajax({
+                type : 'POST',
+                url : BASE_URL + "swim_wear/update_rank",
+                data : { 
+                  candidate : val.candidate,
+                  judge : '<?php echo $_SESSION['id'] ?>', 
+                  rank :  val.rank,
+                  status : "unlocked",
+                },
+                dataType: "json",
+                success : function(data){
+                }, 
+                error: function(xhr, textStatus, error){
+                  console.info(xhr.responseText);
+                }
+              });
               $('span.rank-swim-wear.candidate-' + val.candidate).html(val.rank) 
             });
             
@@ -252,12 +267,26 @@
           url: BASE_URL + 'top_five/get_ranking_specific_judge',
           type: 'POST',   
           dataType: 'JSON',
-          success: function(data){  
-            // console.info(data)
-            $.each(data, function (key, val) {  
+          success: function(data){   
+            $.each(data, function (key, val) {   
+              $.ajax({
+                type : 'POST',
+                url : BASE_URL + "top_five/update_rank",
+                data : { 
+                  candidate : val.candidate,
+                  judge : '<?php echo $_SESSION['id'] ?>', 
+                  rank :  val.rank,
+                  status : "unlocked",
+                },
+                dataType: "json",
+                success : function(data){
+                }, 
+                error: function(xhr, textStatus, error){
+                  console.info(xhr.responseText);
+                }
+              });
               $('span.rank-top-five.candidate-' + val.candidate).html(val.rank) 
-            });
-            
+            }); 
           }, 
           error: function(xhr, textStatus, error){
             console.info(xhr.responseText);
@@ -367,137 +396,7 @@
             }
           }); 
         } 
-      });
-
-
-
-      //________________________________//
-      //________________________________//
-      //        Top Five
-      //________________________________//
-      //________________________________//  
-      function load_top_five_rank(){
-        
-        $.ajax({
-          url: BASE_URL + 'top_five/get_ranking_specific_judge',
-          type: 'POST',   
-          dataType: 'JSON',
-          success: function(data){  
-            // console.info(data)
-            $.each(data, function (key, val) {  
-              $('span.rank-top-five.candidate-' + val.candidate).html(val.rank) 
-            });
-            
-          }, 
-          error: function(xhr, textStatus, error){
-            console.info(xhr.responseText);
-          }
-        }); 
-
-      }
-
-      
-      // load score
-      function load_top_five_score()
-      {
-        $('input#score-top-five.candidate').each(function(){   
-          var _this = $(this)
-            $.ajax({
-              type : 'POST',
-              url : BASE_URL + "top_five/get_candidate_score",
-              data : { 
-                candidate : $(this).data('candidate'),
-                judge : '<?php echo $_SESSION['id'] ?>', 
-              },
-              dataType: "json",
-              success : function(data){   
-                $(_this).val(data)
-              }
-            }); 
-        })
-      }
-
-
-      $('input#score-top-five').on('keyup', function(){  
-        var _this = this
-        var candidate = $(this).data('candidate') 
- 
- 
-        if(_this.value > 10  ){ 
-          Swal.fire({
-            icon: 'error',
-            title: 'Please only provide ratings between 1 and 10.', 
-          }).then(function(){
-            // empty all fields
-            _this.value = "";  
-            $('.rank-top-five.candidate-' + candidate).html('')
-          }) 
-					 
-
-					// delete previous score by candidate and judge
-					$.ajax({
-            type : 'POST',
-            url : BASE_URL + "top_five/delete_previous_score", 
-            data : { 
-              candidate : $(this).data('candidate'),
-              judge : '<?php echo $_SESSION['id'] ?>', 
-            },
-            dataType: "json",
-            success : function(data){    
-              load_top_five_rank();
-            }
-          });  
-
-        }else if(_this.value  == 0  ){    
-					_this.value = "";  
-            $('.rank-top-five.candidate-' + candidate).html('') 
-					// delete previous score by candidate and judge
-					$.ajax({
-            type : 'POST',
-            url : BASE_URL + "top_five/delete_previous_score", 
-            data : { 
-              candidate : $(this).data('candidate'),
-              judge : '<?php echo $_SESSION['id'] ?>', 
-            },
-            dataType: "json",
-            success : function(data){    
-              load_top_five_rank();
-            }
-          }); 
-        }else if(_this.value  == ""   ){  
-          _this.value = "";  
-          $('.rank-top-five.candidate-' + candidate).html('')  
-					// delete previous score by candidate and judge
-					$.ajax({
-            type : 'POST',
-            url : BASE_URL + "top_five/delete_previous_score", 
-            data : { 
-              candidate : $(this).data('candidate'),
-              judge : '<?php echo $_SESSION['id'] ?>', 
-            },
-            dataType: "json",
-            success : function(data){    
-              load_top_five_rank();
-            }
-          }); 
-        }else{  
-          var _this = $(this)  
-          $.ajax({
-            type : 'POST',
-            url : BASE_URL + "top_five/insert", 
-            data : {
-              score : $(this).val(),
-              candidate : $(this).data('candidate'),
-              judge : '<?php echo $_SESSION['id'] ?>',
-
-            },
-            dataType: "json",
-            success : function(data){   
-              load_top_five_rank();
-            }
-          }); 
-        } 
-      });
+      }); 
 
       
       //________________________________//
