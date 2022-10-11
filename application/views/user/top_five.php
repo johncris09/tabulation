@@ -161,8 +161,7 @@
               data : { 
                 candidate : val.candidate,
                 judge : '<?php echo $_SESSION['id'] ?>', 
-                rank :  val.rank,
-                status : "unlocked",
+                rank :  val.rank, 
               },
               dataType: "json",
               success : function(data){

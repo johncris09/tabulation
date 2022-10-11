@@ -186,7 +186,7 @@ class Production_number_model extends CI_Model
 	{
 		return $this->db 
 			->where('judge', $data['judge']) 
-			->update($this->table, $data);
+			->update('production_number', $data);
 	}
 
 	public function get_status($data)

@@ -102,7 +102,6 @@
                 candidate : val.candidate,
                 judge : '<?php echo $_SESSION['id'] ?>', 
                 rank :  val.rank,
-                status : "unlocked",
               },
               dataType: "json",
               success : function(data){

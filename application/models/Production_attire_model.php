@@ -175,7 +175,7 @@ class Production_attire_model extends CI_Model
 	{
 		return $this->db 
 			->where('judge', $data['judge']) 
-			->update($this->table, $data);
+			->update('production_attire', $data);
 	}
 
 	public function get_status($data)
