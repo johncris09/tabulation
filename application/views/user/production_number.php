@@ -34,11 +34,11 @@
                   </tr> 
                   <tr>
                     <th>Production Number</th>
-                    <td>Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on <strong>Mastery, Gracefulness and Stage projection.</strong></td>
+                    <td>Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on <strong>Mastery, Gracefulness and Stage Projection.</strong></td>
                   </tr> 
                   <tr>
                     <th>Production Attire</th>
-                    <td>Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on <strong>Attire to candidate's match, Poise and carriage and General beauty.</strong></td>
+                    <td>Each candidate will be rated 1 to 10, 1 being the lowest and 10 being the highest based on <strong>Attire to Candidate's Match, Poise and Carriage and General Beauty.</strong></td>
                   </tr>  
                   <tr>
                     <th>Top Five</th>
@@ -214,6 +214,11 @@
       $('input#score-production-number').on('keyup', function(){  
         var _this = this
         var candidate = $(this).data('candidate') 
+
+				// remove border red
+				if($(this).attr('style') != undefined){
+					$(this).removeAttr('style') 
+				}
  
  
         if(_this.value > 10  ){ 
@@ -360,6 +365,11 @@
       $('input#score-production-attire').on('keyup', function(){  
         var _this = this
         var candidate = $(this).data('candidate') 
+
+				// remove border red
+				if($(this).attr('style') != undefined){
+					$(this).removeAttr('style') 
+				}
  
  
         if(_this.value > 10  ){ 
@@ -616,7 +626,8 @@
 
 					$.each(emp , function(index, val) { 
 						$('input[data-table=production-number][data-candidate='+val+']').css({"border": "1px solid red"})
-            // animate
+            
+						// animate
 						$('input[data-table=production-number][data-candidate='+val+']').addClass('animate__animated animate__headShake')
             setTimeout(function(){
 						  $('input[data-table=production-number][data-candidate='+val+']').removeClass('animate__animated animate__headShake')
@@ -703,6 +714,12 @@
 
 					$.each(emp , function(index, val) { 
 						$('input[data-table=production-attire][data-candidate='+val+']').css({"border": "1px solid red"})
+						
+						// animate
+						$('input[data-table=production-attire][data-candidate='+val+']').addClass('animate__animated animate__headShake')
+            setTimeout(function(){
+						  $('input[data-table=production-attire][data-candidate='+val+']').removeClass('animate__animated animate__headShake')
+            }, 700);
 					});
 
 

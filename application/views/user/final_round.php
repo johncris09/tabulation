@@ -148,8 +148,13 @@
       // 1 to 10 input only
 
       $('input').on('keyup', function(){  
-        var _this = this
+        var _this = this  
         var candidate = $(this).data('candidate') 
+
+				// remove border red
+				if($(this).attr('style') != undefined){
+					$(this).removeAttr('style') 
+				}
  
  
         if(_this.value > 10  ){ 
@@ -250,6 +255,12 @@
 
 					$.each(emp , function(index, val) {  
 						$('input[data-candidate='+val+']').css({"border": "1px solid red"})
+						
+						// animate
+						$('input[data-candidate='+val+']').addClass('animate__animated animate__headShake')
+            setTimeout(function(){
+						  $('input[data-candidate='+val+']').removeClass('animate__animated animate__headShake')
+            }, 700);
 					});
   
 				}else{
