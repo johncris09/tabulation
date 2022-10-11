@@ -454,7 +454,7 @@ class Swim_wear extends CI_Controller {
 	public function unlock()
 	{ 
 		$unlock = array(
-			'judge' => $this->input->post('judgeId'), 
+			'judge' => $this->input->post('judge'), 
 			'status' => "unlocked", 
 		);
 		$update = $this->swim_wear_model->update_status($unlock); 

@@ -399,6 +399,7 @@ class Top_five extends CI_Controller {
 				);
 				$counter++;
 			}
+ 
 
 			foreach($result as $row){
 				$candidate = array(
@@ -480,7 +481,7 @@ class Top_five extends CI_Controller {
 				);
 				$counter++;
 			} 
- 
+  
 			$data['page_title'] = "Top Five";
 			$data['candidate'] = $result;
 			$data['judge'] = $this->user_model->get_chairman(); 
@@ -499,7 +500,7 @@ class Top_five extends CI_Controller {
 	public function unlock()
 	{ 
 		$unlock = array(
-			'judge' => $this->input->post('judgeId'), 
+			'judge' => $this->input->post('judge'), 
 			'status' => "unlocked", 
 		);
 		$update = $this->top_five_model->update_status($unlock); 

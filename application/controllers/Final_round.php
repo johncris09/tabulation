@@ -401,13 +401,14 @@ class Final_round extends CI_Controller {
 
 
 	
+	
 	function is_judge_done_scoring()
 	{
 		$data = array(
 			"judge" => $_POST['judge'],
 		);
-		$num_rows = $this->final_round_model->is_judge_done_scoring($data); 
-        echo json_encode($num_rows);
+		$is_done = $this->final_round_model->is_judge_done_scoring($data); 
+        echo json_encode($is_done);
 
 	}
 
@@ -463,7 +464,7 @@ class Final_round extends CI_Controller {
 	public function unlock()
 	{ 
 		$unlock = array(
-			'judge' => $this->input->post('judgeId'), 
+			'judge' => $this->input->post('judge'), 
 			'status' => "unlocked", 
 		);
 		$update = $this->final_round_model->update_status($unlock); 

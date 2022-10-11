@@ -402,8 +402,8 @@ class Evening_gown extends CI_Controller {
 		$data = array(
 			"judge" => $_POST['judge'],
 		);
-		$num_rows = $this->evening_gown_model->is_judge_done_scoring($data); 
-        echo json_encode($num_rows);
+		$is_done = $this->evening_gown_model->is_judge_done_scoring($data); 
+        echo json_encode($is_done);
 
 	}
 
@@ -454,7 +454,7 @@ class Evening_gown extends CI_Controller {
 	public function unlock()
 	{ 
 		$unlock = array(
-			'judge' => $this->input->post('judgeId'), 
+			'judge' => $this->input->post('judge'), 
 			'status' => "unlocked", 
 		);
 		$update = $this->evening_gown_model->update_status($unlock); 
