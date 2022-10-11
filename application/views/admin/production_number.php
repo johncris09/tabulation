@@ -35,18 +35,10 @@
                       <th>Candidate</th> 
                       <?php
                         foreach($judge as $row){
-                          $is_done_scoring = $this->production_number_model->is_judge_done_scoring(['judge' => $row['id']]); 
-                          if($is_done_scoring){
-                            $icon = "bxs-lock-alt";
-                            $toggle_lock = "unlock";
-                          }else{
-                            $icon = "bx-lock-open-alt";
-                            $toggle_lock = "";
-                          } 
                           echo '
                             <th>
 															'.$row['short_name'].'
-                              <i style="font-size: 15px;" class="bx '.$icon.' text-danger font-weight-bolder '.$toggle_lock .' " title="Unlock"  data-judge-id="'.$row['id'].'"></i>
+                              <i style="font-size: 15px;" class="unlock bx bx-lock-open-alt text-danger font-weight-bolder lock-toggle" title="Unlock"  data-judge="'.$row['id'].'"></i>
                               <i style="font-size: 15px;" class="bx bx-printer text-primary font-weight-bolder print-score-summary" title="Print"  data-judge="'.$row['id'].'"></i>
 														</th>
                           ';
@@ -105,10 +97,40 @@
     $(document).ready(function(){  
       
       setInterval(function(){  
+				is_judge_done_scoring();
         consolidate_rank()  
         get_tot_score(); 
         load_rank();
       }, 1000); 
+
+			function is_judge_done_scoring(){
+				$('.lock-toggle').each(function(){   
+          var _this = $(this)
+					var judge = _this.data('judge') 
+          $.ajax({
+            type : 'POST',
+            url : BASE_URL + "production_number/is_judge_done_scoring",
+            data : {  
+              judge : judge 
+            },
+            dataType: "json",
+            success : function(data){ 
+							if(data){  
+								$('.lock-toggle[data-judge="'+judge+'"]').removeClass('bx-lock-open-alt')
+								$('.lock-toggle[data-judge="'+judge+'"]').addClass('bxs-lock-alt')
+							}else{
+								$('.lock-toggle[data-judge="'+judge+'"]').removeClass('bxs-lock-alt unlock')
+								$('.lock-toggle[data-judge="'+judge+'"]').addClass('bx-lock-open-alt')
+								$('.lock-toggle[data-judge="'+judge+'"]').attr('title', "")
+							}
+            }, 
+            error: function(xhr, textStatus, error){
+              console.info(xhr);
+            }
+          });
+        })
+				
+			}
       
  
       function consolidate_rank(){
@@ -248,7 +270,7 @@
             if(data){
                 window.open(BASE_URL + "production_number/print_summary", "_blank")
               // window.open( BASE_URL + "production_number/print_summary" , "Print Summary", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=450,width=870,height=630");
-            }else{ 
+            }else{
               Swal.fire({
                 title: "Unavailable this time",
                 icon: 'error',
@@ -270,7 +292,7 @@
           url : BASE_URL + "production_number/is_all_done_scoring", 
           dataType: "json",
           success : function(data){
-            if(data == 5){
+            if(data){
               window.open(BASE_URL + "production_number/result", "_blank")
               // window.open( BASE_URL + "production_number/result" , "Print Result",  "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=600,width=600,height=870");
             }else{ 
@@ -290,63 +312,63 @@
 
 								
         $('.unlock').on('click', function(){
-          var _this = $(this) 
-          // check password 
-          Swal.fire({
-            title: "Enter Password To Unlock",
-            input: 'password',  
-            icon: "info",
-            customClass:{
-              validationMessage: "my-validation-message",
-            }, 
-            preConfirm: (value) => { 
-              if(!value){
-                Swal.showValidationMessage('This field is required'); 
-              } 
-            },
-            showCancelButton: true,
-            confirmButtonText: "Unlock"
-          }).then(function(result) {  
-            if (result.value) {  
-              $.ajax({
-                url: BASE_URL + 'user/check_password',
-                type: 'POST',   
-                data: {'password' : result.value},
-                dataType: 'JSON',
-                success: function(data){    
-                  if(data){ 
-                  $.ajax({
-                    url: BASE_URL + 'production_number/unlock',
-                    type: 'POST',   
-                    data: _this.data(),
-                    dataType: 'JSON',
-                    success: function(data){    
-                      Swal.fire({
-                        icon: 'success',
-                        title: data.message, 
-                      })  
-                    },
-                    // Error Handler
-                    error: function(xhr, textStatus, error){
-                      console.info(xhr.responseText);
-                    }
-                  });  
-                  } else {
-                    Swal.fire({
-                      icon: 'error',
-                      title: "Invalid Password", 
-                    })  
-                  }
-                },
-                // Error Handler
-                error: function(xhr, textStatus, error){
-                  console.info(xhr.responseText);
-                }
-              });  
-            }
-          }); 
-
-          
+          var _this = $(this)  
+					if(_this.hasClass('unlock')){ 
+						// check password 
+						Swal.fire({
+							title: "Enter Password To Unlock",
+							input: 'password',  
+							icon: "info",
+							customClass:{
+								validationMessage: "my-validation-message",
+							}, 
+							preConfirm: (value) => { 
+								if(!value){
+									Swal.showValidationMessage('This field is required'); 
+								} 
+							},
+							showCancelButton: true,
+							confirmButtonText: "Unlock"
+						}).then(function(result) {  
+							if (result.value) {  
+								$.ajax({
+									url: BASE_URL + 'user/check_password',
+									type: 'POST',   
+									data: {'password' : result.value},
+									dataType: 'JSON',
+									success: function(data){    
+										if(data){ 
+										$.ajax({
+											url: BASE_URL + 'production_number/unlock',
+											type: 'POST',   
+											data: _this.data(),
+											dataType: 'JSON',
+											success: function(data){   
+												Swal.fire({
+													icon: 'success',
+													title: data.message, 
+												})  
+											},
+											// Error Handler
+											error: function(xhr, textStatus, error){
+												console.info(xhr.responseText);
+											}
+										});  
+										} else {
+											Swal.fire({
+												icon: 'error',
+												title: "Invalid Password", 
+											})  
+										}
+									},
+									// Error Handler
+									error: function(xhr, textStatus, error){
+										console.info(xhr.responseText);
+									}
+								});  
+							}
+						}); 
+					} 
           
         })
 

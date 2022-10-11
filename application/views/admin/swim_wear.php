@@ -39,7 +39,7 @@
                           echo '
                             <th>
 															'.$row['short_name'].'
-                              <i style="font-size: 15px;" class="bx bx-lock text-danger font-weight-bolder unlock" title="Unlock"  data-judge-id="'.$row['id'].'"></i>
+                              <i style="font-size: 15px;" class="unlock bx bx-lock-open-alt text-danger font-weight-bolder lock-toggle" title="Unlock"  data-judge="'.$row['id'].'"></i>
                               <i style="font-size: 15px;" class="bx bx-printer text-primary font-weight-bolder print-score-summary" title="Print"  data-judge="'.$row['id'].'"></i>
 														</th>
                           ';
@@ -100,10 +100,42 @@
     $(document).ready(function(){  
       
       setInterval(function(){  
+				is_judge_done_scoring();
         consolidate_rank()  
         get_tot_score();
         load_rank();
       }, 1000); 
+
+			
+
+			function is_judge_done_scoring(){
+				$('.lock-toggle').each(function(){   
+          var _this = $(this)
+					var judge = _this.data('judge') 
+          $.ajax({
+            type : 'POST',
+            url : BASE_URL + "swim_wear/is_judge_done_scoring",
+            data : {  
+              judge : judge 
+            },
+            dataType: "json",
+            success : function(data){ 
+							if(data){  
+								$('.lock-toggle[data-judge="'+judge+'"]').removeClass('bx-lock-open-alt')
+								$('.lock-toggle[data-judge="'+judge+'"]').addClass('bxs-lock-alt')
+							}else{
+								$('.lock-toggle[data-judge="'+judge+'"]').removeClass('bxs-lock-alt unlock')
+								$('.lock-toggle[data-judge="'+judge+'"]').addClass('bx-lock-open-alt')
+								$('.lock-toggle[data-judge="'+judge+'"]').attr('title', "")
+							}
+            }, 
+            error: function(xhr, textStatus, error){
+              console.info(xhr);
+            }
+          });
+        })
+				
+			} 
       
  
       function consolidate_rank(){
@@ -214,7 +246,7 @@
           },
           dataType: "json",
           success : function(data){  
-            if(data == 12){
+            if(data){
               window.open(BASE_URL + "swim_wear/result_judge_score/" + judge, "_blank")
             }else{ 
               Swal.fire({
@@ -263,7 +295,7 @@
 						url : BASE_URL + "swim_wear/is_all_done_scoring", 
 						dataType: "json",
 						success : function(data){
-							if(data == 5){
+            if(data){
               window.open(BASE_URL + "swim_wear/result", "_blank")
 								// window.open( BASE_URL + "swim_wear/result" , "Print Result", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=600,width=600,height=870");
 							}else{ 
