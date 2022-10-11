@@ -185,10 +185,9 @@
   <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/sweetalert.js"></script>
   <!-- Page JS -->
-  <script src="<?php echo base_url(); ?>assets/js/login.js"></script>
-  <!-- <script src="<?php echo base_url(); ?>assets/js/pages-auth.js"></script> -->
-	<script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> 
-	<script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/login.js"></script> 
+  <script src="<?php echo base_url(); ?>assets/js/particles.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/stats.min.js"></script>
 	<script> 
   
 
