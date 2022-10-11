@@ -28,23 +28,18 @@ class Top_five_model extends CI_Model
 	public function is_all_done_scoring()
 	{ 
 		$query = $this->db  
-			->select('judge, count(judge) as num_row') 
+			->select('judge, count(status) as num_row') 
             ->where('judge != 0') 
+            ->where('status', 'locked') 
             ->group_by('judge') 
-			->get('top_five'); 
-		if($query->num_rows() > 0){
-            foreach($query->result_array() as $row){
-                if($row['num_row'] == 12){ 
-                  return true;
-                }else{
-                  return false;  
-                } 
-            }
+			->get('top_five');   
+
+		if($query->num_rows() == 5){
+			return true;
 		}
-        return false;  
+        return false;
 		
 	}
-
     
     public function get_top_candidate()
     { 
@@ -54,18 +49,26 @@ class Top_five_model extends CI_Model
             ->where('top_five.candidate = candidate.id')
             ->where('score != 0')
             ->order_by('rank','asc')
-            ->limit('5')
 			->get('candidate, top_five');
-    }  
+    } 
 
-    
 	public function is_judge_done_scoring($data)
 	{ 
 		$query = $this->db
+            ->select("count(status) as num_row")
             ->where($data) 
+            ->where("status", "locked") 
 			->get('top_five');
-		return $query->num_rows(); 
-		
+        if($query->num_rows() > 0){
+            foreach($query->result_array() as $row){
+                if($row['num_row'] == 12){ 
+                    return true;
+                }else{
+                    return false;  
+                } 
+            }
+        }
+        return false;   
 	}
     
     public function update($data)

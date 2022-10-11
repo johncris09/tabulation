@@ -26,20 +26,16 @@ class Production_number_model extends CI_Model
 	public function is_all_done_scoring()
 	{ 
 		$query = $this->db  
-			->select('judge, count(judge) as num_row') 
+			->select('judge, count(status) as num_row') 
             ->where('judge != 0') 
+            ->where('status', 'locked') 
             ->group_by('judge') 
-			->get('production_number'); 
-		if($query->num_rows() > 0){
-            foreach($query->result_array() as $row){
-                if($row['num_row'] == 12){ 
-                  return true;
-                }else{
-                  return false;  
-                } 
-            }
+			->get('production_number');   
+
+		if($query->num_rows() == 5){
+			return true;
 		}
-        return false;  
+        return false;
 		
 	}
 

@@ -43,32 +43,38 @@ class Final_round_model extends CI_Model
 	public function is_all_done_scoring()
 	{ 
 		$query = $this->db  
-			->select('judge, count(judge) as num_row') 
+			->select('judge, count(status) as num_row') 
             ->where('judge != 0') 
+            ->where('status', 'locked') 
             ->group_by('judge') 
-			->get('final_round'); 
-		if($query->num_rows() > 0){
-            foreach($query->result_array() as $row){
-                if($row['num_row'] == 5){ 
-                  return true;
-                }else{
-                  return false;  
-                } 
-            }
+			->get('final_round');   
+
+		if($query->num_rows() == 5){
+			return true;
 		}
-        return false;  
+        return false;
 		
 	}
-
 
 	public function is_judge_done_scoring($data)
 	{ 
 		$query = $this->db
+            ->select("count(status) as num_row")
             ->where($data) 
+            ->where("status", "locked") 
 			->get('final_round');
-		return $query->num_rows(); 
-		
+        if($query->num_rows() > 0){
+            foreach($query->result_array() as $row){
+                if($row['num_row'] == 5){ 
+                    return true;
+                }else{
+                    return false;  
+                } 
+            }
+        }
+        return false;   
 	}
+
     
     public function update($data)
     { 
@@ -189,8 +195,7 @@ class Final_round_model extends CI_Model
             ->where('judge',0)
             ->where('candidate.id = final_round.candidate')
             ->where('score != 0')
-            ->order_by('rank','asc')
-            ->limit('5')
+            ->order_by('rank','asc') 
 			->get('candidate, final_round');
     }   
 	
