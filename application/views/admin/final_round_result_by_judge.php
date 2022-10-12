@@ -1619,7 +1619,7 @@
 					<div class="t m0 x1 h2 y20 ff1 fs0 fc0 sc0 ls2 ws1"> </div>
 					<div class="t m0 x1 h2 y21 ff1 fs0 fc0 sc0 ls2 ws1"> </div>
 					<div class="t m0 x9 h2 y22 ff1 fs0 fc0 sc0 ls2 ws1">________________<span class="_ _0"></span>__________<span class="_ _0"></span>____________<span class="_ _0"></span>__ </div>
-					<div class="t m0 xa h3 y23 ff1 fs1 fc0 sc0 ls2 ws1">Judge #, Signature over Printed Name </div>
+					<div class="t m0 xa h3 y23 ff1 fs1 fc0 sc0 ls2 ws1">Judge <?php echo $judge['judge_no'][-1] ?>, Signature over Printed Name </div>
 				</div>
 			</div>
 			<div class="pi" data-data='{"ctm":[1.000000,0.000000,0.000000,1.000000,0.000000,0.000000]}'></div>
