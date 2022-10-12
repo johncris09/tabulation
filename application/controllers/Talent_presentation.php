@@ -416,7 +416,7 @@ class Talent_presentation extends CI_Controller {
 	public function unlock()
 	{ 
 		$unlock = array(
-			'judge' => $this->input->post('judgeId'), 
+			'judge' => $this->input->post('judge'), 
 			'status' => "unlocked", 
 		);
 		$update = $this->talent_presentation_model->update_status($unlock); 
