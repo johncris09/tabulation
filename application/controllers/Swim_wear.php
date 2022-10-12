@@ -17,8 +17,7 @@ class Swim_wear extends CI_Controller {
         $data['page_title'] = "Best in Swim Wear"; 
 		$data['candidate'] = $this->candidate_model->get_all_candidate();
 		if( strtolower ($_SESSION['role_type'] ) == "admin"){ 
-			$data['judge'] = $this->user_model->get_all_judge(); 
-			// $data['score'] = $this->swim_wear_model->get_all_score(); 
+			$data['judge'] = $this->user_model->get_all_judge();  
 			$this->load->view('admin/swim_wear', $data);   
 		}else{
 			$data['status'] = $this->swim_wear_model->get_status(['judge' => $_SESSION['id']]); 
@@ -275,9 +274,13 @@ class Swim_wear extends CI_Controller {
 		$data = array(
 			'candidate' =>  $this->input->post('candidate'),
 			'rank' =>  $this->input->post('rank'),
-			'judge' =>  $this->input->post('judge'), 
-			'status' =>  $this->input->post('status'), 
+			'judge' =>  $this->input->post('judge'),  
 		);  
+ 
+		
+		if(isset($_POST['status'])){
+			$data['status'] = $this->input->post('status');
+		}
  
 
 		$update = $this->swim_wear_model->update_rank($data); 

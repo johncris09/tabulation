@@ -274,10 +274,12 @@ class Top_five extends CI_Controller {
 		$data = array(
 			'candidate' =>  $this->input->post('candidate'),
 			'rank' =>  $this->input->post('rank'),
-			'judge' =>  $this->input->post('judge'), 
-			'status' =>  $this->input->post('status'), 
+			'judge' =>  $this->input->post('judge'),  
 		);  
  
+		if(isset($_POST['status'])){
+			$data['status'] = $this->input->post('status');
+		}
 
 		$update = $this->top_five_model->update_rank($data); 
 			
