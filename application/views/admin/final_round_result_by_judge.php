@@ -6,6 +6,8 @@
 	<meta charset="utf-8" />
 	<meta name="generator" content="pdf2htmlEX" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<link rel="icon" type="image/x-icon" href="http://localhost/tabulation/assets/img/favicon.ico" />	 
+	<title><?php echo $page_title; ?></title>
 	<style type="text/css">
 	/*! 
  * Base CSS for pdf2htmlEX
