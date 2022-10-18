@@ -8,18 +8,13 @@
 
     <title><?php echo $page_title; ?></title>
     
-    <meta name="description" content="Start your development with a Dashboard for Bootstrap 5" />
-    <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 admin, bootstrap 5 design, bootstrap 5">
-    <!-- Canonical SEO -->
-    <link rel="canonical" href="https://1.envato.market/frest_admin">
-    
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/img/favicon.ico" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/font.css" />
 
     <!-- Icons -->
     <link rel="stylesheet" href="<?php echo base_url();  ?>assets/vendor/fonts/boxicons/css/boxicons.min.css" />
